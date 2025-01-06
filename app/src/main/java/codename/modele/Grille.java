@@ -17,11 +17,16 @@ public class Grille {
         this.tableauTuiles = null;
     }
 
+    /*
+     * Créer une liste de tuiles avec des -1,0,1 ou 2 selon la couleur (assassin, blanche, bleu ou rouge).
+     * Renvoie cette liste avec une repartition de 70% de tuiles bleues/rouges, 1 tuile assassin
+     * et le reste en tuiles blanches.
+    */
     public List<Integer> createRepartitionTuiles(){
-        int equipeA = (taille*taille*100)/70;
-        equipeA = (equipeA/2)*2;
-        int equipeB = equipeA+1;
-        int blanche = taille - (equipeA + equipeB + 1);
+        int totalTuiles = taille * taille;
+        int equipeA = (70/100 * (totalTuiles - 1))/2;
+        int equipeB = (70/100 * (totalTuiles - 1))/2;
+        int blanche = totalTuiles - (equipeA + equipeB + 1);
         List<Integer> repartitionTuiles = new ArrayList<>();
         for (int i = 0; i < blanche; i++){
             repartitionTuiles.add(0);
@@ -34,9 +39,6 @@ public class Grille {
         }
         repartitionTuiles.add(-1);
         Collections.shuffle(repartitionTuiles);
-        for (Integer i : repartitionTuiles){
-            System.out.println(i);
-        }
         return repartitionTuiles;
     }
 

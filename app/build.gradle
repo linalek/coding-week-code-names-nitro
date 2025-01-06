@@ -49,9 +49,13 @@ application {
 }
 
 jar {
+    // Exclure les dépendances du JAR
+    from sourceSets.main.output
+    // Vous pouvez également exclure d'autres fichiers si nécessaire
+    // exclude '**/*.xml'
     manifest {
         attributes(
-                'Main-Class': 'codingweek.Main'
+                'Main-Class': 'codename.Main' // Indique la classe principale
         )
     }
 }

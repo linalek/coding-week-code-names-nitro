@@ -34,6 +34,9 @@ public class Grille {
         }
         repartitionTuiles.add(-1);
         Collections.shuffle(repartitionTuiles);
+        for (Integer i : repartitionTuiles){
+            System.out.println(i);
+        }
         return repartitionTuiles;
     }
 
@@ -59,7 +62,7 @@ public class Grille {
         else {
             for (int i = 0; i < taille; i++){
                 for (int j = 0; j < taille; j++){
-                    ajouterTuileMot();
+                    tableauTuiles[i][j]=ajouterTuileMot();
                 }
             }
         }
@@ -73,10 +76,11 @@ public class Grille {
 
     }
 
-    public void ajouterTuileMot(){
+    public TuileMot ajouterTuileMot(){
         int equipe = repartitionTuiles.removeFirst();
         TuileMot myTuile = new TuileMot(equipe);
         myTuile.setRandomMot();
+        return myTuile;
     }
 
 }

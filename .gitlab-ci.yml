@@ -1,0 +1,8 @@
+image: gradle:jdk21-alpine
+
+stages:
+  - test
+
+test-java:
+  stage: test
+  script: gradle clean test

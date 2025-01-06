@@ -40,52 +40,40 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="codename.controleur.MenuControleur">
-  <children>
-    <MenuBar VBox.vgrow="NEVER">
-      <menus>
+<MenuBar VBox.vgrow="NEVER" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="codename.controleur.MenuControleur">
+    <menus>
         <Menu mnemonicParsing="false" text="Fichier">
-          <items>
-            <MenuItem fx:id="bouttonNouveau" mnemonicParsing="false" onAction="#creerNouvellePartie" text="Nouveau" />
-                  <MenuItem fx:id="bouttonRestaurer" mnemonicParsing="false" onAction="#restaurerPartie" text="Restaurer" />
-                  <MenuItem fx:id="bouttonSauvegarder" mnemonicParsing="false" onAction="#sauvegarderPartie" text="Sauvegarder" />
-                  <MenuItem fx:id="bouttonQuitter" mnemonicParsing="false" onAction="#quitterApplication" text="Quitter" />
-          </items>
+            <items>
+                <MenuItem fx:id="bouttonNouveau" mnemonicParsing="false" onAction="#creerNouvellePartie" text="Nouveau" />
+                <MenuItem fx:id="bouttonRestaurer" mnemonicParsing="false" onAction="#restaurerPartie" text="Restaurer" />
+                <MenuItem fx:id="bouttonSauvegarder" mnemonicParsing="false" onAction="#sauvegarderPartie" text="Sauvegarder" />
+                <MenuItem fx:id="bouttonQuitter" mnemonicParsing="false" onAction="#quitterApplication" text="Quitter" />
+            </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Mode de jeu">
-          <items>
-            <MenuItem fx:id="bouttonBlitz" mnemonicParsing="false" onAction="#partieBlitz" text="Blitz" />
-            <MenuItem fx:id="bouttonSolo" mnemonicParsing="false" onAction="#partieSolo" text="Solo" />
-            <MenuItem fx:id="bouttonImage" mnemonicParsing="false" onAction="#partieImage" text="Image" />
-                  <MenuItem fx:id="bouttonCustom" mnemonicParsing="false" onAction="#partieCustom" text="Partie Custom" />
-          </items>
+            <items>
+                <MenuItem fx:id="bouttonBlitz" mnemonicParsing="false" onAction="#partieBlitz" text="Blitz" />
+                <MenuItem fx:id="bouttonSolo" mnemonicParsing="false" onAction="#partieSolo" text="Solo" />
+                <MenuItem fx:id="bouttonImage" mnemonicParsing="false" onAction="#partieImage" text="Image" />
+                <MenuItem fx:id="bouttonCustom" mnemonicParsing="false" onAction="#partieCustom" text="Partie Custom" />
+            </items>
         </Menu>
-            <Menu mnemonicParsing="false" text="Parties">
-              <items>
+        <Menu mnemonicParsing="false" text="Parties">
+            <items>
                 <MenuItem fx:id="bouttonStats" mnemonicParsing="false" onAction="#afficherStats" text="Statistiques" />
-              </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Modification">
-              <items>
+            </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Modification">
+            <items>
                 <MenuItem fx:id="bouttonModif" mnemonicParsing="false" onAction="#modifierCartes" text="Modifier le dictionnaire" />
-              </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Aide">
-              <items>
+            </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Aide">
+            <items>
                 <MenuItem fx:id="bouttonRegles" mnemonicParsing="false" onAction="#afficherRegles" text="Règles du jeu" />
-                  <MenuItem fx:id="bouttonApropos" mnemonicParsing="false" onAction="#afficherApropos" text="À propos" />
-              </items>
-            </Menu>
-      </menus>
-    </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <children>
-        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="Drag components from Library here…" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
-          <font>
-            <Font size="18.0" />
-          </font>
-        </Label>
-      </children>
-    </AnchorPane>
-  </children>
-</VBox>
+                <MenuItem fx:id="bouttonApropos" mnemonicParsing="false" onAction="#afficherApropos" text="À propos" />
+            </items>
+        </Menu>
+    </menus>
+</MenuBar>
+

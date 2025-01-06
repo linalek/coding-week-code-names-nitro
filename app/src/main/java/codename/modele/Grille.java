@@ -17,7 +17,7 @@ public class Grille {
         this.tableauTuiles = null;
     }
 
-    private List<Integer> createRepartitionTuiles(){
+    public List<Integer> createRepartitionTuiles(){
         int equipeA = (taille*taille*100)/70;
         equipeA = (equipeA/2)*2;
         int equipeB = equipeA+1;
@@ -47,7 +47,7 @@ public class Grille {
         return tableauTuiles;
     }
 
-    private void createTableauTuiles(){
+    public void createTableauTuiles(){
         tableauTuiles = new Tuile[taille][taille];
         if (type == 1){
             for (int i = 0; i < taille; i++){
@@ -65,16 +65,18 @@ public class Grille {
         }
     }
 
-    private void ajouterTuileImage(){
+    public void ajouterTuileImage(){
         int equipe = repartitionTuiles.removeFirst();
         TuileImage myTuile = new TuileImage(equipe);
+        myTuile.setRandomImageAdress();
 
 
     }
 
-    private void ajouterTuileMot(){
+    public void ajouterTuileMot(){
         int equipe = repartitionTuiles.removeFirst();
         TuileMot myTuile = new TuileMot(equipe);
+        myTuile.setRandomMot();
     }
 
 }

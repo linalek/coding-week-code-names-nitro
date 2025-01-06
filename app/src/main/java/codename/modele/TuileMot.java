@@ -51,4 +51,10 @@ public class TuileMot extends Tuile {
         Random random = new Random();
         return mots.get(random.nextInt(mots.size()));
     }
+    public void setRandomMot(List<String> themes){
+        setMot(getRandomMot(themes));
+    }
+    public void setRandomMot(){
+        setMot(getRandomMot(null));
+    }
 }

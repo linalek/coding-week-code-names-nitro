@@ -1,5 +1,7 @@
 package codename.modele;
 
+import java.util.List;
+
 public class TuileImage extends Tuile {
     private String imageAdress;
 
@@ -20,6 +22,15 @@ public class TuileImage extends Tuile {
     public void setImageAdress(String imageAdress) {
         this.imageAdress = imageAdress;
     }
+
+    public void setRandomImageAdress(List<String> themes) {
+
+    }
+    public void setRandomImageAdress() {
+
+    }
+
+
 
     @Override
     public String toString() {

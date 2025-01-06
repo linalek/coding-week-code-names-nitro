@@ -40,16 +40,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="codename.controleur.MenuControleur">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="Fichier">
           <items>
-            <MenuItem mnemonicParsing="false" text="Nouveau" />
-                  <MenuItem mnemonicParsing="false" text="Restaurer" />
-                  <MenuItem mnemonicParsing="false" text="Sauvegarder" />
-                  <MenuItem mnemonicParsing="false" text="Quitter" />
+            <MenuItem fx:id="bouttonNouveau" mnemonicParsing="false" onAction="#creerNouvellePartie" text="Nouveau" />
+                  <MenuItem fx:id="bouttonRestaurer" mnemonicParsing="false" onAction="#restaurerPartie" text="Restaurer" />
+                  <MenuItem fx:id="bouttonSauvegarder" mnemonicParsing="false" onAction="#sauvegarderPartie" text="Sauvegarder" />
+                  <MenuItem fx:id="bouttonQuitter" mnemonicParsing="false" onAction="#quitterApplication" text="Quitter" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Mode de jeu">

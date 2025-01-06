@@ -72,7 +72,7 @@ public class MenuControleur {
 
         try {
             // Chemin absolu vers le fichier (remplacez par le chemin réel sur votre machine)
-            String cheminFichier = "src/main/public/regles_du_jeu.html";
+            String cheminFichier = "src/main/resources/public/regles_du_jeu.html";
             File fichierHtml = new File(cheminFichier);
 
             // Vérifiez si le fichier existe

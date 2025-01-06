@@ -1,0 +1,47 @@
+.anchor-pane {
+    -fx-background-image: url("/figures/logo.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-background-size: cover; 
+}
+
+.button {
+    /* Dégradé de bleu pour le fond du bouton */
+    -fx-background-color: linear-gradient(#6a11cb, #2575fc);
+    
+    /* Coins arrondis */
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    
+    /* Bordure */
+    -fx-border-color: transparent;
+    -fx-border-width: 0 0 2 0;
+    
+    /* Texte */
+    -fx-text-fill: white;
+    -fx-font-size: 24px; 
+    -fx-font-weight: bold;
+    
+    /* Ombre portée */
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 2);
+    
+    /* Padding et taille */
+    -fx-padding: 20 40 20 40; 
+    -fx-min-width: 250px; 
+    -fx-min-height: 80px; 
+    
+    /* Transition pour effet de survol */
+    -fx-cursor: hand;
+    -fx-transition: background-color 0.3s, -fx-background-color 0.3s;
+    
+    /* Déplacement vers le haut */
+    -fx-translate-y: -200px; 
+}
+
+.button:hover {
+    /* Changement de dégradé au survol */
+    -fx-background-color: linear-gradient(#2575fc, #6a11cb);
+    
+    /* Légère élévation */
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.4), 8, 0.0, 0, 4);
+}

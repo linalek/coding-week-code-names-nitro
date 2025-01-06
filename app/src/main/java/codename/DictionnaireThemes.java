@@ -103,4 +103,24 @@ public class DictionnaireThemes {
     public static Collection<? extends String> getMotsParTheme(String theme) {
         return themes.getOrDefault(theme, Collections.emptyList());
     }
+
+    /*
+     * Cette fonction vérifie si un thème existe afin de lui ajouter un mot,
+     * ou le crée s'il n'existe pas.
+    */
+    public static void ajouterMotAuTheme(String theme, String mot) {
+        if (themes.containsKey(theme)) {
+            List<String> mots = themes.get(theme);
+            if (!mots.contains(mot)) {
+                mots.add(mot);
+            } else {
+                System.out.println("Le mot existe déjà dans le thème : " + theme);
+            }
+        } else {
+            List<String> nouveauxMots = new ArrayList<>();
+            nouveauxMots.add(mot);
+            themes.put(theme, nouveauxMots);
+            System.out.println("Nouveau thème créé : " + theme);
+        }
+    }
 }

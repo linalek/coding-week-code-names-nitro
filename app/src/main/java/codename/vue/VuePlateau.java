@@ -5,6 +5,7 @@ import codename.modele.TuileMot;
 import codename.modele.Tuile;
 import javafx.scene.layout.GridPane;
 import javafx.geometry.Pos;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.StackPane;
@@ -44,10 +45,17 @@ public class VuePlateau {
 
         Text texte = new Text(tuileMot.getMot());
         texte.setFill(Color.WHITE);
+        texte.setFont(new Font(30));
 
         cellule.setStyle("-fx-background-color: " + obtenirCouleurDeFond(tuileMot.getEquipe()) + ";");
         cellule.getChildren().add(texte);
         cellule.setAlignment(Pos.CENTER);
+
+        if ("#FFFFFF".equals(obtenirCouleurDeFond(tuileMot.getEquipe()))) {
+            texte.setFill(Color.BLACK);
+        } else {
+            texte.setFill(Color.WHITE);
+        }
 
         return cellule;
     }

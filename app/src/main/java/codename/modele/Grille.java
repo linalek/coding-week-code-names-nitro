@@ -23,25 +23,24 @@ public class Grille {
      * et le reste en tuiles blanches.
     */
     public List<Integer> createRepartitionTuiles(){
-        int equipeA = (taille*taille*100)/70;
-        equipeA = (equipeA/2)*2;
-        int equipeB = equipeA+1;
-        int blanche = taille - (equipeA + equipeB + 1);
+        int totalTuiles = taille * taille;
+        int nbRouge = (int) (totalTuiles * 0.35);
+        int nbBleue = (int) (totalTuiles * 0.35);
+        int nbNoire = 1;
+        int nbBlanche = totalTuiles - (nbRouge + nbBleue + nbNoire);
+
         List<Integer> repartitionTuiles = new ArrayList<>();
-        for (int i = 0; i < blanche; i++){
+        for (int i = 0; i < nbBlanche; i++){
             repartitionTuiles.add(0);
         }
-        for (int i = 0; i < equipeA; i++){
+        for (int i = 0; i < nbRouge; i++){
             repartitionTuiles.add(1);
         }
-        for (int i = 0; i < equipeB; i++){
+        for (int i = 0; i < nbBleue; i++){
             repartitionTuiles.add(2);
         }
-        repartitionTuiles.add(-1);
+        repartitionTuiles.add(-1); // Adding the single black tile
         Collections.shuffle(repartitionTuiles);
-        for (Integer i : repartitionTuiles){
-            System.out.println(i);
-        }
         return repartitionTuiles;
     }
 

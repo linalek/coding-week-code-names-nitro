@@ -9,6 +9,10 @@ public class TuileImage extends Tuile {
         this.imageAdress = imageAdress;
     }
 
+    public TuileImage(int equipe) {
+        super(equipe);
+    }
+
     public String getImageAdress() {
         return imageAdress;
     }

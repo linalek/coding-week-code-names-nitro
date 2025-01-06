@@ -1,28 +1,29 @@
 package codename;
+
 import java.util.*;
 
 public class DictionnaireThemes {
-    public static void main(String[] args) {
-        Map<String, List<String>> themes = new HashMap<>();
+    private static Map<String, List<String>> themes = new HashMap<>(); // Map<Theme, List<Mots>> est un dico pour 
 
+    static {
         themes.put("Géographie", Arrays.asList(
-            "Afrique", "Allemagne", "Amérique", "Australie", "Angleterre", 
-            "Canada", "Chine", "Grèce", "Russie", "Espagne", "Europe", 
-            "Berlin", "Londres", "New-York", "Paris", "Rome", "Tokyo", 
+            "Afrique", "Allemagne", "Amérique", "Australie", "Angleterre",
+            "Canada", "Chine", "Grèce", "Russie", "Espagne", "Europe",
+            "Berlin", "Londres", "New-York", "Paris", "Rome", "Tokyo",
             "Himalaya", "Forêt", "Jungle", "Temple", "Atlantique", "Baie"
         ));
 
         themes.put("Nature et Animaux", Arrays.asList(
-            "Aiguille", "Aile", "Air", "Alien", "Alpes", "Araignée", 
-            "Baleine", "Chat", "Chien", "Cochon", "Canard", "Pingouin", 
-            "Serpent", "Lion", "Kangourou", "Licorne", "Oiseau", "Grenade", 
-            "Requin", "Herbe", "Feuille", "Chou", "Fraise", "Pomme", 
+            "Aiguille", "Aile", "Air", "Alien", "Alpes", "Araignée",
+            "Baleine", "Chat", "Chien", "Cochon", "Canard", "Pingouin",
+            "Serpent", "Lion", "Kangourou", "Licorne", "Oiseau", "Grenade",
+            "Requin", "Herbe", "Feuille", "Chou", "Fraise", "Pomme",
             "Neige", "Orage", "Vague", "Glace", "Vent", "Feu", "Terre", "Eau"
         ));
 
         themes.put("Alimentation et Boissons", Arrays.asList(
-            "Banane", "Poire", "Orange", "Kiwi", "Camembert", "Bière", 
-            "Vin", "Champagne", "Café", "Chocolat", "Miel", "Pain", 
+            "Banane", "Poire", "Orange", "Kiwi", "Camembert", "Bière",
+            "Vin", "Champagne", "Café", "Chocolat", "Miel", "Pain",
             "Poisson", "Pêche", "Fraise", "Chou"
         ));
 
@@ -80,13 +81,26 @@ public class DictionnaireThemes {
             "Étoile", "Croix", "Cercle", "Triangle", "Zéro", "Sept", "Lettre", 
             "Numéro", "Magie", "Technologie", "Guerre", "Paix", "Vol", "Volume"
         ));
+    }
 
-        // Affichage temporaire
-        for (String theme : themes.keySet()) {
-            System.out.println("Thème : " + theme);
-            System.out.println("Mots : " + themes.get(theme));
-            System.out.println();
+
+    /*
+     * Cette méthode permet de renvoyer tous les mots du dictionnaire,
+     * peu importe le thème.
+    */
+    public static List<String> getAllMots() {
+        List<String> allMots = new ArrayList<>();
+        for (List<String> mots : themes.values()) {
+            allMots.addAll(mots);
         }
+        return allMots;
+    }
+
+    /*
+     * Cette méthode permet de renvoyer tous les mots du dictionnaire,
+     * en fonction du thème fourni.
+    */
+    public static Collection<? extends String> getMotsParTheme(String theme) {
+        return themes.getOrDefault(theme, Collections.emptyList());
     }
 }
-

@@ -4,18 +4,12 @@ import codename.modele.Grille;
 import codename.modele.TuileMot;
 import codename.modele.Tuile;
 import javafx.scene.layout.GridPane;
-import javafx.scene.input.KeyEvent;
 import javafx.geometry.Pos;
 import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.StackPane;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-
-
-import javafx.scene.control.Alert;
+import javafx.stage.Stage; 
 
 public class VuePlateau {
     private GridPane grilleAffichage;

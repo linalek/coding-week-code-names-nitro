@@ -46,6 +46,3 @@ public class GrilleTest {
         System.out.println("Test testCreateTableauTuiles réussi.");
     }
 }
- {
-    
-}

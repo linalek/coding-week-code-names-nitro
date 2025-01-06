@@ -1,13 +1,10 @@
 package codename.controleur;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.fxml.FXML; 
 import javafx.scene.control.MenuItem;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.IOException; 
 
 public class MenuControleur {
 

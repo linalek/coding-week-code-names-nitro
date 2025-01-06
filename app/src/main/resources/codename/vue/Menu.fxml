@@ -54,25 +54,25 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Mode de jeu">
           <items>
-            <MenuItem mnemonicParsing="false" text="Blitz" />
-            <MenuItem mnemonicParsing="false" text="Solo" />
-            <MenuItem mnemonicParsing="false" text="Image" />
+            <MenuItem fx:id="bouttonBlitz" mnemonicParsing="false" onAction="#partieBlitz" text="Blitz" />
+            <MenuItem fx:id="bouttonSolo" mnemonicParsing="false" onAction="#partieSolo" text="Solo" />
+            <MenuItem fx:id="bouttonImage" mnemonicParsing="false" onAction="#partieImage" text="Image" />
           </items>
         </Menu>
             <Menu mnemonicParsing="false" text="Parties">
               <items>
-                <MenuItem mnemonicParsing="false" text="Statistiques" />
+                <MenuItem fx:id="bouttonStats" mnemonicParsing="false" onAction="#afficherStats" text="Statistiques" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Modification">
               <items>
-                <MenuItem mnemonicParsing="false" text="Modifier le dictionnaire" />
+                <MenuItem fx:id="bouttonModif" mnemonicParsing="false" onAction="#modifierCartes" text="Modifier le dictionnaire" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Aide">
               <items>
-                <MenuItem mnemonicParsing="false" text="Règles du jeu" />
-                  <MenuItem mnemonicParsing="false" text="À propos" />
+                <MenuItem fx:id="bouttonRegles" mnemonicParsing="false" onAction="#afficherRegles" text="Règles du jeu" />
+                  <MenuItem fx:id="bouttonApropos" mnemonicParsing="false" onAction="#afficherApropos" text="À propos" />
               </items>
             </Menu>
       </menus>

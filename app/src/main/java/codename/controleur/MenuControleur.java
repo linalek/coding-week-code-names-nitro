@@ -1,7 +1,12 @@
 package codename.controleur;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class MenuControleur {
 
@@ -48,6 +53,27 @@ public class MenuControleur {
 
     @FXML
     public void afficherRegles() {
+        // Chemin vers le fichier contenant les règles
+        String cheminFichier = "public/regles_du_jeu.txt";
+
+        try {
+            // Lire le contenu du fichier
+            String contenuRegles = Files.readString(Path.of(cheminFichier));
+
+            // Afficher les règles dans une boîte de dialogue
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Règles du Jeu");
+            alert.setHeaderText("Voici les règles du jeu :");
+            alert.setContentText(contenuRegles);
+            alert.showAndWait();
+        } catch (IOException e) {
+            // Gérer les erreurs si le fichier n'existe pas ou est inaccessible
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("Erreur");
+            errorAlert.setHeaderText("Impossible de charger les règles du jeu");
+            errorAlert.setContentText("Vérifiez que le fichier existe et est accessible :\n" + cheminFichier);
+            errorAlert.showAndWait();
+        }
     }
 
     @FXML

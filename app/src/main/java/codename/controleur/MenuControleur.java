@@ -42,6 +42,9 @@ public class MenuControleur {
 
     @FXML
     public MenuItem bouttonApropos;
+
+    @FXML
+    public MenuItem bouttonCustom;
     
     @FXML
     public void partieBlitz() {
@@ -49,6 +52,10 @@ public class MenuControleur {
 
     @FXML
     public void partieSolo() {
+    }
+
+    @FXML
+    public void partieCustom() {
     }
 
     @FXML

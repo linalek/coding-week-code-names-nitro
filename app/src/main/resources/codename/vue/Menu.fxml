@@ -57,6 +57,7 @@
             <MenuItem fx:id="bouttonBlitz" mnemonicParsing="false" onAction="#partieBlitz" text="Blitz" />
             <MenuItem fx:id="bouttonSolo" mnemonicParsing="false" onAction="#partieSolo" text="Solo" />
             <MenuItem fx:id="bouttonImage" mnemonicParsing="false" onAction="#partieImage" text="Image" />
+                  <MenuItem fx:id="bouttonCustom" mnemonicParsing="false" onAction="#partieCustom" text="Partie Custom" />
           </items>
         </Menu>
             <Menu mnemonicParsing="false" text="Parties">

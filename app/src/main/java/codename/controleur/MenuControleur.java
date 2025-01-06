@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -58,29 +59,40 @@ public class MenuControleur {
     public void partieCustom() {
     }
 
+    /**
+     * Méthode pour affihcer les règles du jeu à partir d'un fichier HTML permettant une mise en page propre du fichier, si le fichier est introuvable, une erreur est renvoyée à l'utilisateur
+     * @throws IOException si le fichier HTML des règles n'est pas trouvé
+     */
     @FXML
     public void afficherRegles() {
-        // Chemin vers le fichier contenant les règles
-        String cheminFichier = "public/regles_du_jeu.txt";
+        javafx.stage.Stage fenetreRegles = new javafx.stage.Stage();
+        fenetreRegles.setTitle("Règles du Jeu");
+
+        javafx.scene.web.WebView webView = new javafx.scene.web.WebView();
 
         try {
-            // Lire le contenu du fichier
-            String contenuRegles = Files.readString(Path.of(cheminFichier));
+            // Chemin absolu vers le fichier (remplacez par le chemin réel sur votre machine)
+            String cheminFichier = "src/main/public/regles_du_jeu.html";
+            File fichierHtml = new File(cheminFichier);
 
-            // Afficher les règles dans une boîte de dialogue
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Règles du Jeu");
-            alert.setHeaderText("Voici les règles du jeu :");
-            alert.setContentText(contenuRegles);
-            alert.showAndWait();
+            // Vérifiez si le fichier existe
+            if (fichierHtml.exists()) {
+                webView.getEngine().load(fichierHtml.toURI().toString());
+            } else {
+                throw new IOException("Fichier HTML non trouvé.");
+            }
         } catch (IOException e) {
-            // Gérer les erreurs si le fichier n'existe pas ou est inaccessible
-            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            javafx.scene.control.Alert errorAlert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
             errorAlert.setTitle("Erreur");
             errorAlert.setHeaderText("Impossible de charger les règles du jeu");
-            errorAlert.setContentText("Vérifiez que le fichier existe et est accessible :\n" + cheminFichier);
+            errorAlert.setContentText("Le fichier HTML des règles est introuvable.");
             errorAlert.showAndWait();
+            return;
         }
+
+        javafx.scene.Scene scene = new javafx.scene.Scene(webView, 800, 600);
+        fenetreRegles.setScene(scene);
+        fenetreRegles.show();
     }
 
     @FXML

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitMenuButton?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
@@ -20,7 +17,7 @@
             fx:controller="codename.controleur.AgentControleur"
             stylesheets="@/public/styles.css">
     <center>
-        <fx:include source="Plateau.fxml" /> <!-- mettre PlateauAgent ici -->
+        <fx:include source="PlateauAgent.fxml" />
     </center>
     <bottom>
         <HBox alignment="CENTER" spacing="10.0" prefHeight="50.0" prefWidth="100.0" BorderPane.alignment="CENTER">
@@ -58,6 +55,14 @@
                         -fx-text-fill: white;
                     </style>
                 </Label>
+                <Button mnemonicParsing="false"
+                        text="Valider"
+                        onAction="#handleValider"
+                        styleClass="buttonValider">
+                    <font>
+                        <Font name="Comic Sans MS Bold" size="21.0" />
+                    </font>
+                </Button>
             </children>
         </HBox>
     </bottom>

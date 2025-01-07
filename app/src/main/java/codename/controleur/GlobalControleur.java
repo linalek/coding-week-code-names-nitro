@@ -92,6 +92,7 @@ public class GlobalControleur {
             FXMLLoader agentLoader = new FXMLLoader(getClass().getResource("/codename/vue/Agent.fxml"));
             Node agentPane = agentLoader.load();
             agentControleur = agentLoader.getController();
+            agentControleur.setGlobalControleur(this);
             agentControleur.setIndice(indice);
             agentControleur.setNombreCartes(nombreCartes);
             root.setCenter(agentPane);

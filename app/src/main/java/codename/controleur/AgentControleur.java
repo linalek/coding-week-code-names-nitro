@@ -1,5 +1,6 @@
 package codename.controleur;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -7,9 +8,13 @@ public class AgentControleur {
 
     @FXML
     private Label indiceDisplayLabel;
-
     @FXML
     private Label nombreCartesDisplayLabel;
+    private GlobalControleur globalControleur;
+
+    public void setGlobalControleur(GlobalControleur globalControleur) {
+        this.globalControleur = globalControleur;
+    }
 
     /**
      * Initialise les valeurs par défaut des Labels.
@@ -40,5 +45,12 @@ public class AgentControleur {
      */
     public void setNombreCartes(int nombre) {
         nombreCartesDisplayLabel.setText(String.valueOf(nombre));
+    }
+
+    public void handleValider(ActionEvent event) {
+        if (globalControleur != null) {
+            globalControleur.afficherEspion();
+            System.out.println("Passage a la vue Espion.");
+        }
     }
 }

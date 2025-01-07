@@ -10,9 +10,9 @@
     <menus>
         <Menu mnemonicParsing="false" text="Fichier">
             <items>
-                <MenuItem fx:id="bouttonNouveau" mnemonicParsing="false" onAction="#creerNouvellePartie" text="Nouveau" />
                 <MenuItem fx:id="bouttonRestaurer" mnemonicParsing="false" onAction="#restaurerPartie" text="Restaurer" />
                 <MenuItem fx:id="bouttonSauvegarder" mnemonicParsing="false" onAction="#sauvegarderPartie" text="Sauvegarder" />
+                <MenuItem fx:id="bouttonRetour" mnemonicParsing="false" onAction="#retourMenu" text="Retour Menu" />
                 <MenuItem fx:id="bouttonQuitter" mnemonicParsing="false" onAction="#quitterApplication" text="Quitter" />
             </items>
         </Menu>

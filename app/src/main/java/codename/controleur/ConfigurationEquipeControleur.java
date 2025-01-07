@@ -3,16 +3,12 @@ package codename.controleur;
 import codename.modele.Equipe;
 import codename.modele.Joueur;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import java.util.ArrayList;
 
-import java.io.IOException;
-import java.util.List;
-
+/**
+ * Contrôleur pour la vue de configuration des équipes, permet de saisir le nom des joueurs et leurs rôles.
+ */
 public class ConfigurationEquipeControleur {
 
     @FXML
@@ -29,11 +25,16 @@ public class ConfigurationEquipeControleur {
 
     private Equipe equipeRouge;
     private Equipe equipeBleue;
+    private GlobalControleur globalControleur;
+
+    public void setGlobalControleur(GlobalControleur globalControleur) {
+        this.globalControleur = globalControleur;
+    }
 
     @FXML
     public void initialize() {
-        equipeRouge = new Equipe("Rouge", List.of());
-        equipeBleue = new Equipe("Bleue", List.of());
+        equipeRouge = new Equipe("Rouge", new ArrayList<>());
+        equipeBleue = new Equipe("Bleue", new ArrayList<>());
     }
 
     @FXML
@@ -54,57 +55,24 @@ public class ConfigurationEquipeControleur {
             equipeBleue.addJoueur(new Joueur(espionBleu, "Espion", "Bleue"));
         }
 
-        System.out.println("Équipe Rouge : " + equipeRouge.getJoueurs());
-        System.out.println("Équipe Bleue : " + equipeBleue.getJoueurs());
+        System.out.println("Equipe Rouge : " + equipeRouge.getJoueurs());
+        System.out.println("Equipe Bleue : " + equipeBleue.getJoueurs());
 
-        try {
-            // Charger la nouvelle scène depuis agent.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/codename/vue/Espion.fxml"));
-            Parent root = loader.load();
-
-            // Récupérer le contrôleur de la nouvelle scène si besoin
-            EspionControleur espionControleur = loader.getController();
-            //espionControleur.setEquipes(equipeRouge, equipeBleue); // Passe les équipes au contrôleur Agent
-
-            // Afficher la nouvelle scène
-            Stage stage = (Stage) nomAgentRouge.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Page Agent");
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (globalControleur != null) {
+            globalControleur.afficherEspion();
+            System.out.println("Passage a la vue Espion.");
+        } else {
+            System.err.println("GlobalControleur non initialise.");
         }
     }
 
     @FXML
     public void annuler() {
-        try {
-            // Récupérer la fenêtre actuelle
-            Stage stage = (Stage) nomAgentRouge.getScene().getWindow();
-
-            // Vérifier si la scène actuelle est déjà celle de l'accueil
-            String currentFXML = stage.getScene().getRoot().getId();
-
-            if ("acceuil".equals(currentFXML)) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Retour au Menu");
-                alert.setHeaderText(null);
-                alert.setContentText("Vous êtes déjà dans le menu principal.");
-                alert.showAndWait();
-            } else {
-                // Charger la page d'accueil
-                Parent root = FXMLLoader.load(getClass().getResource("/codename/vue/Global.fxml"));
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            }
-        } catch (IOException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setHeaderText(null);
-            alert.setContentText("Impossible de retourner au menu principal.");
-            alert.showAndWait();
+        if (globalControleur != null) {
+            globalControleur.afficherAccueil();
+            System.out.println("Retour a la vue Accueil.");
+        } else {
+            System.err.println("GlobalControleur non initialise.");
         }
     }
 

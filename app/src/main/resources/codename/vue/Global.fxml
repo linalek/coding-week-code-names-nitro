@@ -6,7 +6,10 @@
 <BorderPane xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="codename.controleur.GlobalControleur"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="400.0" prefWidth="600.0"
+            fx:id="root"
+            stylesheets="@/public/styles.css"
+            styleClass="background">
     <top>
         <fx:include source="Menu.fxml"/>
     </top>

@@ -1,11 +1,7 @@
 package codename.controleur;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
-
-import java.io.IOException;
 
 /**
  * Contrôleur pour la vue d'accueil, cela permet de gérer le passage à la vue du plateau de jeu avec l'appuie du bouton "jouer"
@@ -13,22 +9,19 @@ import java.io.IOException;
 public class AccueilControleur {
     @FXML
     public StackPane accueil;
+    private GlobalControleur globalControleur;
+
+    public void setGlobalControleur(GlobalControleur globalControleur) {
+        this.globalControleur = globalControleur;
+    }
 
     @FXML
     public void handleJouer() {
-        try {
-            // Chargez le fichier Plateau.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/codename/vue/ConfigurationEquipe.fxml"));
-            Parent plateauView = loader.load();
-
-            // Ajoutez la vue Plateau au StackPane
-            accueil.getChildren().clear(); // Nettoie le contenu actuel
-            accueil.getChildren().add(plateauView);
-
-            System.out.println("Passage a la page Configuration Equipe.fxml");
-        } catch (IOException e) {
-            System.err.println("Erreur lors du chargement de Plateau.fxml : " + e.getMessage());
-            e.printStackTrace();
+        if (globalControleur != null) {
+            globalControleur.afficherConfigurationEquipe();
+            System.out.println("Passage a la vue ConfigurationEquipe.");
+        } else {
+            System.err.println("GlobalControleur non initialisé.");
         }
     }
 }

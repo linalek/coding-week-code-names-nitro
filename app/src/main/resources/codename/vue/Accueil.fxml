@@ -10,7 +10,7 @@
            fx:controller="codename.controleur.AccueilControleur"
            fx:id="accueil"
            stylesheets="@/public/styles.css"
-           styleClass="anchor-pane"
+           styleClass="background"
            prefHeight="400.0" prefWidth="600.0">
     <Button mnemonicParsing="false"
             text="JOUER"

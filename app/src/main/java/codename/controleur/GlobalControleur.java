@@ -14,6 +14,6 @@ public class GlobalControleur {
     // Initialisation du contrôleur après le chargement du fichier FXML
     @FXML
     public void initialize() {
-        System.out.println("GlobalControleur initialisé.");
+        System.out.println("GlobalControleur initialise.");
     }
 }

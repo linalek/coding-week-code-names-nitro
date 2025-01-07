@@ -4,12 +4,12 @@ package codename.modele;
  * Tuiles est la classe des tuiles avec des mots
 */
 public abstract class Tuile {
-    protected int equipe; // 0 si carte blanche, 1 pour l'équipe bleu, 2 pour l'équipe rouge
-    protected boolean estTrouve; // 0 si la carte est trouvé, 1 sinon
+    protected int equipe; // -1 si carte noire 0 si carte blanche, 1 pour l'équipe bleu, 2 pour l'équipe rouge
+    protected boolean estRetournee; // true si la carte est trouvé, false sinon
 
     public Tuile(int equipe) {
         this.equipe = equipe;
-        this.estTrouve = false;
+        this.estRetournee = false;
     }
 
     public int getEquipe() {
@@ -20,19 +20,21 @@ public abstract class Tuile {
         this.equipe = equipe;
     }
 
-    public boolean isEstTrouve() {
-        return estTrouve;
+    public boolean isEstRetournee() {
+        return estRetournee;
     }
 
-    public void setEstTrouve(boolean estTrouve) {
-        this.estTrouve = estTrouve;
+    public void setEstRetournee() {
+        if (!this.estRetournee){
+            this.estRetournee = true;
+        };
     }
 
     @Override
     public String toString() {
         return "Tuiles{" +
                 ", equipe=" + equipe +
-                ", estTrouve=" + estTrouve +
+                ", estTrouve=" + estRetournee +
                 '}';
     }
     

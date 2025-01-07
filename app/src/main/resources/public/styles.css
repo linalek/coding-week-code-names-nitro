@@ -5,7 +5,7 @@
     -fx-background-size: cover; 
 }
 
-.button {
+.buttonJouer {
     /* Dégradé de bleu pour le fond du bouton */
     -fx-background-color: linear-gradient(#6a11cb, #2575fc);
     

@@ -26,9 +26,6 @@ public class TuileImage extends Tuile {
     public void setRandomImageAdress(List<String> themes) {
 
     }
-    public void setRandomImageAdress() {
-
-    }
 
 
 
@@ -37,7 +34,7 @@ public class TuileImage extends Tuile {
         return "Tuiles{" +
                 "adresse de l'image='" + imageAdress + '\'' +
                 ", equipe=" + equipe +
-                ", estTrouve=" + estTrouve +
+                ", estTrouve=" + estRetournee +
                 '}';
     }
 }

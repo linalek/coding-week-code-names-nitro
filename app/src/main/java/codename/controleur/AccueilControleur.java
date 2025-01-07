@@ -18,14 +18,14 @@ public class AccueilControleur {
     public void handleJouer() {
         try {
             // Chargez le fichier Plateau.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/codename/vue/Plateau.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/codename/vue/Espion.fxml"));
             Parent plateauView = loader.load();
 
             // Ajoutez la vue Plateau au StackPane
             accueil.getChildren().clear(); // Nettoie le contenu actuel
             accueil.getChildren().add(plateauView);
 
-            System.out.println("Passage à la page Plateau.fxml");
+            System.out.println("Passage a la page Espion.fxml");
         } catch (IOException e) {
             System.err.println("Erreur lors du chargement de Plateau.fxml : " + e.getMessage());
             e.printStackTrace();

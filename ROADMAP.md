@@ -50,3 +50,12 @@
 - Restructure du front : utilisation de fxml pour les objets et les vues
 - Correction de l'affichage du menu et du plateau
 - Fonction pour afficher les statistiques
+- Vue agent et espion et le globalControleur qui gère les switches entres les différentes vues
+- Tuiles cliquables
+- Création des 2 versions du plateau
+- Bouton du menu
+- Interface d'affichage des éuquipes
+- Page de configuration des équipes
+- classe Joueur et Equipe
+- Intégration du jeu
+- Gestion des equipes et des joueurs

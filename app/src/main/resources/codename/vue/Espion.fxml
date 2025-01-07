@@ -17,49 +17,49 @@
         <fx:include source="PlateauEspion.fxml" />
     </center>
     <bottom>
-        <HBox alignment="CENTER" prefHeight="59.0" prefWidth="1600.0" BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER" prefHeight="59.0" prefWidth="1600.0" BorderPane.alignment="CENTER" style="-fx-background-color: rgba(255, 255, 255, 0.8);">
             <children>
-                <Label text="Donnez un indice :" textFill="#320000">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                    <style>
-                        -fx-text-fill: white;
-                    </style>
-                </Label>
-                <TextField fx:id="indiceTextField" prefHeight="40.0" prefWidth="227.0">
-                    <HBox.margin>
-                        <Insets left="10.0" />
-                    </HBox.margin>
-                </TextField>
-                <SplitMenuButton fx:id="nombreCartesButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="257.0" text="Nombre de cartes">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#handleNombreCartesSelection" text="1" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleNombreCartesSelection" text="2" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleNombreCartesSelection" text="3" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleNombreCartesSelection" text="4" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleNombreCartesSelection" text="5" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleNombreCartesSelection" text="6" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleNombreCartesSelection" text="7" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleNombreCartesSelection" text="8" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleNombreCartesSelection" text="9" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleNombreCartesSelection" text="10" />
-                    </items>
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                    <HBox.margin>
-                        <Insets left="10.0" />
-                    </HBox.margin>
-                </SplitMenuButton>
-                <Button mnemonicParsing="false" onAction="#handleValider" prefHeight="39.0" prefWidth="97.0" styleClass="buttonValider" text="Valider">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                    <HBox.margin>
-                        <Insets left="10.0" />
-                    </HBox.margin>
-                </Button>
+            <Label text="Donnez un indice :" textFill="#320000">
+                <font>
+                <Font name="System Bold" size="18.0" />
+                </font>
+                <style>
+                -fx-text-fill: black;
+                </style>
+            </Label>
+            <TextField fx:id="indiceTextField" prefHeight="40.0" prefWidth="227.0">
+                <HBox.margin>
+                <Insets left="10.0" />
+                </HBox.margin>
+            </TextField>
+            <SplitMenuButton fx:id="nombreCartesButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="257.0" text="Nombre de cartes">
+                <items>
+                <MenuItem mnemonicParsing="false" onAction="#handleNombreCartesSelection" text="1" />
+                <MenuItem mnemonicParsing="false" onAction="#handleNombreCartesSelection" text="2" />
+                <MenuItem mnemonicParsing="false" onAction="#handleNombreCartesSelection" text="3" />
+                <MenuItem mnemonicParsing="false" onAction="#handleNombreCartesSelection" text="4" />
+                <MenuItem mnemonicParsing="false" onAction="#handleNombreCartesSelection" text="5" />
+                <MenuItem mnemonicParsing="false" onAction="#handleNombreCartesSelection" text="6" />
+                <MenuItem mnemonicParsing="false" onAction="#handleNombreCartesSelection" text="7" />
+                <MenuItem mnemonicParsing="false" onAction="#handleNombreCartesSelection" text="8" />
+                <MenuItem mnemonicParsing="false" onAction="#handleNombreCartesSelection" text="9" />
+                <MenuItem mnemonicParsing="false" onAction="#handleNombreCartesSelection" text="10" />
+                </items>
+                <font>
+                <Font name="System Bold" size="18.0" />
+                </font>
+                <HBox.margin>
+                <Insets left="10.0" />
+                </HBox.margin>
+            </SplitMenuButton>
+            <Button mnemonicParsing="false" onAction="#handleValider" prefHeight="39.0" prefWidth="97.0" styleClass="buttonValider" text="Valider">
+                <font>
+                <Font name="System Bold" size="18.0" />
+                </font>
+                <HBox.margin>
+                <Insets left="10.0" />
+                </HBox.margin>
+            </Button>
             </children>
         </HBox>
     </bottom>

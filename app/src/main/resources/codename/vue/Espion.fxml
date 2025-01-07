@@ -14,7 +14,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="codename.controleur.EspionControleur">
     <center>
-        <fx:include source="Plateau.fxml" />
+        <fx:include source="PlateauEspion.fxml" />
     </center>
     <bottom>
         <HBox alignment="CENTER" prefHeight="59.0" prefWidth="1600.0" BorderPane.alignment="CENTER">

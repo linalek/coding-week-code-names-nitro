@@ -16,6 +16,14 @@ public class Jeu {
         this.statusPartie = 0;
     }
 
+    public Jeu() {
+        this.grille = new Grille(5,0);
+        this.nbMotsBleu = grille.getNbBleue();
+        this.nbMotsRouge = grille.getNbRouge();
+        this.tour = 0;
+        this.statusPartie = 0;
+    }
+
     public void changerTour() {
         tour = (tour == 0) ? 1 : 0;
     }

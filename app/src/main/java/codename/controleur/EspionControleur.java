@@ -3,9 +3,11 @@ package codename.controleur;
 import codename.modele.Jeu;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 
 /**
  * Contrôleur de la fenêtre Espion.

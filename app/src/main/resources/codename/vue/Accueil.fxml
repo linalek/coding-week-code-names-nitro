@@ -15,7 +15,7 @@
     <Button mnemonicParsing="false"
             text="JOUER"
             onAction="#handleJouer"
-            styleClass="button">
+            styleClass="buttonJouer">
         <font>
             <Font name="Comic Sans MS Bold" size="21.0" />
         </font>

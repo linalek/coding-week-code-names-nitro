@@ -1,11 +1,15 @@
 package codename.controleur;
 
-import javafx.fxml.FXML; 
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 
 import java.io.File;
 import java.io.IOException; 
 
+/**
+ * Contrôleur pour le menu principal de l'application : permet de gérer les actions du menu.
+ */
 public class MenuControleur {
 
     @FXML
@@ -115,8 +119,20 @@ public class MenuControleur {
     public void sauvegarderPartie() {
     }
 
+    /**
+     * Méthode pour affihcer les statistiques du jeu
+     * @throws IOException ?
+     */
     @FXML
     public void afficherStats() {
+        javafx.stage.Stage fenetreStat = new javafx.stage.Stage();
+        fenetreStat.setTitle("Statistiques du jeu");
+
+        Label label = new Label("Bonjour, JavaFX!");
+
+        javafx.scene.Scene scene = new javafx.scene.Scene(label, 800, 600);
+        fenetreStat.setScene(scene);
+        fenetreStat.show();
     }
 
     @FXML

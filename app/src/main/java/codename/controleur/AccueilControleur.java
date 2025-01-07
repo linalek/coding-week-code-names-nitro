@@ -1,29 +1,37 @@
 package codename.controleur;
 
 import codename.vue.VuePlateau;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
+/**
+ * Contrôleur pour la vue d'accueil, cela permet de gérer le passage à la vue du plateau de jeu avec l'appuie du bouton "jouer"
+ */
 public class AccueilControleur {
-    private Stage primaryStage;  // Référence au Stage principal
+    @FXML
+    public StackPane accueil;
 
-    // Méthode pour injecter le Stage principal dans le contrôleur
-    public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-    } // Référence au Stage principal
-
-    // Constructeur sans argument (nécessaire pour FXML)
-    public AccueilControleur() {
-    }
-
-    // Constructeur pour injecter le Stage
-    public AccueilControleur(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-    }
-
+    @FXML
     public void handleJouer() {
-        // Créez une instance de VuePlateau et affichez-la
-        VuePlateau vuePlateau = new VuePlateau();
-        vuePlateau.afficher(primaryStage);
+        try {
+            // Chargez le fichier Plateau.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/codename/vue/Plateau.fxml"));
+            Parent plateauView = loader.load();
+
+            // Ajoutez la vue Plateau au StackPane
+            accueil.getChildren().clear(); // Nettoie le contenu actuel
+            accueil.getChildren().add(plateauView);
+
+            System.out.println("Passage à la page Plateau.fxml");
+        } catch (IOException e) {
+            System.err.println("Erreur lors du chargement de Plateau.fxml : " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }
 

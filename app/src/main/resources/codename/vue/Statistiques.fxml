@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="codename.controleur.StatistiquesControleur"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <top>
+        <Label text="Statistiques de l'équipe"
+               style="-fx-font-size: 24px; -fx-font-weight: bold;"
+               alignment="CENTER"
+               BorderPane.alignment="CENTER"/>
+    </top>
+
+    <center>
+        <TableView fx:id="tableStatistiques">
+            <columns>
+                <TableColumn text="Nom du Joueur" fx:id="colNomJoueur"/>
+                <TableColumn text="Score" fx:id="colScore"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <Button text="Fermer" onAction="#fermerFenetre"
+                style="-fx-font-size: 14px;"
+                BorderPane.alignment="CENTER"/>
+    </bottom>
+</BorderPane>

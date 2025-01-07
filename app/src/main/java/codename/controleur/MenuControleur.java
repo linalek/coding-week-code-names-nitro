@@ -1,8 +1,12 @@
 package codename.controleur;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException; 
@@ -121,18 +125,27 @@ public class MenuControleur {
 
     /**
      * Méthode pour affihcer les statistiques du jeu
-     * @throws IOException ?
+     * @throws IOException si le fichier FXML des statistiques n'est pas trouvé
      */
     @FXML
     public void afficherStats() {
-        javafx.stage.Stage fenetreStat = new javafx.stage.Stage();
-        fenetreStat.setTitle("Statistiques du jeu");
+        try {
+            // Charger le fichier FXML pour la fenêtre de statistiques
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/codename/vue/Statistiques.fxml"));
+            Parent root = loader.load();
 
-        Label label = new Label("Bonjour, JavaFX!");
+            // Créer une nouvelle scène avec le fichier FXML chargé
+            Stage fenetreStat = new Stage();
+            fenetreStat.setTitle("Statistiques du jeu");
+            fenetreStat.setScene(new Scene(root, 800, 600));
 
-        javafx.scene.Scene scene = new javafx.scene.Scene(label, 800, 600);
-        fenetreStat.setScene(scene);
-        fenetreStat.show();
+            // Afficher la fenêtre
+            fenetreStat.show();
+
+        } catch (IOException e) {
+            System.err.println("Erreur lors du chargement de Statistiques.fxml : " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     @FXML

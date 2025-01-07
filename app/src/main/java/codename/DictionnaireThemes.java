@@ -97,6 +97,13 @@ public class DictionnaireThemes {
     }
 
     /*
+     * Cette méthode permet de renvoyer tous les thèmes du dictionnaire.
+    */
+    public static Set<String> getThemes() {
+        return themes.keySet();
+    }
+
+    /*
      * Cette méthode permet de renvoyer tous les mots du dictionnaire,
      * en fonction du thème fourni.
     */

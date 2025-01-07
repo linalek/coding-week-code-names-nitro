@@ -5,11 +5,22 @@ import java.util.Collections;
 
 
 public class Grille {
+    private int nbRouge;
+    private int nbBleue;
     private final int taille; // la longueur et largeur de notre grille carrée.
     private final int type; // type vaut 0 si on joue en mots, et il vaut 1 si on joue en image.
     private Tuile[][] tableauTuiles;
     List<Integer> repartitionTuiles;  //liste des affectations des tuiles
     private List<String> motUtilises; // liste de mot déjà utilisés dans la partie.
+    List<String> listOfThemes;
+
+    public Grille(int taille, int type, List<String> listOfThemes){
+        this.taille = taille;
+        this.type = type;
+        repartitionTuiles = createRepartitionTuiles();
+        this.tableauTuiles = null;
+        this.listOfThemes = listOfThemes;
+    }
 
     public Grille(int taille, int type){
         this.taille = taille;
@@ -17,6 +28,23 @@ public class Grille {
         this.repartitionTuiles = createRepartitionTuiles();
         this.motUtilises = new ArrayList<>();
         this.tableauTuiles = null;
+        this.listOfThemes = null;
+    }
+
+    public Grille(int type){
+        this.taille = 5;
+        this.type = type;
+        repartitionTuiles = createRepartitionTuiles();
+        this.tableauTuiles = null;
+        this.listOfThemes = null;
+    }
+
+    public Grille(){
+        this.taille = 5;
+        this.type = 0;
+        repartitionTuiles = createRepartitionTuiles();
+        this.tableauTuiles = null;
+        this.listOfThemes = null;
     }
 
     /*
@@ -26,8 +54,8 @@ public class Grille {
     */
     public List<Integer> createRepartitionTuiles(){
         int totalTuiles = taille * taille;
-        int nbRouge = (int) (totalTuiles * 0.35);
-        int nbBleue = (int) (totalTuiles * 0.35);
+        this.nbRouge = (int) (totalTuiles * 0.35);
+        this.nbBleue = (int) (totalTuiles * 0.35);
         int nbNoire = 1;
         int nbBlanche = totalTuiles - (nbRouge + nbBleue + nbNoire);
 
@@ -55,47 +83,58 @@ public class Grille {
         }
         return tableauTuiles;
     }
-
+/*
+createTableauTuiles créé le tableau de tuiles en fonction de si on joue en mode image ou en mode mot.
+ */
     public void createTableauTuiles(){
         tableauTuiles = new Tuile[taille][taille];
-        motUtilises.clear();    
+        motUtilises.clear();
         if (type == 1){
             for (int i = 0; i < taille; i++){
                 for (int j = 0; j < taille; j++){
-                    ajouterTuileImage();
+                    tableauTuiles[i][j]= configurerTuileImage();
                 }
             }
         }
         else {
             for (int i = 0; i < taille; i++){
                 for (int j = 0; j < taille; j++){
-                    tableauTuiles[i][j]=ajouterTuileMot();
+                    tableauTuiles[i][j]= configurerTuileMot();
                 }
             }
         }
     }
 
-    public void ajouterTuileImage(){
+
+    public TuileImage configurerTuileImage(){
         int equipe = repartitionTuiles.removeFirst();
         TuileImage myTuile = new TuileImage(equipe);
-        myTuile.setRandomImageAdress();
-
-
+        myTuile.setRandomImageAdress(listOfThemes);
+        return myTuile;
     }
 
     /*
      * Méthode qui assigne un mot à une tuile et l'ajoute à la liste de mots déjà utilisés.
     */
-    public TuileMot ajouterTuileMot(){
+    public TuileMot configurerTuileMot(){
         int equipe = repartitionTuiles.remove(0);
         TuileMot myTuile = new TuileMot(equipe);
         String mot;
         do {
-            myTuile.setRandomMot();
+            myTuile.setRandomMot(listOfThemes);
             mot = myTuile.getMot();
         } while (motUtilises.contains(mot));
         motUtilises.add(mot);
         return myTuile;
     }
 
+    public int getNbBleue() {
+        return nbBleue;
+    }
+    public int getNbRouge() {
+        return nbRouge;
+    }
+    public Tuile getTuile(int i, int j){
+        return tableauTuiles[i][j];
+    }
 }

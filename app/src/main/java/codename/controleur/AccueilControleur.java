@@ -17,17 +17,17 @@ public class AccueilControleur {
     @FXML
     public void handleJouer() {
         try {
-            // Chargez le fichier PlateauEspion.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/codename/vue/Espion.fxml"));
+            // Chargez le fichier Plateau.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/codename/vue/ConfigurationEquipe.fxml"));
             Parent plateauView = loader.load();
 
             // Ajoutez la vue Plateau au StackPane
             accueil.getChildren().clear(); // Nettoie le contenu actuel
             accueil.getChildren().add(plateauView);
 
-            System.out.println("Passage a la page Espion.fxml");
+            System.out.println("Passage a la page Configuration Equipe.fxml");
         } catch (IOException e) {
-            System.err.println("Erreur lors du chargement de PlateauEspion.fxml : " + e.getMessage());
+            System.err.println("Erreur lors du chargement de Plateau.fxml : " + e.getMessage());
             e.printStackTrace();
         }
     }

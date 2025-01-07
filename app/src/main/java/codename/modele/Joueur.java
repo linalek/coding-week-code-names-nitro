@@ -1,28 +1,31 @@
 package codename.modele;
 
 public class Joueur {
-    //TODO : ajouter des attributs
     private String nom;
-    private int score;
+    private String role; // Agent ou Espion
+    private String equipe; // Rouge ou Bleue
 
-    public Joueur(String nom, int score) {
+    public Joueur(String nom, String role, String equipe) {
         this.nom = nom;
-        this.score = score;
+        this.role = role;
+        this.equipe = equipe;
     }
 
     public String getNom() {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public String getRole() {
+        return role;
     }
 
-    public int getScore() {
-        return score;
+    public String getEquipe() {
+        return equipe;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    @Override
+    public String toString() {
+        return nom + " (" + role + " - " + equipe + ")";
     }
 }
+

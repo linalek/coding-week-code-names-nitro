@@ -5,6 +5,8 @@ import java.util.Collections;
 
 
 public class Grille {
+    private int nbRouge;
+    private int nbBleue;
     private final int taille; // la longueur et largeur de notre grille carrée.
     private final int type; // type vaut 0 si on joue en mots, et il vaut 1 si on joue en image.
     private Tuile[][] tableauTuiles;
@@ -24,8 +26,8 @@ public class Grille {
     */
     public List<Integer> createRepartitionTuiles(){
         int totalTuiles = taille * taille;
-        int nbRouge = (int) (totalTuiles * 0.35);
-        int nbBleue = (int) (totalTuiles * 0.35);
+        this.nbRouge = (int) (totalTuiles * 0.35);
+        this.nbBleue = (int) (totalTuiles * 0.35);
         int nbNoire = 1;
         int nbBlanche = totalTuiles - (nbRouge + nbBleue + nbNoire);
 
@@ -87,4 +89,13 @@ public class Grille {
         return myTuile;
     }
 
+    public int getNbBleue() {
+        return nbBleue;
+    }
+    public int getNbRouge() {
+        return nbRouge;
+    }
+    public Tuile getTuile(int i, int j){
+        return tableauTuiles[i][j];
+    }
 }

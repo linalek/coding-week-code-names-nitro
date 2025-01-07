@@ -1,11 +1,13 @@
 package codename.controleur;
 
+import codename.modele.Jeu;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class AgentControleur {
 
+    private Jeu jeuEnCours;
     @FXML
     private Label indiceDisplayLabel;
     @FXML
@@ -52,5 +54,9 @@ public class AgentControleur {
             globalControleur.afficherEspion();
             System.out.println("Passage a la vue Espion.");
         }
+    }
+
+    public void setJeu(Jeu jeuEnCours){
+        this.jeuEnCours= jeuEnCours;
     }
 }

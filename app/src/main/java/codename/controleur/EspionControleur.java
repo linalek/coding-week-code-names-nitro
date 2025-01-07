@@ -1,5 +1,6 @@
 package codename.controleur;
 
+import codename.modele.Jeu;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -11,6 +12,8 @@ import javafx.scene.control.TextField;
  * Permet de saisir un indice + le nombre de cartes, puis de valider.
  */
 public class EspionControleur {
+
+    private Jeu jeuEnCours;
 
     @FXML
     private SplitMenuButton nombreCartesButton;
@@ -46,6 +49,9 @@ public class EspionControleur {
         } else {
             System.err.println("GlobalControleur non initialise.");
         }
+    }
+    public void setJeu(Jeu jeuEnCours){
+        this.jeuEnCours= jeuEnCours;
     }
 }
 

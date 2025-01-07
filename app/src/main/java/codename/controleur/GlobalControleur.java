@@ -1,5 +1,6 @@
 package codename.controleur;
 
+import codename.modele.Jeu;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
@@ -18,12 +19,14 @@ public class GlobalControleur {
     private ConfigurationEquipeControleur configurationEquipeControleur;
     private EspionControleur espionControleur;
     private AgentControleur agentControleur;
+    private Jeu jeuEnCours;
 
     /**
      * Methode d'initialisation appelee automatiquement après le chargement du fichier FXML.
      */
     @FXML
     public void initialize() {
+        jeuEnCours=null;
         try {
             FXMLLoader accueilLoader = new FXMLLoader(getClass().getResource("/codename/vue/Accueil.fxml"));
             Node accueilPane = accueilLoader.load();
@@ -99,6 +102,10 @@ public class GlobalControleur {
             System.out.println("Agent.fxml charge et affiche dans le centre.");
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        public void lancerJeu() {
+            jeuEnCours = new Jeu()
         }
     }
 }

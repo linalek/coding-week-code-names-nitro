@@ -59,7 +59,7 @@ public class ConfigurationEquipeControleur {
         System.out.println("Equipe Bleue : " + equipeBleue.getJoueurs());
 
         if (globalControleur != null) {
-            globalControleur.afficherEspion();
+            globalControleur.lancerJeu();
             System.out.println("Passage a la vue Espion.");
         } else {
             System.err.println("GlobalControleur non initialise.");

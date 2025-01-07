@@ -17,7 +17,7 @@ public class AccueilControleur {
     @FXML
     public void handleJouer() {
         try {
-            // Chargez le fichier Plateau.fxml
+            // Chargez le fichier PlateauEspion.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/codename/vue/Espion.fxml"));
             Parent plateauView = loader.load();
 
@@ -27,7 +27,7 @@ public class AccueilControleur {
 
             System.out.println("Passage a la page Espion.fxml");
         } catch (IOException e) {
-            System.err.println("Erreur lors du chargement de Plateau.fxml : " + e.getMessage());
+            System.err.println("Erreur lors du chargement de PlateauEspion.fxml : " + e.getMessage());
             e.printStackTrace();
         }
     }

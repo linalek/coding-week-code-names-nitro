@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--Vue du plateau de jeu-->
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="codename.controleur.PlateauAgentControleur"
+            prefHeight="600.0" prefWidth="600.0">
+
+    <center>
+        <GridPane fx:id="grilleAffichage" hgap="10" vgap="10" alignment="CENTER">
+            <!-- Les cases du plateau seront ajoutées dynamiquement ici -->
+        </GridPane>
+    </center>
+
+</BorderPane>

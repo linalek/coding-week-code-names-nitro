@@ -19,7 +19,7 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="codename.controleur.EspionControleur">
     <center>
-        <fx:include source="Plateau.fxml" />
+        <fx:include source="PlateauAgent.fxml" />
     </center>
     <bottom>
         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="100.0" BorderPane.alignment="CENTER">

@@ -9,7 +9,7 @@
 <!--Vue du plateau de jeu-->
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="codename.controleur.PlateauControleur"
+            fx:controller="codename.controleur.PlateauEspionControleur"
             prefHeight="600.0" prefWidth="600.0">
 
     <center>

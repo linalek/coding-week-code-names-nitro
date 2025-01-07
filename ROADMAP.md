@@ -8,7 +8,7 @@
 
 ### JOUR 2
 
-- Il faut créer un bouton de retour.
+- Créer un bouton de retour.
 - il faut que le bouton Play pose les questions pour les réglages.
 
 - attention à ce qu'il n'y ai pas 2x le meme mot

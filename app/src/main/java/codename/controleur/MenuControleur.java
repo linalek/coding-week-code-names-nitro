@@ -5,8 +5,14 @@ import java.io.IOException;
 
 import codename.DictionnaireThemes;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.stage.Stage;
 
 /**
  * Contrôleur pour le menu principal de l'application : permet de gérer les actions du menu.
@@ -102,7 +108,7 @@ public class MenuControleur {
 
     /**
      * Méthode pour affihcer les règles du jeu à partir d'un fichier HTML permettant une mise en page propre du fichier, si le fichier est introuvable, une erreur est renvoyée à l'utilisateur
-     * @throws IOException si le fichier HTML des règles n'est pas trouvé
+     * throws IOException si le fichier HTML des règles n'est pas trouvé
      */
     @FXML
     public void afficherRegles() {
@@ -112,11 +118,9 @@ public class MenuControleur {
         javafx.scene.web.WebView webView = new javafx.scene.web.WebView();
 
         try {
-            // Chemin absolu vers le fichier (remplacez par le chemin réel sur votre machine)
             String cheminFichier = "src/main/resources/public/regles_du_jeu.html";
             File fichierHtml = new File(cheminFichier);
 
-            // Vérifiez si le fichier existe
             if (fichierHtml.exists()) {
                 webView.getEngine().load(fichierHtml.toURI().toString());
             } else {
@@ -174,10 +178,33 @@ public class MenuControleur {
     public void quitterApplication() {
         System.exit(0);
     }
+    
     @FXML
     public void retourMenu() {
-    }
+        try {
+            Stage stage = (Stage) bouttonRetour.getParentPopup().getOwnerWindow();
+            String currentFXML = stage.getScene().getRoot().getId();
 
+            if ("acceuil".equals(currentFXML)) {
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("Retour au Menu");
+                alert.setHeaderText(null);
+                alert.setContentText("Vous êtes déjà dans le menu principal.");
+                alert.showAndWait();
+            } else {
+                Parent root = FXMLLoader.load(getClass().getResource("/codename/vue/Global.fxml"));
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+        } catch (IOException e) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Impossible de retourner au menu principal.");
+            alert.showAndWait();
+        }
+    }
 
     @FXML
     public void restaurerPartie() {

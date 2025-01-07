@@ -5,11 +5,11 @@
 ### JOUR 1
 
 - Le système des tuiles de grille et du jeu en lui-même qui fonctionne.
-- Essayer d’avoir un jeu qui fonctionne pour deux personnes.
-- Ajouter une musique et un bouton de volume.
 
 ### JOUR 2
 
+- attention à ce qu'il n'y ai pas 2x le meme mot
+- Essayer d’avoir un jeu qui fonctionne pour deux personnes.
 - Ajouter la sauvegarde et la possibilité de restaurer une partie après avoir fermé l’application.
 - Implémenter le jeu à plusieurs utilisateurs.
 - Implémenter le jeu en Blitz avec le sablier et les partis custom.
@@ -21,6 +21,7 @@
 
 ### JOURS SUIVANTS
 
+- Ajouter une musique et un bouton de volume.
 - Se pencher sur les Fonctionnalités avancées.
 
 

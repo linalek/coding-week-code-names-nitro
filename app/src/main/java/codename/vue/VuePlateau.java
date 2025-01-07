@@ -63,9 +63,9 @@ public class VuePlateau {
     private String obtenirCouleurDeFond(int valeur) {
         return switch (valeur) {
             case -1 -> "#000000";
-            case 0 -> "#FFFFFF";
-            case 1 -> "#FF0000";
-            case 2 -> "#0000FF";
+            case 0 -> " #e0ceb3 ";
+            case 1 -> "#e44f43";
+            case 2 -> "#3ca6b2 ";
             default -> "#FF8000";
         };
     }

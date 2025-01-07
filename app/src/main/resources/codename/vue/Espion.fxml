@@ -17,8 +17,7 @@
             prefWidth="600.0"
             xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="codename.controleur.EspionControleur"
-            stylesheets="@/public/styles.css">
+            fx:controller="codename.controleur.EspionControleur">
     <center>
         <fx:include source="Plateau.fxml" />
     </center>

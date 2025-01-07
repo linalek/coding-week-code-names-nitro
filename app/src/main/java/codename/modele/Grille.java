@@ -116,12 +116,12 @@ createTableauTuiles créé le tableau de tuiles en fonction de si on joue en mod
     /*
      * Méthode qui assigne un mot à une tuile et l'ajoute à la liste de mots déjà utilisés.
     */
-    public TuileMot ajouterTuileMot(){
+    public TuileMot configurerTuileMot(){
         int equipe = repartitionTuiles.remove(0);
         TuileMot myTuile = new TuileMot(equipe);
         String mot;
         do {
-            myTuile.setRandomMot();
+            myTuile.setRandomMot(listOfThemes);
             mot = myTuile.getMot();
         } while (motUtilises.contains(mot));
         motUtilises.add(mot);

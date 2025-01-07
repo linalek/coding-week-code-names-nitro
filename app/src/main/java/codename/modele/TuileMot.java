@@ -31,7 +31,7 @@ public class TuileMot extends Tuile {
         return "Tuiles{" +
                 "mot='" + mot + '\'' +
                 ", equipe=" + equipe +
-                ", estTrouve=" + estTrouve +
+                ", estTrouve=" + estRetournee +
                 '}';
     }
 

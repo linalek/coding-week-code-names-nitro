@@ -55,7 +55,9 @@ public class Grille {
         }
         return tableauTuiles;
     }
-
+/*
+createTableauTuiles créé le tableau de tuiles en fonction de si on joue en mode image ou en mode mot.
+ */
     public void createTableauTuiles(){
         tableauTuiles = new Tuile[taille][taille];
         if (type == 1){
@@ -73,6 +75,7 @@ public class Grille {
             }
         }
     }
+
 
     public void ajouterTuileImage(){
         int equipe = repartitionTuiles.removeFirst();

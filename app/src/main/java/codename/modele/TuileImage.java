@@ -37,7 +37,7 @@ public class TuileImage extends Tuile {
         return "Tuiles{" +
                 "adresse de l'image='" + imageAdress + '\'' +
                 ", equipe=" + equipe +
-                ", estTrouve=" + estTrouve +
+                ", estTrouve=" + estRetournee +
                 '}';
     }
 }

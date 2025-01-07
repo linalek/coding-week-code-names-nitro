@@ -20,6 +20,9 @@ public class Jeu {
         tour = (tour == 0) ? 1 : 0;
     }
 
+/*
+checkWinner check si l'une des deux équipes a retournée toutes ses cartes.
+ */
     public boolean checkWinner() {
         if (nbMotsBleu == 0) {
             statusPartie=1;
@@ -34,9 +37,15 @@ public class Jeu {
         }
     }
 
+/*
+retournerTuile permet de mettre à jour la grille en retournant la carte en position [i][j] si elle ne l'est pas déja.
+elle met ensuite à jour le tour si la carte retournée est celle de l'autre équipe.
+elle met aussi à jour statusPartie en cas de victoire par l'une des 2 équipes, si une a retournée la carte noire ou si une a retournée toutes ses cartes.
+ */
     public int retournerTuile(int i, int j){
         Tuile theTuile = grille.getTuile(i,j);
-        if (!theTuile.isEstTrouve()) {
+        if (!theTuile.isEstRetournee()) {
+            theTuile.setEstRetournee();
             switch (theTuile.getEquipe()){
                 case -1 -> {
                     if (tour==0){statusPartie=2;}

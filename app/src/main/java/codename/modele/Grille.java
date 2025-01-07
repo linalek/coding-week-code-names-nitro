@@ -11,12 +11,38 @@ public class Grille {
     private final int type; // type vaut 0 si on joue en mots, et il vaut 1 si on joue en image.
     private Tuile[][] tableauTuiles;
     List<Integer> repartitionTuiles;  //liste des affectations des tuiles
+    List<String> listOfThemes;
+
+    public Grille(int taille, int type, List<String> listOfThemes){
+        this.taille = taille;
+        this.type = type;
+        repartitionTuiles = createRepartitionTuiles();
+        this.tableauTuiles = null;
+        this.listOfThemes = listOfThemes;
+    }
 
     public Grille(int taille, int type){
         this.taille = taille;
         this.type = type;
         repartitionTuiles = createRepartitionTuiles();
         this.tableauTuiles = null;
+        this.listOfThemes = null;
+    }
+
+    public Grille(int type){
+        this.taille = 5;
+        this.type = type;
+        repartitionTuiles = createRepartitionTuiles();
+        this.tableauTuiles = null;
+        this.listOfThemes = null;
+    }
+
+    public Grille(){
+        this.taille = 5;
+        this.type = 0;
+        repartitionTuiles = createRepartitionTuiles();
+        this.tableauTuiles = null;
+        this.listOfThemes = null;
     }
 
     /*
@@ -63,32 +89,31 @@ createTableauTuiles créé le tableau de tuiles en fonction de si on joue en mod
         if (type == 1){
             for (int i = 0; i < taille; i++){
                 for (int j = 0; j < taille; j++){
-                    ajouterTuileImage();
+                    tableauTuiles[i][j]= configurerTuileImage();
                 }
             }
         }
         else {
             for (int i = 0; i < taille; i++){
                 for (int j = 0; j < taille; j++){
-                    tableauTuiles[i][j]=ajouterTuileMot();
+                    tableauTuiles[i][j]= configurerTuileMot();
                 }
             }
         }
     }
 
 
-    public void ajouterTuileImage(){
+    public TuileImage configurerTuileImage(){
         int equipe = repartitionTuiles.removeFirst();
         TuileImage myTuile = new TuileImage(equipe);
-        myTuile.setRandomImageAdress();
-
-
+        myTuile.setRandomImageAdress(listOfThemes);
+        return myTuile;
     }
 
-    public TuileMot ajouterTuileMot(){
+    public TuileMot configurerTuileMot(){
         int equipe = repartitionTuiles.removeFirst();
         TuileMot myTuile = new TuileMot(equipe);
-        myTuile.setRandomMot();
+        myTuile.setRandomMot(listOfThemes);
         return myTuile;
     }
 

@@ -26,9 +26,6 @@ public class TuileImage extends Tuile {
     public void setRandomImageAdress(List<String> themes) {
 
     }
-    public void setRandomImageAdress() {
-
-    }
 
 
 

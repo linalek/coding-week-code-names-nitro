@@ -41,7 +41,7 @@ public class TuileMot extends Tuile {
     */
     public static String getRandomMot(List<String> themes) {
         List<String> mots = new ArrayList<>();
-        if (themes == null || themes.size() < 3) {
+        if (themes == null) {
             mots = DictionnaireThemes.getAllMots();
         } else {
             for (String theme : themes) {
@@ -53,8 +53,5 @@ public class TuileMot extends Tuile {
     }
     public void setRandomMot(List<String> themes){
         setMot(getRandomMot(themes));
-    }
-    public void setRandomMot(){
-        setMot(getRandomMot(null));
     }
 }

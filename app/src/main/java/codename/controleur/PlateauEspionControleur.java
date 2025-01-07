@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 /**
  * Contrôleur pour la vue du plateau de jeu, cela permet de créer le plateau de jeu
  */
-public class PlateauControleur implements Initializable {
+public class PlateauEspionControleur implements Initializable {
 
     @FXML
     private GridPane grilleAffichage;

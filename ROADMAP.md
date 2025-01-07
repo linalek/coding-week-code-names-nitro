@@ -8,6 +8,9 @@
 
 ### JOUR 2
 
+- Il faut créer un bouton de retour.
+- il faut que le bouton Play pose les questions pour les réglages.
+
 - attention à ce qu'il n'y ai pas 2x le meme mot
 - Essayer d’avoir un jeu qui fonctionne pour deux personnes.
 - Ajouter la sauvegarde et la possibilité de restaurer une partie après avoir fermé l’application.

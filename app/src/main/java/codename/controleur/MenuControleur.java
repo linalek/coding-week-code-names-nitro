@@ -1,11 +1,12 @@
 package codename.controleur;
 
+import java.io.File;
+import java.io.IOException;
+
+import codename.DictionnaireThemes;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-
-import java.io.File;
-import java.io.IOException; 
 
 /**
  * Contrôleur pour le menu principal de l'application : permet de gérer les actions du menu.
@@ -13,14 +14,14 @@ import java.io.IOException;
 public class MenuControleur {
 
     @FXML
-    public MenuItem bouttonNouveau;
-
-    @FXML
     public MenuItem bouttonRestaurer;
-
+    
     @FXML
     public MenuItem bouttonSauvegarder;
-
+    
+    @FXML
+    public MenuItem bouttonRetour;
+    
     @FXML
     public MenuItem bouttonQuitter;
 
@@ -58,6 +59,45 @@ public class MenuControleur {
 
     @FXML
     public void partieCustom() {
+        javafx.stage.Stage fenetreFormulaire = new javafx.stage.Stage();
+        fenetreFormulaire.setTitle("Paramètres de la Partie Custom");
+
+        javafx.scene.control.Label labelNbJoueurs = new javafx.scene.control.Label("Nombre de joueurs (1-10):");
+        javafx.scene.control.Slider sliderNbJoueurs = new javafx.scene.control.Slider(1, 10, 1);
+        sliderNbJoueurs.setMajorTickUnit(1);
+        sliderNbJoueurs.setSnapToTicks(true);
+        sliderNbJoueurs.setShowTickMarks(true);
+        sliderNbJoueurs.setShowTickLabels(true);
+
+        javafx.scene.control.Label labelTailleGrille = new javafx.scene.control.Label("Taille de la grille:");
+        javafx.scene.control.TextField textFieldTailleGrille = new javafx.scene.control.TextField();
+
+        javafx.scene.control.Label labelThemes = new javafx.scene.control.Label("Thèmes:");
+        javafx.scene.control.ChoiceBox<String> choiceBoxThemes = new javafx.scene.control.ChoiceBox<>();
+        choiceBoxThemes.getItems().addAll(DictionnaireThemes.getThemes());
+
+        javafx.scene.control.Button boutonLancerPartie = new javafx.scene.control.Button("Lancer la Partie");
+
+        // Ajouter les éléments à un layout
+        javafx.scene.layout.VBox layout = new javafx.scene.layout.VBox(10);
+        layout.getChildren().addAll(labelNbJoueurs, sliderNbJoueurs, labelTailleGrille, textFieldTailleGrille, labelThemes, choiceBoxThemes, boutonLancerPartie);
+
+        // Configurer la scène et la fenêtre
+        javafx.scene.Scene scene = new javafx.scene.Scene(layout, 300, 300);
+        fenetreFormulaire.setScene(scene);
+        fenetreFormulaire.show();
+
+        // Ajouter un gestionnaire d'événements pour le bouton
+        boutonLancerPartie.setOnAction(event -> {
+            int nbJoueurs = (int) sliderNbJoueurs.getValue();
+            String tailleGrille = textFieldTailleGrille.getText();
+            String themeChoisi = choiceBoxThemes.getValue();
+
+            // Lancer la partie avec les paramètres choisis
+            // handleJouer(nbJoueurs, tailleGrille, themeChoisi);
+
+            fenetreFormulaire.close();
+        });
     }
 
     /**
@@ -98,8 +138,35 @@ public class MenuControleur {
 
     @FXML
     public void afficherApropos() {
+        javafx.stage.Stage fenetreRegles = new javafx.stage.Stage();
+        fenetreRegles.setTitle("À Propos des développeurs");
+
+        javafx.scene.web.WebView webView = new javafx.scene.web.WebView();
+
+        try {
+            String cheminFichier = "src/main/resources/public/apropos.html";
+            File fichierHtml = new File(cheminFichier);
+
+            if (fichierHtml.exists()) {
+                webView.getEngine().load(fichierHtml.toURI().toString());
+            } else {
+                throw new IOException("Fichier HTML non trouvé.");
+            }
+        } catch (IOException e) {
+            javafx.scene.control.Alert errorAlert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+            errorAlert.setTitle("Erreur");
+            errorAlert.setHeaderText("Impossible de charger les règles du jeu");
+            errorAlert.setContentText("Le fichier HTML des règles est introuvable.");
+            errorAlert.showAndWait();
+            return;
+        }
+
+        javafx.scene.Scene scene = new javafx.scene.Scene(webView, 800, 600);
+        fenetreRegles.setScene(scene);
+        fenetreRegles.show();
     }
     
+    @FXML
     public void partieImage() {
     }
     
@@ -108,8 +175,9 @@ public class MenuControleur {
         System.exit(0);
     }
     @FXML
-    public void creerNouvellePartie() {
+    public void retourMenu() {
     }
+
 
     @FXML
     public void restaurerPartie() {

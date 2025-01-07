@@ -20,6 +20,7 @@ public class Grille {
         repartitionTuiles = createRepartitionTuiles();
         this.tableauTuiles = null;
         this.listOfThemes = listOfThemes;
+        this.motUtilises = new ArrayList<>();
     }
 
     public Grille(int taille, int type){
@@ -29,6 +30,7 @@ public class Grille {
         this.motUtilises = new ArrayList<>();
         this.tableauTuiles = null;
         this.listOfThemes = null;
+        this.motUtilises = new ArrayList<>();
     }
 
     public Grille(int type){
@@ -37,6 +39,7 @@ public class Grille {
         repartitionTuiles = createRepartitionTuiles();
         this.tableauTuiles = null;
         this.listOfThemes = null;
+        this.motUtilises = new ArrayList<>();
     }
 
     public Grille(){
@@ -45,6 +48,7 @@ public class Grille {
         repartitionTuiles = createRepartitionTuiles();
         this.tableauTuiles = null;
         this.listOfThemes = null;
+        this.motUtilises = new ArrayList<>();
     }
 
     /*

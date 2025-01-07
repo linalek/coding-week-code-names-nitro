@@ -11,6 +11,7 @@ public class Grille {
     private final int type; // type vaut 0 si on joue en mots, et il vaut 1 si on joue en image.
     private Tuile[][] tableauTuiles;
     List<Integer> repartitionTuiles;  //liste des affectations des tuiles
+    private List<String> motUtilises; // liste de mot déjà utilisés dans la partie.
     List<String> listOfThemes;
 
     public Grille(int taille, int type, List<String> listOfThemes){
@@ -24,7 +25,8 @@ public class Grille {
     public Grille(int taille, int type){
         this.taille = taille;
         this.type = type;
-        repartitionTuiles = createRepartitionTuiles();
+        this.repartitionTuiles = createRepartitionTuiles();
+        this.motUtilises = new ArrayList<>();
         this.tableauTuiles = null;
         this.listOfThemes = null;
     }
@@ -86,6 +88,7 @@ createTableauTuiles créé le tableau de tuiles en fonction de si on joue en mod
  */
     public void createTableauTuiles(){
         tableauTuiles = new Tuile[taille][taille];
+        motUtilises.clear();
         if (type == 1){
             for (int i = 0; i < taille; i++){
                 for (int j = 0; j < taille; j++){
@@ -110,10 +113,18 @@ createTableauTuiles créé le tableau de tuiles en fonction de si on joue en mod
         return myTuile;
     }
 
-    public TuileMot configurerTuileMot(){
-        int equipe = repartitionTuiles.removeFirst();
+    /*
+     * Méthode qui assigne un mot à une tuile et l'ajoute à la liste de mots déjà utilisés.
+    */
+    public TuileMot ajouterTuileMot(){
+        int equipe = repartitionTuiles.remove(0);
         TuileMot myTuile = new TuileMot(equipe);
-        myTuile.setRandomMot(listOfThemes);
+        String mot;
+        do {
+            myTuile.setRandomMot();
+            mot = myTuile.getMot();
+        } while (motUtilises.contains(mot));
+        motUtilises.add(mot);
         return myTuile;
     }
 

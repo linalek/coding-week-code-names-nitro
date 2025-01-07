@@ -4,20 +4,20 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
+<!--Vue de la page d'accueil -->
 <StackPane xmlns="http://javafx.com/javafx/23.0.1"
            xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="codename.controleur.AccueilControleur"
+           fx:id="accueil"
            stylesheets="@/public/styles.css"
            styleClass="anchor-pane"
            prefHeight="400.0" prefWidth="600.0">
-    <children>
-        <Button mnemonicParsing="false"
-                text="JOUER"
-                onAction="#handleJouer"
-                styleClass="button">
-            <font>
-                <Font name="Comic Sans MS Bold" size="21.0" />
-            </font>
-        </Button>
-    </children>
+    <Button mnemonicParsing="false"
+            text="JOUER"
+            onAction="#handleJouer"
+            styleClass="button">
+        <font>
+            <Font name="Comic Sans MS Bold" size="21.0" />
+        </font>
+    </Button>
 </StackPane>

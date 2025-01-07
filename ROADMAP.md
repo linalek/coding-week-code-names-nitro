@@ -41,3 +41,12 @@
 - Implémentation de tests unitaires pour les classes du modele
 - Implémentation de la classe Jeu
 - Implémentation du plateau de Jeu
+
+### Jour 2
+- Jeu : ajout des variables nécessaires à la création du jeu et méthode retournerTuile
+- Grille : prise en compte de la sélection de mot par thème
+- Repasser sur tuile
+- Mise en place de la structure pour les espions : vue et controleur
+- Restructure du front : utilisation de fxml pour les objets et les vues
+- Correction de l'affichage du menu et du plateau
+- Fonction pour afficher les statistiques

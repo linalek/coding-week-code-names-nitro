@@ -11,6 +11,8 @@ public class Joueur {
     private int partiesGagnees = 0;
     private int partiesPerdues = 0;
 
+    public Joueur() { }
+
     public Joueur(String nom, String role, String equipe) {
         this.nom = nom;
         this.role = role;

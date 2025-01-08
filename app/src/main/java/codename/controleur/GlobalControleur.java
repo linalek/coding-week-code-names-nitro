@@ -23,6 +23,8 @@ public class GlobalControleur {
     private Jeu jeuEnCours;
     private ChargementEspionControleur chargementEspionControleur;
     private ChargementAgentControleur chargementAgentControleur;
+    private StatistiquesControleur statistiquesControleur;
+    private CustomControleur customControleur;
     private BleuGagneControleur bleuGagneControleur;
     private RougeGagneControleur rougeGagneControleur;
 
@@ -52,13 +54,21 @@ public class GlobalControleur {
         try {
             FXMLLoader accueilLoader = new FXMLLoader(getClass().getResource("/codename/vue/Accueil.fxml"));
             Node accueilPane = accueilLoader.load();
-            AccueilControleur accueilControleur = accueilLoader.getController();
+            accueilControleur = accueilLoader.getController();
             accueilControleur.setGlobalControleur(this);
-            root.setCenter(accueilPane);
+
+            FXMLLoader menuLoader = new FXMLLoader(getClass().getResource("/codename/vue/Menu.fxml"));
+            Node menuPane = menuLoader.load();
+            MenuControleur menuControleur = menuLoader.getController();
+            menuControleur.setGlobalControleur(this);
+
+            root.setTop(menuPane);    // Menu placé en haut
+            root.setCenter(accueilPane); // Accueil au centre
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
     /**
      * Methode pour afficher la vue Accueil dans le BorderPane.
@@ -159,6 +169,36 @@ public class GlobalControleur {
             e.printStackTrace();
         }
     }
+    /**
+     * Methode pour afficher la vue Statistiques dans le BorderPane.
+     */
+    public void afficherStatistique() {
+        try {
+            FXMLLoader statLoader = new FXMLLoader(getClass().getResource("/codename/vue/Statistiques.fxml"));
+            Node statPane = statLoader.load();
+            statistiquesControleur = statLoader.getController();
+            statistiquesControleur.setGlobalControleur(this);
+            root.setCenter(statPane);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Methode pour customiser une partie
+     */
+    public void afficherCustom() {
+        try {
+            System.out.println("afficher");
+            FXMLLoader customLoader = new FXMLLoader(getClass().getResource("/codename/vue/Custom.fxml"));
+            Node customPane = customLoader.load();
+            CustomControleur customControleur = customLoader.getController();
+            customControleur.setGlobalControleur(this);
+            root.setCenter(customPane);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public void lancerJeu() {
         jeuEnCours = new Jeu();
         afficherConfigurationEquipe();
@@ -186,5 +226,13 @@ public class GlobalControleur {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Jeu getJeuEnCours() {
+        return jeuEnCours;
+    }
+
+    public void setJeuEnCours(Jeu jeuEnCours) {
+        this.jeuEnCours = jeuEnCours;
     }
 }

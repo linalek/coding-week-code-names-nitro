@@ -9,6 +9,10 @@ import codename.DictionnaireThemes;
 public class TuileMot extends Tuile {
     private String mot;
 
+    public TuileMot() {
+        super(0);
+    }
+
     public TuileMot(String mot, int equipe) {
         super(equipe);
         this.mot = mot;

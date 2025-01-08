@@ -128,6 +128,8 @@ public class GlobalControleur {
             Node chargementPane = chargementLoader.load();
             chargementEspionControleur = chargementLoader.getController();
             chargementEspionControleur.setGlobalControleur(this);
+            chargementEspionControleur.setJeuEnCours(jeuEnCours);
+            chargementEspionControleur.setTour();
             root.setCenter(chargementPane);
         } catch (IOException e) {
             e.printStackTrace();
@@ -143,6 +145,8 @@ public class GlobalControleur {
             Node chargementPane = chargementLoader.load();
             chargementAgentControleur = chargementLoader.getController();
             chargementAgentControleur.setGlobalControleur(this);
+            chargementAgentControleur.setJeuEnCours(jeuEnCours);
+            chargementAgentControleur.setTour();
             root.setCenter(chargementPane);
         } catch (IOException e) {
             e.printStackTrace();

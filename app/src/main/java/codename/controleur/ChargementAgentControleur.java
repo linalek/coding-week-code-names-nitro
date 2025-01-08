@@ -1,5 +1,6 @@
 package codename.controleur;
 
+import codename.modele.Jeu;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,7 +17,7 @@ public class ChargementAgentControleur {
     private Button goButton;
 
     private GlobalControleur globalControleur;
-    private String prochainTour;
+    private Jeu jeuEnCours;
 
     /**
      * Initialise le contrôleur.
@@ -35,11 +36,14 @@ public class ChargementAgentControleur {
 
     /**
      * Définit le texte du tour actuel.
-     * @param prochainTour Le texte indiquant quel joueur est concerné.
      */
-    public void setTour(String prochainTour) {
-        this.prochainTour = prochainTour;
-        tourLabel.setText(prochainTour + ", c'est ton tour !");
+    public void setTour() {
+        if (jeuEnCours.getTour()==0) {
+            tourLabel.setText("Au tour de l'agent Bleu !");
+        }
+        else {
+            tourLabel.setText("Au tour de l'agent Rouge !");
+        }
     }
 
     /**
@@ -49,5 +53,9 @@ public class ChargementAgentControleur {
     private void handleGo() {
         globalControleur.afficherAgent();
 
+    }
+
+    public void setJeuEnCours(Jeu jeuEnCours) {
+        this.jeuEnCours = jeuEnCours;
     }
 }

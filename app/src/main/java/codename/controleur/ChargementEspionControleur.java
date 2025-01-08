@@ -1,5 +1,6 @@
 package codename.controleur;
 
+import codename.modele.Jeu;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,7 +17,7 @@ public class ChargementEspionControleur {
     private Button goButton;
 
     private GlobalControleur globalControleur;
-    private int prochainTour;
+    private Jeu jeuEnCours;
 
     /**
      * Initialise le contrôleur.
@@ -35,14 +36,14 @@ public class ChargementEspionControleur {
 
     /**
      * Définit le texte du tour actuel.
-     * @param prochainTour Le texte indiquant quel joueur est concerné.
      */
-    public void setTour(int prochainTour) {
-        this.prochainTour = prochainTour;
-        tourLabel.setText(prochainTour + ", c'est ton tour !");
-    }
-    public int getProchainTour(){
-        return this.prochainTour;
+    public void setTour() {
+        if (jeuEnCours.getTour()==0) {
+            tourLabel.setText("Au tour de l'espion Bleu !");
+        }
+        else {
+            tourLabel.setText("Au tour de l'espion Rouge !");
+        }
     }
 
     /**
@@ -51,5 +52,9 @@ public class ChargementEspionControleur {
     @FXML
     private void handleGo() {
         globalControleur.afficherEspion();
+    }
+
+    public void setJeuEnCours(Jeu jeuEnCours) {
+        this.jeuEnCours = jeuEnCours;
     }
 }

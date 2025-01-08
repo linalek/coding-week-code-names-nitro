@@ -70,6 +70,7 @@
         <TitledPane animated="false" text="Red Team" BorderPane.alignment="CENTER">
             <content>
                 <VBox fx:id="redTeamBox" prefHeight="250.0" prefWidth="200.0" style="-fx-background-color: #e44f43; -fx-border-color: black; -fx-border-width: 2; -fx-padding: 10;">
+
                 </VBox>
             </content>
             <font>

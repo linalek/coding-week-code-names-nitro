@@ -1,12 +1,14 @@
 package codename.controleur;
 
 import codename.modele.Jeu;
+import codename.modele.Joueur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
@@ -18,6 +20,11 @@ public class AgentControleur {
     @FXML
     private Label indiceDisplayLabel;
     @FXML
+    private VBox redTeamBox;
+    @FXML
+    private VBox blueTeamBox;
+
+    @FXML
     private Label nombreCartesDisplayLabel;
     private GlobalControleur globalControleur;
     @FXML
@@ -25,6 +32,12 @@ public class AgentControleur {
 
     public void readyToContinue() {
         try {
+            for (Joueur joueur : jeuEnCours.getEquipeRouge().getJoueurs()){
+                addRedPlayer(joueur.getNom());
+            }
+            for (Joueur joueur : jeuEnCours.getEquipeBleue().getJoueurs()){
+                addBluePlayer(joueur.getNom());
+            }
             FXMLLoader plateauAgentLoader = new FXMLLoader(getClass().getResource("/codename/vue/PlateauAgent.fxml"));
             Node plateauAgentPane = plateauAgentLoader.load();
             plateauAgentControleur = plateauAgentLoader.getController();
@@ -101,5 +114,16 @@ public class AgentControleur {
 
     public void setJeu(Jeu jeuEnCours){
         this.jeuEnCours= jeuEnCours;
+    }
+
+    public void addRedPlayer(String playerName) {
+        Label newPlayer = new Label(playerName);
+        newPlayer.setStyle("-fx-text-fill: white; -fx-font-size: 16px;");
+        redTeamBox.getChildren().add(newPlayer);
+    }
+    public void addBluePlayer(String playerName) {
+        Label newPlayer = new Label(playerName);
+        newPlayer.setStyle("-fx-text-fill: white; -fx-font-size: 16px;");
+        blueTeamBox.getChildren().add(newPlayer);
     }
 }

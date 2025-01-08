@@ -8,6 +8,9 @@ public class Jeu {
     private int statusPartie; // 0 pour partie en cours, 1 pour bleu win, 2 pour rouge win
     private int nbCartes;
     private String indice;
+    /** Gestion des équipes */
+    private Equipe equipeRouge;
+    private Equipe equipeBleue;
 
     public Jeu(int taille, int type) {
         this.grille = new Grille(taille,type);
@@ -15,6 +18,7 @@ public class Jeu {
         this.nbMotsRouge = grille.getNbRouge();
         this.tour = 0;
         this.statusPartie = 0;
+        this.equipeRouge = new Equipe();
     }
 
     public Jeu() {
@@ -103,6 +107,6 @@ elle met aussi à jour statusPartie en cas de victoire par l'une des 2 équipes,
     }
     public int getStatusPartie(){return statusPartie;}
     public int getTour(){return tour;}
-
-    
+    public Equipe getEquipeBleue() {return equipeBleue;}
+    public Equipe getEquipeRouge() {return equipeRouge;}
 }

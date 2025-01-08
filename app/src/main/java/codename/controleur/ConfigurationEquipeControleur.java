@@ -1,6 +1,7 @@
 package codename.controleur;
 
 import codename.modele.Equipe;
+import codename.modele.Jeu;
 import codename.modele.Joueur;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -20,8 +21,7 @@ public class ConfigurationEquipeControleur {
     @FXML
     private TextField nomEspionBleu;
 
-    private Equipe equipeRouge;
-    private Equipe equipeBleue;
+    private Jeu jeuEnCours;
     private GlobalControleur globalControleur;
 
     public void setGlobalControleur(GlobalControleur globalControleur) {
@@ -30,8 +30,7 @@ public class ConfigurationEquipeControleur {
 
     @FXML
     public void initialize() {
-        equipeRouge = new Equipe("Rouge", new ArrayList<>());
-        equipeBleue = new Equipe("Bleue", new ArrayList<>());
+
     }
 
     @FXML
@@ -42,17 +41,16 @@ public class ConfigurationEquipeControleur {
         String espionBleu = nomEspionBleu.getText().trim();
 
         if (!agentRouge.isEmpty() && !espionRouge.isEmpty()) {
-            equipeRouge.addJoueur(new Joueur(agentRouge, "Agent", "Rouge"));
-            equipeRouge.addJoueur(new Joueur(espionRouge, "Espion", "Rouge"));
+            jeuEnCours.getEquipeRouge().addJoueur(new Joueur(agentRouge, "Agent", "Rouge"));
+            jeuEnCours.getEquipeRouge().addJoueur(new Joueur(espionRouge, "Espion", "Rouge"));
         }
 
         if (!agentBleu.isEmpty() && !espionBleu.isEmpty()) {
-            equipeBleue.addJoueur(new Joueur(agentBleu, "Agent", "Bleue"));
-            equipeBleue.addJoueur(new Joueur(espionBleu, "Espion", "Bleue"));
+            jeuEnCours.getEquipeBleue().addJoueur(new Joueur(agentBleu, "Agent", "Bleue"));
+            jeuEnCours.getEquipeBleue().addJoueur(new Joueur(espionBleu, "Espion", "Bleue"));
         }
 
         if (globalControleur != null) {
-            globalControleur.setEquipes(equipeRouge, equipeBleue);
             globalControleur.lancerJeu();
         } else {
             System.err.println("GlobalControleur non initialisé.");
@@ -68,11 +66,7 @@ public class ConfigurationEquipeControleur {
         }
     }
 
-    public Equipe getEquipeRouge() {
-        return equipeRouge;
-    }
-
-    public Equipe getEquipeBleue() {
-        return equipeBleue;
+    public void setJeuEnCours(Jeu jeuEnCours) {
+        this.jeuEnCours = jeuEnCours;
     }
 }

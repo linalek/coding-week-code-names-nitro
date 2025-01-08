@@ -27,23 +27,6 @@ public class GlobalControleur {
     private RougeGagneControleur rougeGagneControleur;
 
 
-    /** Gestion des équipes */
-    private Equipe equipeRouge;
-    private Equipe equipeBleue;
-
-    public void setEquipes(Equipe equipeRouge, Equipe equipeBleue) {
-        this.equipeRouge = equipeRouge;
-        this.equipeBleue = equipeBleue;
-    }
-
-    public Equipe getEquipeRouge() {
-        return equipeRouge;
-    }
-
-    public Equipe getEquipeBleue() {
-        return equipeBleue;
-    }
-
     /** Gestion des affichages indice et nombre de cartes*/
     private String indice;
     private int nombresCartes;
@@ -101,6 +84,7 @@ public class GlobalControleur {
             Node configPane = configLoader.load();
             configurationEquipeControleur = configLoader.getController();
             configurationEquipeControleur.setGlobalControleur(this);
+            configurationEquipeControleur.setJeuEnCours(jeuEnCours);
             root.setCenter(configPane);
         } catch (Exception e) {
             e.printStackTrace();

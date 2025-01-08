@@ -68,15 +68,16 @@ public class PlateauAgentControleur implements Initializable {
             tuilecolor = obtenirCouleurDeFond(tuileMot.getEquipe());
         }
         else {
-            tuilecolor = "#FFFFFF";
+            tuilecolor = " #d7d7d7 "; // Beige
         }
         cellule.setStyle("-fx-background-color: " + tuilecolor + ";");
         cellule.getChildren().add(texte);
         cellule.setAlignment(Pos.CENTER);
         if (tuilecolor.equals("#FFFFFF")) {
             texte.setFill(Color.BLACK);
-        }
-        else {
+        } else if (tuilecolor.equals(" #d7d7d7 ")) {
+            texte.setFill(Color.BLACK);
+        } else {
             texte.setFill(Color.WHITE);
         }
         return cellule;

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="codename.controleur.RougeGagneControleur">
+    <center>
+        <VBox alignment="CENTER" prefWidth="400.0" spacing="20.0" style="-fx-background-color: rgba(0, 0, 0, 0.5); -fx-padding: 20; -fx-border-color: white; -fx-border-width: 2;">
+            <Label fx:id="tourLabel" prefHeight="52.0" prefWidth="427.0" text="L'équipe Rouge a gagnée !" textFill="white">
+                <font>
+                    <Font name="System Bold" size="28.0" />
+                </font>
+            </Label>
+            <Button fx:id="goButton" onAction="#handleGo" prefHeight="45.0" prefWidth="230.0" text="Retour au menu">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </Button>
+        </VBox>
+    </center>
+</BorderPane>

@@ -25,6 +25,8 @@ public class GlobalControleur {
     private ChargementAgentControleur chargementAgentControleur;
     private StatistiquesControleur statistiquesControleur;
     private CustomControleur customControleur;
+    private BleuGagneControleur bleuGagneControleur;
+    private RougeGagneControleur rougeGagneControleur;
 
 
     /** Gestion des équipes */
@@ -216,5 +218,29 @@ public class GlobalControleur {
     public void lancerJeu() {
         jeuEnCours = new Jeu();
         afficherEspion();
+    }
+    public void afficherBleuGagnant(){
+        try {
+            FXMLLoader gagnantLoader = new FXMLLoader(getClass().getResource("/codename/vue/BleuGagne.fxml"));
+            Node gagnantPane = gagnantLoader.load();
+            bleuGagneControleur = gagnantLoader.getController();
+            bleuGagneControleur.setGlobalControleur(this);
+            root.setCenter(gagnantPane);
+            System.out.println("BleuGagnant.fxml charge et affiche dans le centre.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void afficherRougeGagnant(){
+        try {
+            FXMLLoader gagnantLoader = new FXMLLoader(getClass().getResource("/codename/vue/RougeGagne.fxml"));
+            Node gagnantPane = gagnantLoader.load();
+            rougeGagneControleur = gagnantLoader.getController();
+            rougeGagneControleur.setGlobalControleur(this);
+            root.setCenter(gagnantPane);
+            System.out.println("RougeGagnant.fxml charge et affiche dans le centre.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

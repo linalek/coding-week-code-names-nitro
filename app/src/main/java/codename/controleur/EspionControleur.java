@@ -41,7 +41,7 @@ public class EspionControleur {
         System.out.println("Indice saisi : " + indice);
         System.out.println("Nombre de cartes selectionne : " + nombreCartes);
         if (globalControleur != null) {
-            globalControleur.afficherAgent(indice,nombreCartes);
+            globalControleur.afficherChargementAgent(indice, nombreCartes);
             System.out.println("Passage a la vue Agent.");
         } else {
             System.err.println("GlobalControleur non initialise.");

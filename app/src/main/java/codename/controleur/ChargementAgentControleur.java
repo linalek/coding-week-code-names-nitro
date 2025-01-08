@@ -47,36 +47,10 @@ public class ChargementAgentControleur {
      */
     @FXML
     private void handleGo() {
-        String indice = "Aucun";
-        int nombreCartes = 0;
+        String indice = globalControleur.getIndice();
+        int nombreCartes = globalControleur.getNombresCartes();
         System.out.println("Bouton Go cliqué.");
         globalControleur.afficherAgent(indice, nombreCartes);
-//        String indice = "Aucun";
-//        int nombreCartes = 0;
-//
-//        if (globalControleur != null) {
-//            switch (prochainTour) {
-//                case "Espion Rouge":
-//                    globalControleur.afficherEspion();
-//                    System.out.println("Espion Rouge");
-//                    break;
-//                case "Agent Rouge":
-//                    globalControleur.afficherEspion();
-//                    System.out.println("Agent Rouge");
-//                    break;
-//                case "Espion Bleu":
-//                    globalControleur.afficherEspion();
-//                    System.out.println("Espion Bleu");
-//                    break;
-//                case "Agent Bleu":
-//                    globalControleur.afficherEspion();
-//                    System.out.println("Agent Bleu");
-//                    break;
-//                default:
-//                    System.err.println("Vue inconnue pour : " + prochainTour);
-//            }
-//        } else {
-//            System.err.println("GlobalControleur non initialisé.");
-//        }
+
     }
 }

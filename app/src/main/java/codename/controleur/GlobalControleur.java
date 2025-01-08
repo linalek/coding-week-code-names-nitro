@@ -20,6 +20,7 @@ public class GlobalControleur {
     private EspionControleur espionControleur;
     private AgentControleur agentControleur;
     private ChargementEspionControleur chargementEspionControleur;
+    private ChargementAgentControleur chargementAgentControleur;
 
     /** Gestion des équipes */
     private Equipe equipeRouge;
@@ -38,6 +39,23 @@ public class GlobalControleur {
         return equipeBleue;
     }
 
+    /** Gestion des affichages indice et nombre de cartes*/
+    private String indice;
+    private int nombresCartes;
+
+    public String getIndice(){
+        return this.indice;
+    }
+    public void setIndice(String indice){
+        this.indice = indice;
+    }
+
+    public int getNombresCartes(){
+        return this.nombresCartes;
+    }
+    public void setNombresCartes(int nombresCartes){
+        this.nombresCartes = nombresCartes;
+    }
     /**
      * Methode d'initialisation appelee automatiquement après le chargement du fichier FXML.
      */
@@ -121,12 +139,14 @@ public class GlobalControleur {
     /**
      * Méthode pour afficher la page de chargement pour l'agent
      */
-    public void afficherChargementAgent(){
+    public void afficherChargementAgent(String indice, int nombresCartes){
+        setIndice(indice);
+        setNombresCartes(nombresCartes);
         try {
             FXMLLoader chargementLoader = new FXMLLoader(getClass().getResource("/codename/vue/ChargementAgent.fxml"));
             Node chargementPane = chargementLoader.load();
-            chargementEspionControleur = chargementLoader.getController();
-            chargementEspionControleur.setGlobalControleur(this);
+            chargementAgentControleur = chargementLoader.getController();
+            chargementAgentControleur.setGlobalControleur(this);
             root.setCenter(chargementPane);
             System.out.println("ChargementAgent.fxml charge et affiche dans le centre.");
         } catch (IOException e) {

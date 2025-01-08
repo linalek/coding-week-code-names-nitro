@@ -47,9 +47,11 @@ public class PlateauEspionControleur implements Initializable {
 
         for (int i = 0; i < jeuEnCours.getTaille(); i++) {
             for (int j = 0; j < jeuEnCours.getTaille(); j++) {
+                System.out.println("création des cellules");
                 TuileMot tuileMot = (TuileMot) jeuEnCours.getTuile(i,j);
                 StackPane cellule = creerCellule(tuileMot);
                 grilleAffichage.add(cellule, j, i);
+                System.out.println("cellule créée");
             }
         }
     }

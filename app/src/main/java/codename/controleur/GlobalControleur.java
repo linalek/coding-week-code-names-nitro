@@ -101,6 +101,8 @@ public class GlobalControleur {
             agentControleur.setGlobalControleur(this);
             agentControleur.setIndice(indice);
             agentControleur.setNombreCartes(nombreCartes);
+            agentControleur.setJeu(jeuEnCours);
+            agentControleur.readyToContinue();
             root.setCenter(agentPane);
             System.out.println("Agent.fxml charge et affiche dans le centre.");
         } catch (Exception e) {

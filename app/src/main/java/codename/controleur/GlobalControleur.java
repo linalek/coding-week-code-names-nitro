@@ -19,6 +19,7 @@ public class GlobalControleur {
     private ConfigurationEquipeControleur configurationEquipeControleur;
     private EspionControleur espionControleur;
     private AgentControleur agentControleur;
+    private ChargementEspionControleur chargementEspionControleur;
 
     /** Gestion des équipes */
     private Equipe equipeRouge;
@@ -97,6 +98,37 @@ public class GlobalControleur {
             espionControleur.setGlobalControleur(this);
             root.setCenter(espionPane);
             System.out.println("Espion.fxml charge et affiche dans le centre.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Méthode pour afficher la page de chargement pour l'espion
+     */
+    public void afficherChargementEspion(){
+        try {
+            FXMLLoader chargementLoader = new FXMLLoader(getClass().getResource("/codename/vue/ChargementEspion.fxml"));
+            Node chargementPane = chargementLoader.load();
+            chargementEspionControleur = chargementLoader.getController();
+            chargementEspionControleur.setGlobalControleur(this);
+            root.setCenter(chargementPane);
+            System.out.println("ChargementEspion.fxml charge et affiche dans le centre.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Méthode pour afficher la page de chargement pour l'agent
+     */
+    public void afficherChargementAgent(){
+        try {
+            FXMLLoader chargementLoader = new FXMLLoader(getClass().getResource("/codename/vue/ChargementAgent.fxml"));
+            Node chargementPane = chargementLoader.load();
+            chargementEspionControleur = chargementLoader.getController();
+            chargementEspionControleur.setGlobalControleur(this);
+            root.setCenter(chargementPane);
+            System.out.println("ChargementAgent.fxml charge et affiche dans le centre.");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -49,8 +49,8 @@ public class AgentControleur {
 
     public void handleValider(ActionEvent event) {
         if (globalControleur != null) {
-            globalControleur.afficherEspion();
-            System.out.println("Passage a la vue Espion.");
+            globalControleur.afficherChargementEspion();
+            System.out.println("Passage a la vue  de chargement pour l'espion Espion.");
         }
     }
 }

@@ -161,7 +161,7 @@ public class GlobalControleur {
     }
     public void lancerJeu() {
         jeuEnCours = new Jeu();
-        afficherEspion();
+        afficherConfigurationEquipe();
     }
     public void afficherBleuGagnant(){
         try {

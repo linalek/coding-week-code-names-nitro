@@ -19,6 +19,7 @@ public class Jeu {
         this.tour = 0;
         this.statusPartie = 0;
         this.equipeRouge = new Equipe();
+        this.equipeBleue = new Equipe();
     }
 
     public Jeu() {
@@ -27,6 +28,8 @@ public class Jeu {
         this.nbMotsRouge = grille.getNbRouge();
         this.tour = 0;
         this.statusPartie = 0;
+        this.equipeRouge = new Equipe();
+        this.equipeBleue = new Equipe();
     }
 
     public void changerTour() {

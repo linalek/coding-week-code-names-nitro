@@ -18,7 +18,7 @@ public class AccueilControleur {
     @FXML
     public void handleJouer() {
         if (globalControleur != null) {
-            globalControleur.afficherConfigurationEquipe();
+            globalControleur.lancerJeu();
         }
     }
 }

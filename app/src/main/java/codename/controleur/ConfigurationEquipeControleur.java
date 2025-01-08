@@ -51,7 +51,7 @@ public class ConfigurationEquipeControleur {
         }
 
         if (globalControleur != null) {
-            globalControleur.lancerJeu();
+            globalControleur.afficherEspion();
         } else {
             System.err.println("GlobalControleur non initialisé.");
         }

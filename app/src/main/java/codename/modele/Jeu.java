@@ -11,11 +11,12 @@ public class Jeu {
     private int nbMotsRouge;
     private int tour; // 0 pour l'équipe bleu, 1 pour l'équipe rouge
     private int statusPartie; // 0 pour partie en cours, 1 pour bleu win, 2 pour rouge win
-    private int nbCartes;
+    private int nombreTuileARretourner;
     private String indice;
     private int taille;
     private Equipe equipeRouge;
     private Equipe equipeBleue;
+
 
     public Jeu(int taille, int type) {
         this.grille = new Grille(taille, type);
@@ -96,14 +97,6 @@ public class Jeu {
         return statusPartie;
     }
 
-    public void setNbCartes(int nbCartes) {
-        this.nbCartes = nbCartes;
-    }
-
-    public int getNbCartes() {
-        return nbCartes;
-    }
-
     public void setIndice(String indice) {
         this.indice = indice;
     }
@@ -161,4 +154,13 @@ public class Jeu {
     public void setEquipeRouge(Equipe equipeRouge) {
         this.equipeRouge = equipeRouge;
     }
+
+    public void setNombreTuileARretourner(int nombreTuileARretourner) {
+        this.nombreTuileARretourner = nombreTuileARretourner;
+    }
+
+    public int getNombreTuileARretourner() {
+        return nombreTuileARretourner;
+    }
+
 }

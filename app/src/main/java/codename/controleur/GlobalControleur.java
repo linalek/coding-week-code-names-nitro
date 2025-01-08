@@ -137,9 +137,7 @@ public class GlobalControleur {
     /**
      * Méthode pour afficher la page de chargement pour l'agent
      */
-    public void afficherChargementAgent(String indice, int nombresCartes){
-        setIndice(indice);
-        setNombresCartes(nombresCartes);
+    public void afficherChargementAgent(){
         try {
             FXMLLoader chargementLoader = new FXMLLoader(getClass().getResource("/codename/vue/ChargementAgent.fxml"));
             Node chargementPane = chargementLoader.load();
@@ -154,14 +152,12 @@ public class GlobalControleur {
     /**
      * Methode pour afficher la vue Agent dans le BorderPane.
      */
-    public void afficherAgent(String indice, int nombreCartes) {
+    public void afficherAgent() {
         try {
             FXMLLoader agentLoader = new FXMLLoader(getClass().getResource("/codename/vue/Agent.fxml"));
             Node agentPane = agentLoader.load();
             agentControleur = agentLoader.getController();
             agentControleur.setGlobalControleur(this);
-            agentControleur.setIndice(indice);
-            agentControleur.setNombreCartes(nombreCartes);
             agentControleur.setJeu(jeuEnCours);
             agentControleur.readyToContinue();
             root.setCenter(agentPane);

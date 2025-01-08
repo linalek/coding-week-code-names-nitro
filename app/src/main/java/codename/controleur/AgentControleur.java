@@ -31,6 +31,8 @@ public class AgentControleur {
     private BorderPane rootAgent;
 
     public void readyToContinue() {
+        setIndice();
+        setNombreCartes();
         try {
             for (Joueur joueur : jeuEnCours.getEquipeRouge().getJoueurs()){
                 addRedPlayer(joueur.getNom());
@@ -67,9 +69,9 @@ public class AgentControleur {
 
     /**
      * Méthode pour mettre à jour l'indice affiché.
-     * @param indice La nouvelle valeur de l'indice.
      */
-    public void setIndice(String indice) {
+    public void setIndice() {
+        String indice = jeuEnCours.getIndice();
         if (indice != null && !indice.trim().isEmpty()) {
             indiceDisplayLabel.setText(indice);
         } else {
@@ -79,10 +81,9 @@ public class AgentControleur {
 
     /**
      * Méthode pour mettre à jour le nombre de cartes affiché.
-     * @param nombre Le nouveau nombre de cartes.
      */
-    public void setNombreCartes(int nombre) {
-        nombreCartesDisplayLabel.setText(String.valueOf(nombre));
+    public void setNombreCartes() {
+        nombreCartesDisplayLabel.setText(String.valueOf(jeuEnCours.getNombreTuileARretourner()));
     }
 
     public void handleValider(ActionEvent event) {

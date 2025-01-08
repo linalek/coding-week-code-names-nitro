@@ -34,7 +34,7 @@ public class EspionControleur {
     private SplitMenuButton nombreCartesButton;
     @FXML
     private TextField indiceTextField;
-    private int nombreCartes = 1;
+
     private GlobalControleur globalControleur;
 
     public void readyToContinue() {
@@ -67,17 +67,19 @@ public class EspionControleur {
         String selectedNumber = selectedItem.getText();
         nombreCartesButton.setText(selectedNumber);
         try {
-            nombreCartes = Integer.parseInt(selectedNumber);
+            jeuEnCours.setNombreTuileARretourner(Integer.parseInt(selectedNumber));
+            System.out.println(jeuEnCours.getNombreTuileARretourner());
         } catch (NumberFormatException e) {
-            nombreCartes = 1;
+            jeuEnCours.setNombreTuileARretourner(1);
         }
     }
 
     @FXML
     private void handleValider(ActionEvent event) {
-        String indice = indiceTextField.getText();
+        jeuEnCours.setIndice(indiceTextField.getText());
+        System.out.println(jeuEnCours.getIndice());
         if (globalControleur != null) {
-            globalControleur.afficherChargementAgent(indice, nombreCartes);
+            globalControleur.afficherChargementAgent();
         } else {
             System.err.println("GlobalControleur non initialise.");
         }

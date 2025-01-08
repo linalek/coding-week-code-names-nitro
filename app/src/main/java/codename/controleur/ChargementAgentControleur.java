@@ -47,9 +47,7 @@ public class ChargementAgentControleur {
      */
     @FXML
     private void handleGo() {
-        String indice = globalControleur.getIndice();
-        int nombreCartes = globalControleur.getNombresCartes();
-        globalControleur.afficherAgent(indice, nombreCartes);
+        globalControleur.afficherAgent();
 
     }
 }

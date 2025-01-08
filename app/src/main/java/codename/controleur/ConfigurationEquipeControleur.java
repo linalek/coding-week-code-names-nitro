@@ -4,11 +4,9 @@ import codename.modele.Equipe;
 import codename.modele.Joueur;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+
 import java.util.ArrayList;
 
-/**
- * Contrôleur pour la vue de configuration des équipes, permet de saisir le nom des joueurs et leurs rôles.
- */
 public class ConfigurationEquipeControleur {
 
     @FXML
@@ -39,7 +37,6 @@ public class ConfigurationEquipeControleur {
 
     @FXML
     public void validerEquipes() {
-        // Récupération des noms des joueurs
         String agentRouge = nomAgentRouge.getText().trim();
         String espionRouge = nomEspionRouge.getText().trim();
         String agentBleu = nomAgentBleu.getText().trim();
@@ -55,24 +52,22 @@ public class ConfigurationEquipeControleur {
             equipeBleue.addJoueur(new Joueur(espionBleu, "Espion", "Bleue"));
         }
 
-        System.out.println("Equipe Rouge : " + equipeRouge.getJoueurs());
-        System.out.println("Equipe Bleue : " + equipeBleue.getJoueurs());
-
         if (globalControleur != null) {
+            globalControleur.setEquipes(equipeRouge, equipeBleue);
+            System.out.println("Equipes validées : " + equipeRouge.getJoueurs() + " - " + equipeBleue.getJoueurs());
             globalControleur.afficherEspion();
-            System.out.println("Passage a la vue Espion.");
         } else {
-            System.err.println("GlobalControleur non initialise.");
+            System.err.println("GlobalControleur non initialisé.");
         }
+
     }
 
     @FXML
     public void annuler() {
         if (globalControleur != null) {
             globalControleur.afficherAccueil();
-            System.out.println("Retour a la vue Accueil.");
         } else {
-            System.err.println("GlobalControleur non initialise.");
+            System.err.println("GlobalControleur non initialisé.");
         }
     }
 

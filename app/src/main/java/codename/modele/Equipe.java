@@ -1,7 +1,6 @@
 package codename.modele;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Equipe {
     private String couleur;
@@ -12,31 +11,13 @@ public class Equipe {
         this.joueurs = joueurs;
     }
 
-    public String getCouleur() {
-        return couleur;
-    }
-    public void setCouleur(String couleur) {
-        this.couleur = couleur;
-    }
-    public void setJoueurs(ArrayList<Joueur> joueurs) {
-        this.joueurs = joueurs;
-    }
-    public void removeJoueur(Joueur joueur) {
-        joueurs.remove(joueur);
-    }
-    public void addJoueur(Joueur joueur) {
-        joueurs.add(joueur);
-    }
-    public ArrayList<Joueur> getJoueurs() {
-        return joueurs;
-    }
-    public int getNbJoueurs() {
-        return joueurs.size();
-    }
-    public Joueur getJoueur(int index) {
-        return joueurs.get(index);
-    }
-    public boolean contains(Joueur joueur) {
-        return joueurs.contains(joueur);
-    }
+    public String getCouleur() { return couleur; }
+    public void setCouleur(String couleur) { this.couleur = couleur; }
+
+    public ArrayList<Joueur> getJoueurs() { return joueurs; }
+    public void addJoueur(Joueur joueur) { joueurs.add(joueur); }
+    public void removeJoueur(Joueur joueur) { joueurs.remove(joueur); }
+
+    public boolean contains(Joueur joueur) { return joueurs.contains(joueur); }
+    public int getNbJoueurs() { return joueurs.size(); }
 }

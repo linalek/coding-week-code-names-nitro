@@ -19,8 +19,15 @@
 
 ### JOUR 3
 
-- Ajouter les statistiques.
-- Fonction d'ajout de ses propres mots.
+- Faire le lien avec le jeu.
+- Implémentation de la création des équipes
+- Ajouter les statistiques
+- Ajouter les ecrans de chargement entre le mode agent et le mode espion
+- Implémenter le jeu en Blitz avec le sablier
+- Implémenter le lien entre le fenêtre custom et la customisation d'une partie
+- Fonction d'ajout de ses propres mots : modifier le dictionnaire
+- Sauvegarde/restauration de la partie
+- Mode Image ?
 
 ### JOURS SUIVANTS
 

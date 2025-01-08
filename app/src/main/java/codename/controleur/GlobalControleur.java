@@ -1,5 +1,6 @@
 package codename.controleur;
 
+import codename.modele.Equipe;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
@@ -18,6 +19,23 @@ public class GlobalControleur {
     private ConfigurationEquipeControleur configurationEquipeControleur;
     private EspionControleur espionControleur;
     private AgentControleur agentControleur;
+
+    /** Gestion des équipes */
+    private Equipe equipeRouge;
+    private Equipe equipeBleue;
+
+    public void setEquipes(Equipe equipeRouge, Equipe equipeBleue) {
+        this.equipeRouge = equipeRouge;
+        this.equipeBleue = equipeBleue;
+    }
+
+    public Equipe getEquipeRouge() {
+        return equipeRouge;
+    }
+
+    public Equipe getEquipeBleue() {
+        return equipeBleue;
+    }
 
     /**
      * Methode d'initialisation appelee automatiquement après le chargement du fichier FXML.

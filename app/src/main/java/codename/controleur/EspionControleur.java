@@ -64,8 +64,6 @@ public class EspionControleur {
     @FXML
     private void handleValider(ActionEvent event) {
         String indice = indiceTextField.getText();
-        System.out.println("Indice saisi : " + indice);
-        System.out.println("Nombre de cartes selectionne : " + nombreCartes);
         if (globalControleur != null) {
             globalControleur.afficherChargementAgent(indice, nombreCartes);
         } else {

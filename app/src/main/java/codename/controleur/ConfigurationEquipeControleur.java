@@ -53,7 +53,6 @@ public class ConfigurationEquipeControleur {
 
         if (globalControleur != null) {
             globalControleur.setEquipes(equipeRouge, equipeBleue);
-            System.out.println("Equipes validées : " + equipeRouge.getJoueurs() + " - " + equipeBleue.getJoueurs());
             globalControleur.lancerJeu();
         } else {
             System.err.println("GlobalControleur non initialisé.");

@@ -32,13 +32,17 @@ public class Jeu {
 /*
 checkWinner check si l'une des deux équipes a retournée toutes ses cartes.
  */
-    public boolean checkWinner() {
+    private void updateRegularWinner() {
         if (nbMotsBleu == 0) {
             statusPartie=1;
-            return true;
         }
         else if (nbMotsRouge == 0) {
             statusPartie=2;
+        }
+    }
+
+    public boolean isThereWinner(){
+        if (statusPartie == 1 || statusPartie == 2) {
             return true;
         }
         else {
@@ -70,7 +74,7 @@ elle met aussi à jour statusPartie en cas de victoire par l'une des 2 équipes,
                     if (tour == 0){changerTour();}
                 }
             }
-            checkWinner();
+            updateRegularWinner();
         }
         return statusPartie;
     }
@@ -98,6 +102,8 @@ elle met aussi à jour statusPartie en cas de victoire par l'une des 2 équipes,
     public void parle(String endroit){
         System.out.println("je suis bien la" + endroit);
     }
+    public int getStatusPartie(){return statusPartie;}
+    public int getTour(){return tour;}
 
     
 }

@@ -96,12 +96,18 @@ public class PlateauAgentControleur implements Initializable {
     private void handleCellClick(MouseEvent event) {
 
         // Récupérer la cellule cliquée
+        int  tourEnCours = jeuEnCours.getTour();
         Pane clickedCell = (Pane) event.getSource();
         Integer i = GridPane.getRowIndex(clickedCell);
         Integer j = GridPane.getColumnIndex(clickedCell);
-        TuileMot tuileMot = (TuileMot) jeuEnCours.getTuile(i,j);
-        tuileMot.setEstRetournee();
+        int gameStatus = jeuEnCours.retournerTuile(i,j);
         mettreAJourGrille();
+        if(jeuEnCours.isThereWinner()){
+            agentControleur.aGagne(jeuEnCours.getStatusPartie());
+        }
+        else if (jeuEnCours.getTour()!=tourEnCours) {
+            agentControleur.aPerdu();
+        }
     }
     public void setAgentControleur(AgentControleur agentControleur) {
         this.agentControleur = agentControleur;

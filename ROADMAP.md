@@ -19,8 +19,15 @@
 
 ### JOUR 3
 
-- Ajouter les statistiques.
-- Fonction d'ajout de ses propres mots.
+- Faire le lien avec le jeu.
+- Implémentation de la création des équipes
+- Ajouter les statistiques
+- Ajouter les ecrans de chargement entre le mode agent et le mode espion
+- Implémenter le jeu en Blitz avec le sablier
+- Implémenter le lien entre le fenêtre custom et la customisation d'une partie
+- Fonction d'ajout de ses propres mots : modifier le dictionnaire
+- Sauvegarde/restauration de la partie
+- Mode Image ?
 
 ### JOURS SUIVANTS
 
@@ -50,3 +57,12 @@
 - Restructure du front : utilisation de fxml pour les objets et les vues
 - Correction de l'affichage du menu et du plateau
 - Fonction pour afficher les statistiques
+- Vue agent et espion et le globalControleur qui gère les switches entres les différentes vues
+- Tuiles cliquables
+- Création des 2 versions du plateau
+- Bouton du menu
+- Interface d'affichage des éuquipes
+- Page de configuration des équipes
+- classe Joueur et Equipe
+- Intégration du jeu
+- Gestion des equipes et des joueurs

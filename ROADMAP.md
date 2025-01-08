@@ -29,10 +29,20 @@
 - Sauvegarde/restauration de la partie
 - Mode Image ?
 
-### JOURS SUIVANTS
+### JOURS 4
 
-- Ajouter une musique et un bouton de volume.
-- Se pencher sur les Fonctionnalités avancées.
+- (Ajouter une musique et un bouton de volume)
+- Sauvegarde / restauration de la partie : Hugo
+- Equipes visibles : Julien
+- liaison avec les statistiques : gestion des statistiques 
+- jeu en blitz : Lucie
+- customisation de partie : Lina
+- mode image
+- test unitaire : Lucie
+- page de chargement en fonction des équipes : Lina
+- mode solo et plusieurs joueurs
+- utiliser le design pattern observer
+- vérifier qu'il n'y a aucun élément de design dans le code : Lina
 
 
 ## RÉALISÉ
@@ -66,3 +76,14 @@
 - classe Joueur et Equipe
 - Intégration du jeu
 - Gestion des equipes et des joueurs
+
+### Jour 3
+- Stockage des équipes dans le GlobalControleur
+- Ajout des pages de chargement entre les différentes phases du jeu
+- Liaison avec la classe Jeu
+- Système de jeu qui fonctionne
+- Ajout de dictionnaire
+- Correction sur le menu
+- Correction de vue fxml
+- Ajout des pages victoire
+- Fonctionnalité d'ajout de mots et de thèmes 

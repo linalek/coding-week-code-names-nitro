@@ -14,6 +14,8 @@ public class Jeu {
     private int nbCartes;
     private String indice;
     private int taille;
+    private Equipe equipeRouge;
+    private Equipe equipeBleue;
 
     public Jeu(int taille, int type) {
         this.grille = new Grille(taille,type);
@@ -122,5 +124,19 @@ elle met aussi à jour statusPartie en cas de victoire par l'une des 2 équipes,
 
     public void setTaille(int taille) {
         this.taille = taille;
+    }
+
+    public Equipe getEquipeRouge() {
+        return equipeRouge;
+    }
+    public void setEquipeRouge(Equipe equipeRouge) {
+        this.equipeRouge = equipeRouge;
+    }
+
+    public Equipe getEquipeBleue() {
+        return equipeBleue;
+    }
+    public void setEquipeBleue(Equipe equipeBleue) {
+        this.equipeBleue = equipeBleue;
     }
 }

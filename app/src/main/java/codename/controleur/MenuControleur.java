@@ -181,7 +181,7 @@ public class MenuControleur {
         Jeu jeu = globalControleur.getJeuEnCours();
         if (jeu != null) {
             try {
-                Jeu.sauvegarder(jeu, "sauvegardePartie.json");
+                Jeu.sauvegarder(jeu, "partie.json");
                 System.out.println("Partie sauvegardee");
             } catch (IOException e) {
                 e.printStackTrace();
@@ -192,7 +192,7 @@ public class MenuControleur {
     @FXML
     public void restaurerPartie() {
         try {
-            Jeu partieChargee = Jeu.charger("sauvegardePartie.json");
+            Jeu partieChargee = Jeu.charger("partie.json");
             System.out.println("Partie restauree");
             globalControleur.setJeuEnCours(partieChargee);
             globalControleur.afficherEspion();

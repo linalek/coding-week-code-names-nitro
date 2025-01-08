@@ -53,6 +53,12 @@ public class MenuControleur {
 
     @FXML
     public MenuItem bouttonCustom;
+
+    private GlobalControleur globalControleur;
+
+    public void setGlobalControleur(GlobalControleur globalControleur) {
+        this.globalControleur = globalControleur;
+    }
     
     @FXML
     public void partieBlitz() {
@@ -64,49 +70,20 @@ public class MenuControleur {
 
     @FXML
     public void partieCustom() {
-        javafx.stage.Stage fenetreFormulaire = new javafx.stage.Stage();
-        fenetreFormulaire.setTitle("Paramètres de la Partie Custom");
-
-        javafx.scene.control.Label labelNbJoueurs = new javafx.scene.control.Label("Nombre de joueurs (1-10):");
-        javafx.scene.control.Slider sliderNbJoueurs = new javafx.scene.control.Slider(1, 10, 1);
-        sliderNbJoueurs.setMajorTickUnit(1);
-        sliderNbJoueurs.setSnapToTicks(true);
-        sliderNbJoueurs.setShowTickMarks(true);
-        sliderNbJoueurs.setShowTickLabels(true);
-
-        javafx.scene.control.Label labelTailleGrille = new javafx.scene.control.Label("Taille de la grille:");
-        javafx.scene.control.TextField textFieldTailleGrille = new javafx.scene.control.TextField();
-
-        javafx.scene.control.Label labelThemes = new javafx.scene.control.Label("Thèmes:");
-        javafx.scene.control.ChoiceBox<String> choiceBoxThemes = new javafx.scene.control.ChoiceBox<>();
-        choiceBoxThemes.getItems().addAll(DictionnaireThemes.getThemes());
-
-        javafx.scene.control.Button boutonLancerPartie = new javafx.scene.control.Button("Lancer la Partie");
-
-        // Ajouter les éléments à un layout
-        javafx.scene.layout.VBox layout = new javafx.scene.layout.VBox(10);
-        layout.getChildren().addAll(labelNbJoueurs, sliderNbJoueurs, labelTailleGrille, textFieldTailleGrille, labelThemes, choiceBoxThemes, boutonLancerPartie);
-
-        // Configurer la scène et la fenêtre
-        javafx.scene.Scene scene = new javafx.scene.Scene(layout, 300, 300);
-        fenetreFormulaire.setScene(scene);
-        fenetreFormulaire.show();
-
-        // Ajouter un gestionnaire d'événements pour le bouton
-        boutonLancerPartie.setOnAction(event -> {
-            int nbJoueurs = (int) sliderNbJoueurs.getValue();
-            String tailleGrille = textFieldTailleGrille.getText();
-            String themeChoisi = choiceBoxThemes.getValue();
-
-            // Lancer la partie avec les paramètres choisis
-            // handleJouer(nbJoueurs, tailleGrille, themeChoisi);
-
-            fenetreFormulaire.close();
-        });
+        if (globalControleur != null) {
+            globalControleur.afficherCustom();
+            System.out.println("custom");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Affichage statistiques impossible");
+            alert.setContentText("GlobalControleur est null. Assurez-vous qu'il est correctement initialisé.");
+            alert.showAndWait();
+        }
     }
 
     /**
-     * Méthode pour affihcer les règles du jeu à partir d'un fichier HTML permettant une mise en page propre du fichier, si le fichier est introuvable, une erreur est renvoyée à l'utilisateur
+     * Méthode pour afficher les règles du jeu à partir d'un fichier HTML permettant une mise en page propre du fichier, si le fichier est introuvable, une erreur est renvoyée à l'utilisateur
      * throws IOException si le fichier HTML des règles n'est pas trouvé
      */
     @FXML
@@ -139,6 +116,9 @@ public class MenuControleur {
         fenetreRegles.show();
     }
 
+    /**
+     * Méthode pour afficher les informations sur les développeurs du jeu
+     */
     @FXML
     public void afficherApropos() {
         javafx.stage.Stage fenetreRegles = new javafx.stage.Stage();
@@ -177,32 +157,21 @@ public class MenuControleur {
     public void quitterApplication() {
         System.exit(0);
     }
-    
+
+    /**
+     * Méthode pour retourner au menu principal
+     */
     @FXML
     public void retourMenu() {
-        try {
-            Stage stage = (Stage) bouttonRetour.getParentPopup().getOwnerWindow();
-            String currentFXML = stage.getScene().getRoot().getId();
-
-            if ("acceuil".equals(currentFXML)) {
-                Alert alert = new Alert(AlertType.WARNING);
-                alert.setTitle("Retour au Menu");
-                alert.setHeaderText(null);
-                alert.setContentText("Vous êtes déjà dans le menu principal.");
-                alert.showAndWait();
-            } else {
-                Parent root = FXMLLoader.load(getClass().getResource("/codename/vue/Global.fxml"));
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            }
-        } catch (IOException e) {
-            Alert alert = new Alert(AlertType.ERROR);
+        if (globalControleur != null) {
+            globalControleur.afficherAccueil();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
-            alert.setHeaderText(null);
-            alert.setContentText("Impossible de retourner au menu principal.");
+            alert.setHeaderText("Retour au menu principal impossible");
+            alert.setContentText("GlobalControleur est null. Assurez-vous qu'il est correctement initialisé.");
             alert.showAndWait();
-        }
+            }
     }
 
     @FXML
@@ -219,22 +188,14 @@ public class MenuControleur {
      */
     @FXML
     public void afficherStats() {
-        try {
-            // Charger le fichier FXML pour la fenêtre de statistiques
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/codename/vue/Statistiques.fxml"));
-            Parent root = loader.load();
-
-            // Créer une nouvelle scène avec le fichier FXML chargé
-            Stage fenetreStat = new Stage();
-            fenetreStat.setTitle("Statistiques du jeu");
-            fenetreStat.setScene(new Scene(root, 800, 600));
-
-            // Afficher la fenêtre
-            fenetreStat.show();
-
-        } catch (IOException e) {
-            System.err.println("Erreur lors du chargement de Statistiques.fxml : " + e.getMessage());
-            e.printStackTrace();
+        if (globalControleur != null) {
+            globalControleur.afficherStatistique();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Affichage statistiques impossible");
+            alert.setContentText("GlobalControleur est null. Assurez-vous qu'il est correctement initialisé.");
+            alert.showAndWait();
         }
     }
 

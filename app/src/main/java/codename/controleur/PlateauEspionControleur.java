@@ -30,7 +30,6 @@ public class PlateauEspionControleur implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("PlateauControleur initialise.");
         // Configuration de base de la grille
         grilleAffichage.setAlignment(Pos.CENTER);
         grilleAffichage.setHgap(10);

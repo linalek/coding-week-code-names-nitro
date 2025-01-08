@@ -19,9 +19,6 @@ public class AccueilControleur {
     public void handleJouer() {
         if (globalControleur != null) {
             globalControleur.afficherConfigurationEquipe();
-            System.out.println("Passage a la vue ConfigurationEquipe.");
-        } else {
-            System.err.println("GlobalControleur non initialisé.");
         }
     }
 }

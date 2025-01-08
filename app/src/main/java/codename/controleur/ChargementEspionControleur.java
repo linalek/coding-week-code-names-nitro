@@ -50,7 +50,6 @@ public class ChargementEspionControleur {
      */
     @FXML
     private void handleGo() {
-        System.out.println("Bouton Go cliqué.");
         globalControleur.afficherEspion();
     }
 }

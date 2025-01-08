@@ -32,7 +32,6 @@ public class AgentControleur {
             plateauAgentControleur.setJeu(jeuEnCours);
             plateauAgentControleur.readyToContinue();
             rootAgent.setCenter(plateauAgentPane);
-            System.out.println("plateauAgent.fxml charge et affiche dans le centre.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -76,13 +75,10 @@ public class AgentControleur {
     public void handleValider(ActionEvent event) {
         if (globalControleur != null) {
             globalControleur.afficherChargementEspion();
-            System.out.println("Passage a la vue  de chargement pour l'espion Espion.");
         }
     }
 
     public void setJeu(Jeu jeuEnCours){
         this.jeuEnCours= jeuEnCours;
     }
-
-
 }

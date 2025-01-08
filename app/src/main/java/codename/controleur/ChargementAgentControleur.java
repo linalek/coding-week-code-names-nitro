@@ -49,7 +49,6 @@ public class ChargementAgentControleur {
     private void handleGo() {
         String indice = globalControleur.getIndice();
         int nombreCartes = globalControleur.getNombresCartes();
-        System.out.println("Bouton Go cliqué.");
         globalControleur.afficherAgent(indice, nombreCartes);
 
     }

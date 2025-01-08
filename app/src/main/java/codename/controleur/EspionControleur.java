@@ -40,7 +40,6 @@ public class EspionControleur {
             plateauEspionControleur.setJeu(jeuEnCours);
             plateauEspionControleur.readyToContinue();
             rootEspion.setCenter(plateauEspionPane);
-            System.out.println("plateauEspion.fxml charge et affiche dans le centre.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -65,11 +64,8 @@ public class EspionControleur {
     @FXML
     private void handleValider(ActionEvent event) {
         String indice = indiceTextField.getText();
-        System.out.println("Indice saisi : " + indice);
-        System.out.println("Nombre de cartes selectionne : " + nombreCartes);
         if (globalControleur != null) {
             globalControleur.afficherChargementAgent(indice, nombreCartes);
-            System.out.println("Passage a la vue Agent.");
         } else {
             System.err.println("GlobalControleur non initialise.");
         }

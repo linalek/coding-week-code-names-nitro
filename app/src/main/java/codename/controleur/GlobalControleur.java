@@ -72,7 +72,6 @@ public class GlobalControleur {
             AccueilControleur accueilControleur = accueilLoader.getController();
             accueilControleur.setGlobalControleur(this);
             root.setCenter(accueilPane);
-            System.out.println("Accueil.fxml charge et affiche dans le centre.");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -88,7 +87,6 @@ public class GlobalControleur {
             accueilControleur = accueilLoader.getController();
             accueilControleur.setGlobalControleur(this);
             root.setCenter(accueilPane);
-            System.out.println("Accueil.fxml charge et affiche dans le centre.");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -104,7 +102,6 @@ public class GlobalControleur {
             configurationEquipeControleur = configLoader.getController();
             configurationEquipeControleur.setGlobalControleur(this);
             root.setCenter(configPane);
-            System.out.println("ConfigurationEquipe.fxml charge et affiche dans le centre.");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -124,7 +121,6 @@ public class GlobalControleur {
             //espionControleur.setRoot(root);
             root.setCenter(espionPane);
             espionControleur.readyToContinue();
-            System.out.println("Espion.fxml charge et affiche dans le centre.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -139,7 +135,6 @@ public class GlobalControleur {
             chargementEspionControleur = chargementLoader.getController();
             chargementEspionControleur.setGlobalControleur(this);
             root.setCenter(chargementPane);
-            System.out.println("ChargementEspion.fxml charge et affiche dans le centre.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -157,7 +152,6 @@ public class GlobalControleur {
             chargementAgentControleur = chargementLoader.getController();
             chargementAgentControleur.setGlobalControleur(this);
             root.setCenter(chargementPane);
-            System.out.println("ChargementAgent.fxml charge et affiche dans le centre.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -177,7 +171,6 @@ public class GlobalControleur {
             agentControleur.setJeu(jeuEnCours);
             agentControleur.readyToContinue();
             root.setCenter(agentPane);
-            System.out.println("Agent.fxml charge et affiche dans le centre.");
         } catch (Exception e) {
             e.printStackTrace();
         }

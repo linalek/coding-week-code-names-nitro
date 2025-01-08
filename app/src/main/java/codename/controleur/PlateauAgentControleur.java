@@ -33,7 +33,6 @@ public class PlateauAgentControleur implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("PlateauControleur initialise.");
         // Configuration de base de la grille
         grilleAffichage.setAlignment(Pos.CENTER);
         grilleAffichage.setHgap(10);
@@ -69,15 +68,16 @@ public class PlateauAgentControleur implements Initializable {
             tuilecolor = obtenirCouleurDeFond(tuileMot.getEquipe());
         }
         else {
-            tuilecolor = "#FFFFFF";
+            tuilecolor = " #d7d7d7 "; // Beige
         }
         cellule.setStyle("-fx-background-color: " + tuilecolor + ";");
         cellule.getChildren().add(texte);
         cellule.setAlignment(Pos.CENTER);
         if (tuilecolor.equals("#FFFFFF")) {
             texte.setFill(Color.BLACK);
-        }
-        else {
+        } else if (tuilecolor.equals(" #d7d7d7 ")) {
+            texte.setFill(Color.BLACK);
+        } else {
             texte.setFill(Color.WHITE);
         }
         return cellule;

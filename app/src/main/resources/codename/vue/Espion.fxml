@@ -30,7 +30,7 @@
             <children>
             <Label text="Donnez un indice :" textFill="#320000">
                 <font>
-                <Font name="System Bold" size="18.0" />
+                <Font name="System Bold" size="25.0" />
                 </font>
                 <style>
                 -fx-text-fill: black;

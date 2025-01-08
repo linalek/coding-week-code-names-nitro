@@ -100,7 +100,6 @@ elle met aussi à jour statusPartie en cas de victoire par l'une des 2 équipes,
         return grille.getTaille();
     }
     public void parle(String endroit){
-        System.out.println("je suis bien la" + endroit);
     }
     public int getStatusPartie(){return statusPartie;}
     public int getTour(){return tour;}

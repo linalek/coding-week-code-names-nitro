@@ -6,10 +6,19 @@ public class Jeu {
     private int nbMotsRouge;
     private int tour; // 0 pour l'équipe bleu, 1 pour l'équipe rouge
     private int statusPartie; // 0 pour partie en cours, 1 pour bleu win, 2 pour rouge win
-
+    private int nbCartes;
+    private String indice;
 
     public Jeu(int taille, int type) {
         this.grille = new Grille(taille,type);
+        this.nbMotsBleu = grille.getNbBleue();
+        this.nbMotsRouge = grille.getNbRouge();
+        this.tour = 0;
+        this.statusPartie = 0;
+    }
+
+    public Jeu() {
+        this.grille = new Grille(5,0);
         this.nbMotsBleu = grille.getNbBleue();
         this.nbMotsRouge = grille.getNbRouge();
         this.tour = 0;
@@ -65,7 +74,30 @@ elle met aussi à jour statusPartie en cas de victoire par l'une des 2 équipes,
         }
         return statusPartie;
     }
-
+    public void setNbCartes(int nbCartes){
+        this.nbCartes = nbCartes;
+    }
+    public int getNbCartes(){
+        return nbCartes;
+    }
+    public void setIndice(String indice) {
+        this.indice = indice;
+    }
+    public String getIndice(){
+        return indice;
+    }
+    public Tuile getTuile(int i, int j){
+        return grille.getTuile(i,j);
+    }
+    public void setTuile(int i, int j, Tuile theTuile){
+        grille.setTuile(i,j,theTuile);
+    }
+    public int getTaille(){
+        return grille.getTaille();
+    }
+    public void parle(String endroit){
+        System.out.println("je suis bien la" + endroit);
+    }
 
     
 }

@@ -4,7 +4,6 @@ import codename.modele.Equipe;
 import codename.modele.Joueur;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-
 import java.util.ArrayList;
 
 public class ConfigurationEquipeControleur {
@@ -55,11 +54,10 @@ public class ConfigurationEquipeControleur {
         if (globalControleur != null) {
             globalControleur.setEquipes(equipeRouge, equipeBleue);
             System.out.println("Equipes validées : " + equipeRouge.getJoueurs() + " - " + equipeBleue.getJoueurs());
-            globalControleur.afficherEspion();
+            globalControleur.lancerJeu();
         } else {
             System.err.println("GlobalControleur non initialisé.");
         }
-
     }
 
     @FXML

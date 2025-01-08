@@ -1,5 +1,6 @@
 package codename.controleur;
 
+import codename.modele.Jeu;
 import codename.modele.Equipe;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +20,10 @@ public class GlobalControleur {
     private ConfigurationEquipeControleur configurationEquipeControleur;
     private EspionControleur espionControleur;
     private AgentControleur agentControleur;
+    private Jeu jeuEnCours;
     private ChargementEspionControleur chargementEspionControleur;
     private ChargementAgentControleur chargementAgentControleur;
+
 
     /** Gestion des équipes */
     private Equipe equipeRouge;
@@ -114,7 +117,11 @@ public class GlobalControleur {
             Node espionPane = espionLoader.load();
             espionControleur = espionLoader.getController();
             espionControleur.setGlobalControleur(this);
+            espionControleur.setJeu(jeuEnCours);
+            espionControleur.setGlobalControleur(this);
+            //espionControleur.setRoot(root);
             root.setCenter(espionPane);
+            espionControleur.readyToContinue();
             System.out.println("Espion.fxml charge et affiche dans le centre.");
         } catch (IOException e) {
             e.printStackTrace();
@@ -165,10 +172,16 @@ public class GlobalControleur {
             agentControleur.setGlobalControleur(this);
             agentControleur.setIndice(indice);
             agentControleur.setNombreCartes(nombreCartes);
+            agentControleur.setJeu(jeuEnCours);
+            agentControleur.readyToContinue();
             root.setCenter(agentPane);
             System.out.println("Agent.fxml charge et affiche dans le centre.");
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public void lancerJeu() {
+        jeuEnCours = new Jeu();
+        afficherEspion();
     }
 }

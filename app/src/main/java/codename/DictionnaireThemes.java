@@ -1,6 +1,13 @@
 package codename;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class DictionnaireThemes {
     private static Map<String, List<String>> themes = new HashMap<>(); // Map<Theme, List<Mots>> est un dico pour 
@@ -10,78 +17,121 @@ public class DictionnaireThemes {
             "Afrique", "Allemagne", "Amérique", "Australie", "Angleterre",
             "Canada", "Chine", "Grèce", "Russie", "Espagne", "Europe",
             "Berlin", "Londres", "New-York", "Paris", "Rome", "Tokyo",
-            "Himalaya", "Forêt", "Jungle", "Temple", "Atlantique", "Baie"
+            "Himalaya", "Forêt", "Jungle", "Temple", "Atlantique", "Baie",
+            "Montagne", "Rivière", "Lac", "Désert", "Volcan", "Océan"
         ));
-
+        
         themes.put("Nature et Animaux", Arrays.asList(
             "Aiguille", "Aile", "Air", "Alien", "Alpes", "Araignée",
             "Baleine", "Chat", "Chien", "Cochon", "Canard", "Pingouin",
             "Serpent", "Lion", "Kangourou", "Licorne", "Oiseau", "Grenade",
             "Requin", "Herbe", "Feuille", "Chou", "Fraise", "Pomme",
-            "Neige", "Orage", "Vague", "Glace", "Vent", "Feu", "Terre", "Eau"
+            "Neige", "Orage", "Vague", "Glace", "Vent", "Feu", "Terre", "Eau",
+            "Loup", "Renard", "Hibou", "Écureuil", "Tigre", "Girafe"
         ));
-
+        
         themes.put("Alimentation et Boissons", Arrays.asList(
             "Banane", "Poire", "Orange", "Kiwi", "Camembert", "Bière",
             "Vin", "Champagne", "Café", "Chocolat", "Miel", "Pain",
-            "Poisson", "Pêche", "Fraise", "Chou"
+            "Poisson", "Pêche", "Fraise", "Chou",
+            "Pizza", "Hamburger", "Spaghetti", "Sandwich", "Tarte", "Lait"
         ));
-
+        
         themes.put("Objets et Outils", Arrays.asList(
             "Appareil", "Avion", "Bouteille", "Boîte", "Bureau", "Machine", 
             "Microscope", "Portable", "Radio", "Couteau", "Brique", "Paille", 
             "Corde", "Marteau", "Clé", "Colle", "Fer", "Papier", "Table", 
             "Chaise", "Lit", "Meuble", "Ampoule", "Bougie", "Balle", "Ballon", 
-            "Bouchon", "Bouton", "Boule", "Bouteille"
+            "Bouchon", "Bouton", "Boule", "Bouteille",
+            "Tournevis", "Lampe", "Ordinateur", "Écran", "Clavier", "Chaîne"
         ));
-
+        
         themes.put("Transports", Arrays.asList(
             "Avion", "Bateau", "Voiture", "Train", "Vaisseau", "Camion", 
-            "Pilote", "Route", "Piste", "Pont", "Port", "Quai"
+            "Pilote", "Route", "Piste", "Pont", "Port", "Quai",
+            "Vélo", "Tramway", "Métro", "Scooter", "Fusée", "Montgolfière"
         ));
-
+        
         themes.put("Émotions et Concepts Abstraits", Arrays.asList(
             "Amour", "Peur", "Joie", "Tristesse", "Espoir", "Argent", "Chance", 
             "Égalité", "Liberté", "Justice", "Révolution", "Vie", "Maladie", 
-            "Mort", "Pensée", "Cœur"
+            "Mort", "Pensée", "Cœur",
+            "Courage", "Honte", "Bonheur", "Curiosité", "Inspiration"
         ));
-
+        
         themes.put("Mythologie et Fiction", Arrays.asList(
             "Dragon", "Licorne", "Vampire", "Fantôme", "Sirène", "Astérix", 
-            "Schtroumpf", "Ninja", "Héros", "Sorcière"
+            "Schtroumpf", "Ninja", "Héros", "Sorcière",
+            "Phoenix", "Centaure", "Golem", "Zombie", "Elfe"
         ));
-
+        
         themes.put("Professions et Rôles", Arrays.asList(
             "Docteur", "Marin", "Pilote", "Policier", "Pirate", "Avocat", 
             "Ingénieur", "Enseignant", "Roi", "Reine", "Princesse", "Soldat", 
-            "Voleur"
+            "Voleur",
+            "Dentiste", "Architecte", "Plombier", "Cuisinier", "Jardinier"
         ));
-
+        
         themes.put("Sciences et Éducation", Arrays.asList(
             "Physique", "Chimie", "Biologie", "Astronomie", "École", "Classe", 
-            "Étude", "Mémoire"
+            "Étude", "Mémoire",
+            "Mathématiques", "Histoire", "Géographie", "Informatique", "Programmation"
         ));
-
+        
         themes.put("Arts et Divertissements", Arrays.asList(
-            "Peinture", "Musique", "Danse", "Cinéma", "Théâtre", "Jeu", 
-            "Cirque", "Casino", "Club", "Concert"
+            "Peinture", "Sculpture", "Musique", "Danse", "Théâtre",
+            "Cinéma", "Photographie", "Dessin", "Calligraphie", "Graffiti",
+            "Architecture", "Fresque", "Opéra", "Mosaïque", "Illustration",
+            "Céramique", "Tapisserie", "Gravure", "Vitrail", "Performance",
+            "Pop Art", "Renaissance", "Cubisme"
         ));
-
+        
         themes.put("Corps Humain", Arrays.asList(
             "Main", "Pied", "Tête", "Œil", "Langue", "Visage", "Nez", "Oreille", 
-            "Bouche"
+            "Bouche",
+            "Épaule", "Genou", "Coude", "Ventre", "Cheveux"
         ));
-
+        
         themes.put("Temps et Calendrier", Arrays.asList(
             "Jour", "Nuit", "Mois", "Année", "Hiver", "Été", "Printemps", 
-            "Automne", "Temps"
+            "Automne", "Temps",
+            "Minute", "Seconde", "Heure", "Décennie", "Jour férié"
         ));
-
+        
         themes.put("Divers", Arrays.asList(
             "Étoile", "Croix", "Cercle", "Triangle", "Zéro", "Sept", "Lettre", 
-            "Numéro", "Magie", "Technologie", "Guerre", "Paix", "Vol", "Volume"
+            "Numéro", "Magie", "Technologie", "Guerre", "Paix", "Vol", "Volume",
+            "Robot", "Galaxie", "Univers", "Planète", "Satellite"
         ));
-    }
+
+        themes.put("Les Méchants dans les Films", Arrays.asList(
+            "Voldemort", "Vader", "Joker", "Thanos", "Lecter",
+            "Palpatine","Jafar", "Hades", "Ursula",
+            "Hans", "Lotso","Grinch","Maléfique", "Cruella"
+        ));
+
+        themes.put("Technologie", Arrays.asList(
+            "Python", "Java", "Rust", "Go", "Docker", 
+            "Kubernetes", "Git", "Linux", "Bash", "Cloud",
+            "CI/CD", "Ansible", "Terraform", "PostgreSQL", "MySQL",
+            "Redis", "MongoDB", "React", "Node", "Angular",
+            "API", "Microservice", "Container", "Pipeline", "Nginx",
+            "Apache", "Prometheus", "Grafana", "Jenkins", "Cassandra"
+        ));
+        themes.put("Histoire", Arrays.asList(
+            "Renaissance", "Vikings", "Empire", "Égypte", "Rome",
+            "Moyen Âge", "Révolution", "Guillotine", "Pharaon", "Chevalier",
+            "Incas", "Napoléon", "Châteaux", "Guerre", "Croisade",
+            "Samouraï", "Colonisation", "Pré-histoire", "Gladiateur", "Pirate",
+            "Troie", "Spartiate", "Dynastie", "Reine", "Roi"
+        ));
+        themes.put("Personnes Célèbres", Arrays.asList(
+            "Napoléon", "Einstein", "Darwin", "Mozart", "Picasso",
+            "Newton", "Tesla", "Platon", "Aragon", "Homère",
+            "V. Hugo", "Curie", "S. Jobs", "Gandhi", "Luther",
+            "Molière", "Freud", "Brahms", "Fermat", "Cézanne"
+        ));
+}
 
 
     /*
@@ -118,6 +168,12 @@ public class DictionnaireThemes {
     public static void ajouterMotAuTheme(String theme, String mot) {
         if (themes.containsKey(theme)) {
             List<String> mots = themes.get(theme);
+    
+            if (!(mots instanceof ArrayList)) {
+                mots = new ArrayList<>(mots);
+                themes.put(theme, mots); 
+            }
+    
             if (!mots.contains(mot)) {
                 mots.add(mot);
             } else {
@@ -130,4 +186,5 @@ public class DictionnaireThemes {
             System.out.println("Nouveau thème créé : " + theme);
         }
     }
+    
 }

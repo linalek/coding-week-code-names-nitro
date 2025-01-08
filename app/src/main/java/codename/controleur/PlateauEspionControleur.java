@@ -1,6 +1,7 @@
 package codename.controleur;
 
 import codename.modele.Grille;
+import codename.modele.Jeu;
 import codename.modele.TuileMot;
 import codename.modele.Tuile;
 import javafx.fxml.FXML;
@@ -23,6 +24,9 @@ public class PlateauEspionControleur implements Initializable {
 
     @FXML
     private GridPane grilleAffichage;
+    private EspionControleur espionControleur;
+    private GlobalControleur globalControleur;
+    private Jeu jeuEnCours;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -31,21 +35,23 @@ public class PlateauEspionControleur implements Initializable {
         grilleAffichage.setAlignment(Pos.CENTER);
         grilleAffichage.setHgap(10);
         grilleAffichage.setVgap(10);
+    }
 
+    public void readyToContinue(){
         // Remplir la grille avec les tuiles
         mettreAJourGrille();
     }
 
     public void mettreAJourGrille() {
         grilleAffichage.getChildren().clear();
-        Grille grille = new Grille(5, 0); // Exemple : grille de 5x5
-        Tuile[][] mygrille = grille.getTableauTuiles();
 
-        for (int i = 0; i < mygrille.length; i++) {
-            for (int j = 0; j < mygrille[i].length; j++) {
-                TuileMot tuileMot = (TuileMot) mygrille[i][j];
+        for (int i = 0; i < jeuEnCours.getTaille(); i++) {
+            for (int j = 0; j < jeuEnCours.getTaille(); j++) {
+                System.out.println("création des cellules");
+                TuileMot tuileMot = (TuileMot) jeuEnCours.getTuile(i,j);
                 StackPane cellule = creerCellule(tuileMot);
                 grilleAffichage.add(cellule, j, i);
+                System.out.println("cellule créée");
             }
         }
     }
@@ -81,4 +87,13 @@ public class PlateauEspionControleur implements Initializable {
             default -> "#FF8000"; // Orange par défaut
         };
     }
+    public void setEspionControleur(EspionControleur espionControleur) {
+        this.espionControleur = espionControleur;
+    }
+
+    public void setJeu(Jeu jeuEnCours) {
+        this.jeuEnCours = jeuEnCours;
+    }
+
+
 }

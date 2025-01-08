@@ -16,7 +16,7 @@ public class ChargementEspionControleur {
     private Button goButton;
 
     private GlobalControleur globalControleur;
-    private String prochainTour;
+    private int prochainTour;
 
     /**
      * Initialise le contrôleur.
@@ -37,9 +37,12 @@ public class ChargementEspionControleur {
      * Définit le texte du tour actuel.
      * @param prochainTour Le texte indiquant quel joueur est concerné.
      */
-    public void setTour(String prochainTour) {
+    public void setTour(int prochainTour) {
         this.prochainTour = prochainTour;
         tourLabel.setText(prochainTour + ", c'est ton tour !");
+    }
+    public int getProchainTour(){
+        return this.prochainTour;
     }
 
     /**
@@ -49,32 +52,5 @@ public class ChargementEspionControleur {
     private void handleGo() {
         System.out.println("Bouton Go cliqué.");
         globalControleur.afficherEspion();
-//        String indice = "Aucun";
-//        int nombreCartes = 0;
-//
-//        if (globalControleur != null) {
-//            switch (prochainTour) {
-//                case "Espion Rouge":
-//                    globalControleur.afficherEspion();
-//                    System.out.println("Espion Rouge");
-//                    break;
-//                case "Agent Rouge":
-//                    globalControleur.afficherEspion();
-//                    System.out.println("Agent Rouge");
-//                    break;
-//                case "Espion Bleu":
-//                    globalControleur.afficherEspion();
-//                    System.out.println("Espion Bleu");
-//                    break;
-//                case "Agent Bleu":
-//                    globalControleur.afficherEspion();
-//                    System.out.println("Agent Bleu");
-//                    break;
-//                default:
-//                    System.err.println("Vue inconnue pour : " + prochainTour);
-//            }
-//        } else {
-//            System.err.println("GlobalControleur non initialisé.");
-//        }
     }
 }

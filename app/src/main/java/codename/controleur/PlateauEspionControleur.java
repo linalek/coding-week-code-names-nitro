@@ -1,6 +1,7 @@
 package codename.controleur;
 
 import codename.modele.Grille;
+import codename.modele.Jeu;
 import codename.modele.TuileMot;
 import codename.modele.Tuile;
 import javafx.fxml.FXML;
@@ -23,9 +24,13 @@ public class PlateauEspionControleur implements Initializable {
 
     @FXML
     private GridPane grilleAffichage;
+    private EspionControleur espionControleur;
+    private GlobalControleur globalControleur;
+    private Jeu jeuEnCours;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void readyToContinue(URL location, ResourceBundle resources) {
+        jeuEnCours.parle("");
         System.out.println("PlateauControleur initialise.");
         // Configuration de base de la grille
         grilleAffichage.setAlignment(Pos.CENTER);
@@ -38,12 +43,10 @@ public class PlateauEspionControleur implements Initializable {
 
     public void mettreAJourGrille() {
         grilleAffichage.getChildren().clear();
-        Grille grille = new Grille(5, 0); // Exemple : grille de 5x5
-        Tuile[][] mygrille = grille.getTableauTuiles();
 
-        for (int i = 0; i < mygrille.length; i++) {
-            for (int j = 0; j < mygrille[i].length; j++) {
-                TuileMot tuileMot = (TuileMot) mygrille[i][j];
+        for (int i = 0; i < jeuEnCours.getTaille(); i++) {
+            for (int j = 0; j < jeuEnCours.getTaille(); j++) {
+                TuileMot tuileMot = (TuileMot) jeuEnCours.getTuile(i,j);
                 StackPane cellule = creerCellule(tuileMot);
                 grilleAffichage.add(cellule, j, i);
             }
@@ -81,4 +84,13 @@ public class PlateauEspionControleur implements Initializable {
             default -> "#FF8000"; // Orange par défaut
         };
     }
+    public void setEspionControleur(EspionControleur espionControleur) {
+        this.espionControleur = espionControleur;
+    }
+    public void setJeu(Jeu jeuEnCours) {
+        this.jeuEnCours = jeuEnCours;
+        jeuEnCours.parle("plateau espion setter");
+    }
+
+
 }

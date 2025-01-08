@@ -4,10 +4,13 @@ import codename.modele.Jeu;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+
+import java.io.IOException;
 
 /**
  * Contrôleur de la fenêtre Espion.
@@ -16,6 +19,7 @@ import javafx.scene.layout.GridPane;
 public class EspionControleur {
 
     private Jeu jeuEnCours;
+    private PlateauEspionControleur plateauEspionControleur;
 
     @FXML
     private SplitMenuButton nombreCartesButton;
@@ -23,6 +27,19 @@ public class EspionControleur {
     private TextField indiceTextField;
     private int nombreCartes = 1;
     private GlobalControleur globalControleur;
+
+    public void readyToContinue() {
+        try {
+            FXMLLoader plateauEspionLoader = new FXMLLoader(getClass().getResource("/codename/vue/PlateauEspion.fxml"));
+            Node plateauEspionPane = plateauEspionLoader.load();
+            plateauEspionControleur = plateauEspionLoader.getController();
+            plateauEspionControleur.setEspionControleur(this);
+            plateauEspionControleur.setJeu(jeuEnCours);
+            System.out.println("plateauEspion.fxml charge et affiche dans le centre.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void setGlobalControleur(GlobalControleur globalControleur) {
         this.globalControleur = globalControleur;

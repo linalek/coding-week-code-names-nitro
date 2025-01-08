@@ -21,6 +21,7 @@ public class Grille {
         this.tableauTuiles = null;
         this.listOfThemes = listOfThemes;
         this.motUtilises = new ArrayList<>();
+        createTableauTuiles();
     }
 
     public Grille(int taille, int type){
@@ -31,6 +32,7 @@ public class Grille {
         this.tableauTuiles = null;
         this.listOfThemes = null;
         this.motUtilises = new ArrayList<>();
+        createTableauTuiles();
     }
 
     public Grille(int type){
@@ -40,6 +42,7 @@ public class Grille {
         this.tableauTuiles = null;
         this.listOfThemes = null;
         this.motUtilises = new ArrayList<>();
+        createTableauTuiles();
     }
 
     public Grille(){
@@ -49,6 +52,7 @@ public class Grille {
         this.tableauTuiles = null;
         this.listOfThemes = null;
         this.motUtilises = new ArrayList<>();
+        createTableauTuiles();
     }
 
     /*
@@ -140,5 +144,8 @@ createTableauTuiles créé le tableau de tuiles en fonction de si on joue en mod
     }
     public Tuile getTuile(int i, int j){
         return tableauTuiles[i][j];
+    }
+    public void setTuile(int i, int j, Tuile tuile){
+        tableauTuiles[i][j] = tuile;
     }
 }

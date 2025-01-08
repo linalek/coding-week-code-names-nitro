@@ -26,7 +26,6 @@ public class GlobalControleur {
      */
     @FXML
     public void initialize() {
-        jeuEnCours=null;
         try {
             FXMLLoader accueilLoader = new FXMLLoader(getClass().getResource("/codename/vue/Accueil.fxml"));
             Node accueilPane = accueilLoader.load();
@@ -81,6 +80,8 @@ public class GlobalControleur {
             espionControleur = espionLoader.getController();
             espionControleur.setGlobalControleur(this);
             espionControleur.setJeu(jeuEnCours);
+            espionControleur.setGlobalControleur(this);
+            espionControleur.readyToContinue();
             root.setCenter(espionPane);
             System.out.println("Espion.fxml charge et affiche dans le centre.");
         } catch (IOException e) {

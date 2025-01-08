@@ -63,7 +63,7 @@ public class Grille {
     public List<Integer> createRepartitionTuiles(){
         int totalTuiles = taille * taille;
         this.nbRouge = (int) (totalTuiles * 0.35);
-        this.nbBleue = (int) (totalTuiles * 0.35);
+        this.nbBleue = (int) (totalTuiles * 0.35)+1;
         int nbNoire = 1;
         int nbBlanche = totalTuiles - (nbRouge + nbBleue + nbNoire);
 

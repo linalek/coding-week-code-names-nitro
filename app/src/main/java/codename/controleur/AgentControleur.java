@@ -89,13 +89,13 @@ public class AgentControleur {
     public void aGagne(int equipe){
         if (equipe==1){
             if (globalControleur != null) {
-                //globalControleur.afficherBleuGagnant();
+                globalControleur.afficherBleuGagnant();
                 System.out.println("Passage a la vue  de victoire pour l'équipe bleu.");
             }
         }
         else {
             if (globalControleur != null) {
-                //globalControleur.afficherRougeGagnant();
+                globalControleur.afficherRougeGagnant();
                 System.out.println("Passage a la vue  de victoire pour l'équipe rouge.");
             }
         }

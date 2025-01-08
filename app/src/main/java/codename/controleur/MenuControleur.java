@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -201,8 +202,16 @@ public class MenuControleur {
 
     @FXML
     public void modifierCartes() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/codename/vue/AjoutMotsDico.fxml"));
+            Parent newRoot = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Modifier le dictionnaire");
+            stage.setScene(new Scene(newRoot));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
-
-
 }

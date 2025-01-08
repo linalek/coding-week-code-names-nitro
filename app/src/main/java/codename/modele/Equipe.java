@@ -6,6 +6,10 @@ public class Equipe {
     private String couleur;
     private ArrayList<Joueur> joueurs;
 
+    public Equipe() {
+        this.joueurs = new ArrayList<>();
+    }
+
     public Equipe(String couleur, ArrayList<Joueur> joueurs) {
         this.couleur = couleur;
         this.joueurs = joueurs;

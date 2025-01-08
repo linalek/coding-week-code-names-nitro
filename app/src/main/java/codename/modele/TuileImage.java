@@ -5,6 +5,9 @@ import java.util.List;
 public class TuileImage extends Tuile {
     private String imageAdress;
 
+    public TuileImage() {
+        super(0);
+    }
 
     public TuileImage(String imageAdress, int equipe) {
         super(equipe);

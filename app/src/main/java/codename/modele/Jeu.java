@@ -1,5 +1,10 @@
 package codename.modele;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.File;
+import java.io.IOException;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Jeu {
     private Grille grille;
     private int nbMotsBleu;
@@ -8,6 +13,7 @@ public class Jeu {
     private int statusPartie; // 0 pour partie en cours, 1 pour bleu win, 2 pour rouge win
     private int nbCartes;
     private String indice;
+    private int taille;
 
     public Jeu(int taille, int type) {
         this.grille = new Grille(taille,type);
@@ -104,5 +110,17 @@ elle met aussi à jour statusPartie en cas de victoire par l'une des 2 équipes,
     public int getStatusPartie(){return statusPartie;}
     public int getTour(){return tour;}
 
-    
+    public static void sauvegarder(Jeu jeu, String cheminFichier) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writerWithDefaultPrettyPrinter().writeValue(new File(cheminFichier), jeu);
+    }
+
+    public static Jeu charger(String cheminFichier) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(new File(cheminFichier), Jeu.class);
+    }
+
+    public void setTaille(int taille) {
+        this.taille = taille;
+    }
 }

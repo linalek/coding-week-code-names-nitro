@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import codename.DictionnaireThemes;
+import codename.modele.Jeu;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -176,13 +177,29 @@ public class MenuControleur {
     }
 
     @FXML
-    public void restaurerPartie() {
+    public void sauvegarderPartie() {
+        Jeu jeu = globalControleur.getJeuEnCours();
+        if (jeu != null) {
+            try {
+                Jeu.sauvegarder(jeu, "sauvegardePartie.json");
+                System.out.println("Partie sauvegardee");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
-    public void sauvegarderPartie() {
+    public void restaurerPartie() {
+        try {
+            Jeu partieChargee = Jeu.charger("sauvegardePartie.json");
+            System.out.println("Partie restauree");
+            globalControleur.setJeuEnCours(partieChargee);
+            globalControleur.afficherEspion();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
     /**
      * Méthode pour affihcer les statistiques du jeu
      * @throws IOException si le fichier FXML des statistiques n'est pas trouvé

@@ -243,4 +243,12 @@ public class GlobalControleur {
             e.printStackTrace();
         }
     }
+
+    public Jeu getJeuEnCours() {
+        return jeuEnCours;
+    }
+
+    public void setJeuEnCours(Jeu jeuEnCours) {
+        this.jeuEnCours = jeuEnCours;
+    }
 }

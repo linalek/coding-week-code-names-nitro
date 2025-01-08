@@ -5,7 +5,7 @@
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
-            fx:controller="codename.controleur.AjoutMotsDico"
+            fx:controller="codename.controleur.AjoutMotsDicoControleur"
             prefHeight="400.0" prefWidth="600.0">
 
     <top>

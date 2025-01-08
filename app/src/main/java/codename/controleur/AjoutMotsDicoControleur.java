@@ -9,7 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import codename.DictionnaireThemes;
 
-public class AjoutMotsDico implements Initializable {
+public class AjoutMotsDicoControleur implements Initializable {
 
     @FXML
     private ComboBox<String> themeComboBox;

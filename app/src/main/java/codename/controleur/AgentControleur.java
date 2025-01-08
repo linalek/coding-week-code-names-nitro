@@ -3,16 +3,40 @@ package codename.controleur;
 import codename.modele.Jeu;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+
+import java.io.IOException;
 
 public class AgentControleur {
 
     private Jeu jeuEnCours;
+    private PlateauAgentControleur plateauAgentControleur;
+    private BorderPane root;
     @FXML
     private Label indiceDisplayLabel;
     @FXML
     private Label nombreCartesDisplayLabel;
     private GlobalControleur globalControleur;
+    @FXML
+    private BorderPane rootAgent;
+
+    public void readyToContinue() {
+        try {
+            FXMLLoader plateauAgentLoader = new FXMLLoader(getClass().getResource("/codename/vue/PlateauAgent.fxml"));
+            Node plateauAgentPane = plateauAgentLoader.load();
+            plateauAgentControleur = plateauAgentLoader.getController();
+            plateauAgentControleur.setAgentControleur(this);
+            plateauAgentControleur.setJeu(jeuEnCours);
+            plateauAgentControleur.readyToContinue();
+            rootAgent.setCenter(plateauAgentPane);
+            System.out.println("plateauAgent.fxml charge et affiche dans le centre.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void setGlobalControleur(GlobalControleur globalControleur) {
         this.globalControleur = globalControleur;
@@ -59,4 +83,6 @@ public class AgentControleur {
     public void setJeu(Jeu jeuEnCours){
         this.jeuEnCours= jeuEnCours;
     }
+
+
 }

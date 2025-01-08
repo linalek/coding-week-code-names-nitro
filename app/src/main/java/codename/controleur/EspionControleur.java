@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
@@ -20,6 +21,8 @@ public class EspionControleur {
 
     private Jeu jeuEnCours;
     private PlateauEspionControleur plateauEspionControleur;
+    @FXML
+    private BorderPane rootEspion;
 
     @FXML
     private SplitMenuButton nombreCartesButton;
@@ -35,6 +38,8 @@ public class EspionControleur {
             plateauEspionControleur = plateauEspionLoader.getController();
             plateauEspionControleur.setEspionControleur(this);
             plateauEspionControleur.setJeu(jeuEnCours);
+            plateauEspionControleur.readyToContinue();
+            rootEspion.setCenter(plateauEspionPane);
             System.out.println("plateauEspion.fxml charge et affiche dans le centre.");
         } catch (IOException e) {
             e.printStackTrace();

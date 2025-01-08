@@ -15,7 +15,8 @@
             xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="codename.controleur.AgentControleur"
-            stylesheets="@/public/styles.css">
+            stylesheets="@/public/styles.css"
+            fx:id="rootAgent">
     <center>
         <fx:include source="PlateauAgent.fxml" />
     </center>

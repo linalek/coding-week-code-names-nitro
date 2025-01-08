@@ -81,8 +81,9 @@ public class GlobalControleur {
             espionControleur.setGlobalControleur(this);
             espionControleur.setJeu(jeuEnCours);
             espionControleur.setGlobalControleur(this);
-            espionControleur.readyToContinue();
+            //espionControleur.setRoot(root);
             root.setCenter(espionPane);
+            espionControleur.readyToContinue();
             System.out.println("Espion.fxml charge et affiche dans le centre.");
         } catch (IOException e) {
             e.printStackTrace();

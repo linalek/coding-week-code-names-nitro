@@ -1,6 +1,7 @@
 package codename.controleur;
 
 import codename.modele.Grille;
+import codename.modele.Jeu;
 import codename.modele.Tuile;
 import codename.modele.TuileMot;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -23,7 +25,8 @@ import java.util.ResourceBundle;
  */
 public class PlateauAgentControleur implements Initializable {
 
-    Tuile[][] mygrille;
+    private AgentControleur agentControleur;
+    private Jeu jeuEnCours;
 
     @FXML
     private GridPane grilleAffichage;
@@ -35,17 +38,17 @@ public class PlateauAgentControleur implements Initializable {
         grilleAffichage.setAlignment(Pos.CENTER);
         grilleAffichage.setHgap(10);
         grilleAffichage.setVgap(10);
-        Grille grille = new Grille(); //grille de taille 5 par defaut
-        mygrille = grille.getTableauTuiles();
-        // Remplir la grille avec les tuiles
+    }
+
+    public void readyToContinue(){
         mettreAJourGrille();
     }
 
     public void mettreAJourGrille() {
         grilleAffichage.getChildren().clear();
-        for (int i = 0; i < mygrille.length; i++) {
-            for (int j = 0; j < mygrille[i].length; j++) {
-                TuileMot tuileMot = (TuileMot) mygrille[i][j];
+        for (int i = 0; i < jeuEnCours.getTaille(); i++) {
+            for (int j = 0; j < jeuEnCours.getTaille(); j++) {
+                TuileMot tuileMot = (TuileMot) jeuEnCours.getTuile(i,j);
                 StackPane cellule = creerCelluleMot(tuileMot);
                 cellule.setOnMouseClicked(event -> handleCellClick(event));
                 grilleAffichage.add(cellule, j, i);
@@ -96,8 +99,15 @@ public class PlateauAgentControleur implements Initializable {
         Pane clickedCell = (Pane) event.getSource();
         Integer i = GridPane.getRowIndex(clickedCell);
         Integer j = GridPane.getColumnIndex(clickedCell);
-        TuileMot tuileMot = (TuileMot) mygrille[i][j];
+        TuileMot tuileMot = (TuileMot) jeuEnCours.getTuile(i,j);
         tuileMot.setEstRetournee();
         mettreAJourGrille();
     }
+    public void setAgentControleur(AgentControleur agentControleur) {
+        this.agentControleur = agentControleur;
+    }
+    public void setJeu(Jeu jeuEnCours) {
+        this.jeuEnCours = jeuEnCours;
+    }
 }
+

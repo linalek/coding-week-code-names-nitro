@@ -29,14 +29,15 @@ public class PlateauEspionControleur implements Initializable {
     private Jeu jeuEnCours;
 
     @Override
-    public void readyToContinue(URL location, ResourceBundle resources) {
-        jeuEnCours.parle("");
+    public void initialize(URL location, ResourceBundle resources) {
         System.out.println("PlateauControleur initialise.");
         // Configuration de base de la grille
         grilleAffichage.setAlignment(Pos.CENTER);
         grilleAffichage.setHgap(10);
         grilleAffichage.setVgap(10);
+    }
 
+    public void readyToContinue(){
         // Remplir la grille avec les tuiles
         mettreAJourGrille();
     }
@@ -87,9 +88,9 @@ public class PlateauEspionControleur implements Initializable {
     public void setEspionControleur(EspionControleur espionControleur) {
         this.espionControleur = espionControleur;
     }
+
     public void setJeu(Jeu jeuEnCours) {
         this.jeuEnCours = jeuEnCours;
-        jeuEnCours.parle("plateau espion setter");
     }
 
 

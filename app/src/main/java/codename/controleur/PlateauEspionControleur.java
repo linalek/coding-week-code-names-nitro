@@ -79,8 +79,8 @@ public class PlateauEspionControleur implements Initializable {
         return switch (valeur) {
             case -1 -> "#000000"; // Noir
             case 0 -> "#e0ceb3"; // Beige
-            case 1 -> "#e44f43"; // Rouge
-            case 2 -> "#3ca6b2"; // Bleu
+            case 1 ->"#3ca6b2" ; // Rouge
+            case 2 -> "#e44f43"; // Bleu
             default -> "#FF8000"; // Orange par défaut
         };
     }

@@ -72,10 +72,10 @@ public class Grille {
             repartitionTuiles.add(0);
         }
         for (int i = 0; i < nbRouge; i++){
-            repartitionTuiles.add(1);
+            repartitionTuiles.add(2);
         }
         for (int i = 0; i < nbBleue; i++){
-            repartitionTuiles.add(2);
+            repartitionTuiles.add(1);
         }
         repartitionTuiles.add(-1); // Adding the single black tile
         Collections.shuffle(repartitionTuiles);

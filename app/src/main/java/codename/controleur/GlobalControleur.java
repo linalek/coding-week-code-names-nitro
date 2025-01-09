@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.Node;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Contrôleur pour la vue principale de l'application : permet de switcher entre les differentes vues.
@@ -201,6 +202,10 @@ public class GlobalControleur {
     }
     public void lancerJeu() {
         jeuEnCours = new Jeu();
+        afficherConfigurationEquipe();
+    }
+    public void lancerJeuCustom(int taille, int type, int nombreJoueursParEquipe, int timer, List<String> listeDesThemes){
+        jeuEnCours = new Jeu(taille, type, nombreJoueursParEquipe, timer,listeDesThemes);
         afficherConfigurationEquipe();
     }
     public void afficherBleuGagnant(){

@@ -4,14 +4,16 @@ import codename.DictionnaireThemes;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CustomControleur {
 
-    public SplitMenuButton nombreJoueurs;
     @FXML
-    private Slider sliderNbJoueurs;
+    public SplitMenuButton nombreJoueurs;
 
     @FXML
-    private TextField textFieldTailleGrille;
+    public SplitMenuButton tailleGrille;
 
     @FXML
     private ChoiceBox<String> choiceBoxThemes;
@@ -32,22 +34,11 @@ public class CustomControleur {
     public void setGlobalControleur(GlobalControleur globalControleur) {
         this.globalControleur = globalControleur;
     }
+
     @FXML
     private void initialize() {
         // Initialisation des thèmes dans le ChoiceBox
         choiceBoxThemes.getItems().addAll(DictionnaireThemes.getThemes());
-    }
-
-    @FXML
-    private void handleLancerPartie() {
-        int nbJoueurs = (int) sliderNbJoueurs.getValue();
-        String tailleGrille = textFieldTailleGrille.getText();
-        String themeChoisi = choiceBoxThemes.getValue();
-
-        // Lancer la partie avec les paramètres choisis
-        System.out.println("Nombre de joueurs: " + nbJoueurs);
-        System.out.println("Taille de la grille: " + tailleGrille);
-        System.out.println("Thème choisi: " + themeChoisi);
     }
 
     /**
@@ -56,10 +47,24 @@ public class CustomControleur {
     @FXML
     private void handleNombreJoueurSelection(javafx.event.ActionEvent event) {
         MenuItem menuItem = (MenuItem) event.getSource();
+        String nbJoueurs = menuItem.getText();
+        nombreJoueurs.setText(nbJoueurs);
         try {
-            int nbJoueurs = Integer.parseInt(menuItem.getText());
-            sliderNbJoueurs.setValue(nbJoueurs); // Synchronise le Slider
-            nombreJoueurs.setText("Nombre de joueurs : " + nbJoueurs); // Met à jour le SplitMenuButton
+            System.out.println("Nombre de joueurs : " + nbJoueurs );
+        } catch (NumberFormatException e) {
+            System.out.println("La sélection n'est pas valide.");
+        }
+    }
+    /**
+     * Gère la sélection de la taille de la grille
+     */
+    @FXML
+    private void handleTailleGrilleSelection(javafx.event.ActionEvent event) {
+        MenuItem menuItem = (MenuItem) event.getSource();
+        String tGrille = menuItem.getText();
+        tailleGrille.setText(tGrille);
+        try {
+            System.out.println("Taille de la grille : " + tailleGrille);
         } catch (NumberFormatException e) {
             System.out.println("La sélection n'est pas valide.");
         }
@@ -81,6 +86,35 @@ public class CustomControleur {
             checkboxModeMot.setSelected(false); // Décoche "Mot"
         } else if (checkboxModeMot.isSelected()) {
             checkboxModeImage.setSelected(false); // Décoche "Image"
+        }
+    }
+    /**
+     * lancer la partie
+     */
+    @FXML
+    private void handleLancerPartie() {
+        String nbJoueurs = nombreJoueurs.getText();
+        String formatGrille = tailleGrille.getText();
+        String themeChoisi = choiceBoxThemes.getValue();
+        String tempsChoisi = inputTemps.getText();
+        List<String> themes = new ArrayList<>();
+        themes.add(themeChoisi);
+        int type = 0;
+        if (checkboxModeImage.isSelected()) {
+            type = 1;
+        }
+        // Lancer la partie avec les paramètres choisis
+        System.out.println("Nombre de joueurs : " + nbJoueurs);
+        System.out.println("Taille de la grille : " + formatGrille);
+        System.out.println("Thème choisi : " + themeChoisi);
+        System.out.println("Temps limité : " + tempsChoisi);
+        if (checkboxModeImage.isSelected()) {
+            System.out.println("Mode Image");
+        } else if (checkboxModeMot.isSelected()) {
+            System.out.println("Mode mot");
+        }
+        if (globalControleur != null) {
+            globalControleur.lancerJeuCustom( Integer.parseInt(formatGrille), type, Integer.parseInt(nbJoueurs), Integer.parseInt(tempsChoisi), themes);
         }
     }
 }

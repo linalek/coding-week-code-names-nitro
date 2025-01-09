@@ -126,26 +126,62 @@ public class GlobalControleur {
      * Méthode pour afficher la vue Espion dans le BorderPane.
      * À chaque fois, on (re)charge Espion.fxml.
      */
+    public void afficherEspionBlitz() {
+    try {
+        FXMLLoader espionLoader = new FXMLLoader(getClass().getResource("/codename/vue/Espion.fxml"));
+        Parent espionPane = espionLoader.load();
+        espionControleur = espionLoader.getController();
+        espionControleur.setGlobalControleur(this);
+        espionControleur.setJeu(jeuEnCours);
+
+        espionRoot = espionPane;
+        root.setCenter(espionPane);
+
+        espionControleur.readyToContinue();
+
+        partieBlitz();
+
+    } catch (IOException e) {
+        e.printStackTrace();
+     }
+    }
+
+    public void afficherAgentBlitz() {
+    try {
+        FXMLLoader agentLoader = new FXMLLoader(getClass().getResource("/codename/vue/Agent.fxml"));
+        Node agentPane = agentLoader.load();
+        agentControleur = agentLoader.getController();
+        agentControleur.setGlobalControleur(this);
+        agentControleur.setJeu(jeuEnCours);
+        agentControleur.readyToContinue();
+
+        root.setCenter(agentPane);
+        partieBlitz();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        }
+    }
+
     public void afficherEspion() {
         try {
             FXMLLoader espionLoader = new FXMLLoader(getClass().getResource("/codename/vue/Espion.fxml"));
-            Parent espionPane = espionLoader.load();  
+            Parent espionPane = espionLoader.load();
             espionControleur = espionLoader.getController();
             espionControleur.setGlobalControleur(this);
             espionControleur.setJeu(jeuEnCours);
     
             espionRoot = espionPane;
-    
             root.setCenter(espionPane);
     
-            espionControleur.readyToContinue(); 
-    
+            espionControleur.readyToContinue();
+        
         } catch (IOException e) {
             e.printStackTrace();
+         }
         }
-    }
     
-    public void afficherAgent() {
+        public void afficherAgent() {
         try {
             FXMLLoader agentLoader = new FXMLLoader(getClass().getResource("/codename/vue/Agent.fxml"));
             Node agentPane = agentLoader.load();
@@ -153,11 +189,13 @@ public class GlobalControleur {
             agentControleur.setGlobalControleur(this);
             agentControleur.setJeu(jeuEnCours);
             agentControleur.readyToContinue();
+    
             root.setCenter(agentPane);
+    
         } catch (Exception e) {
             e.printStackTrace();
+            }
         }
-    }
     
 
     public void partieBlitz() {
@@ -192,11 +230,11 @@ public class GlobalControleur {
                     switch (currentPhase) {
                         case 0:
                             // Par exemple : on revient sur Espion (bleu ?)
-                            afficherEspion();
+                            afficherEspionBlitz();
                             break;
                         case 1:
                             // On passe sur Agent
-                            afficherAgent();
+                            afficherAgentBlitz();
                             break;
                         case 2:
                             // On affiche la page de chargement Espion (rouge ?)

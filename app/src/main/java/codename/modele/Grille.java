@@ -119,7 +119,7 @@ createTableauTuiles créé le tableau de tuiles en fonction de si on joue en mod
     public TuileImage configurerTuileImage(){
         int equipe = repartitionTuiles.removeFirst();
         TuileImage myTuile = new TuileImage(equipe);
-        myTuile.setRandomImageAdress(listOfThemes);
+        myTuile.setRandomImageAdress();
         return myTuile;
     }
 
@@ -127,7 +127,7 @@ createTableauTuiles créé le tableau de tuiles en fonction de si on joue en mod
      * Méthode qui assigne un mot à une tuile et l'ajoute à la liste de mots déjà utilisés.
     */
     public TuileMot configurerTuileMot(){
-        int equipe = repartitionTuiles.remove(0);
+        int equipe = repartitionTuiles.removeFirst();
         TuileMot myTuile = new TuileMot(equipe);
         String mot;
         do {

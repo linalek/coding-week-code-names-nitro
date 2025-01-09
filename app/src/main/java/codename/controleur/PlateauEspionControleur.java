@@ -89,7 +89,7 @@ public class PlateauEspionControleur implements Initializable {
     private StackPane creerCelluleImage(TuileImage tuileImage) {
         StackPane cellule = new StackPane();
         cellule.setPrefSize(150, 150); // Taille de chaque cellule
-        ajouterImage(tuileImage.getImageAdress(), cellule);
+        ajouterImage("/figures/banqueimage/"+tuileImage.getImageAdress(), cellule);
         cellule.setStyle("-fx-background-color: " + obtenirCouleurDeFond(tuileImage.getEquipe()) + ";");
         cellule.setAlignment(Pos.CENTER);
         return cellule;

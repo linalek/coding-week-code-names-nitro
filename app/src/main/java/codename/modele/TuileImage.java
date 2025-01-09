@@ -35,8 +35,8 @@ public class TuileImage extends Tuile {
         return imageAdresses.get(random.nextInt(imageAdresses.size()));
     }
 
-    public void setImageAdress(String imageAdress) {
-        this.imageAdress = imageAdress;
+    public void setRandomImageAdress() {
+        imageAdress = getRandomImageAdress();
     }
 
     public void setRandomImageAdress(List<String> themes) {

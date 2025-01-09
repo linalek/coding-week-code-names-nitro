@@ -107,7 +107,7 @@ public class ConfigurationEquipeControleur {
 }
 
         if (globalControleur != null) {
-            globalControleur.afficherEspion();
+            globalControleur.afficherChargementEspion();
         } else {
             System.err.println("GlobalControleur non initialisé.");
         }

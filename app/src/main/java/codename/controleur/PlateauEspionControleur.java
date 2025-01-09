@@ -1,11 +1,12 @@
 package codename.controleur;
 
-import codename.modele.Grille;
 import codename.modele.Jeu;
+import codename.modele.TuileImage;
 import codename.modele.TuileMot;
-import codename.modele.Tuile;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.geometry.Pos;
 import javafx.scene.text.Font;
@@ -43,17 +44,27 @@ public class PlateauEspionControleur implements Initializable {
 
     public void mettreAJourGrille() {
         grilleAffichage.getChildren().clear();
-
-        for (int i = 0; i < jeuEnCours.getTaille(); i++) {
-            for (int j = 0; j < jeuEnCours.getTaille(); j++) {
-                TuileMot tuileMot = (TuileMot) jeuEnCours.getTuile(i,j);
-                StackPane cellule = creerCellule(tuileMot);
-                grilleAffichage.add(cellule, j, i);
+        if (jeuEnCours.getType()==0) {
+            for (int i = 0; i < jeuEnCours.getTaille(); i++) {
+                for (int j = 0; j < jeuEnCours.getTaille(); j++) {
+                    TuileMot tuileMot = (TuileMot) jeuEnCours.getTuile(i, j);
+                    StackPane cellule = creerCelluleMot(tuileMot);
+                    grilleAffichage.add(cellule, j, i);
+                }
+            }
+        }
+        if (jeuEnCours.getType()==1) {
+            for (int i = 0; i < jeuEnCours.getTaille(); i++) {
+                for (int j = 0; j < jeuEnCours.getTaille(); j++) {
+                    TuileImage tuileImage = (TuileImage) jeuEnCours.getTuile(i, j);
+                    StackPane cellule = creerCelluleImage(tuileImage);
+                    grilleAffichage.add(cellule, j, i);
+                }
             }
         }
     }
 
-    private StackPane creerCellule(TuileMot tuileMot) {
+    private StackPane creerCelluleMot(TuileMot tuileMot) {
         StackPane cellule = new StackPane();
         cellule.setPrefSize(150, 150); // Taille de chaque cellule
 
@@ -73,6 +84,28 @@ public class PlateauEspionControleur implements Initializable {
         }
 
         return cellule;
+    }
+
+    private StackPane creerCelluleImage(TuileImage tuileImage) {
+        StackPane cellule = new StackPane();
+        cellule.setPrefSize(150, 150); // Taille de chaque cellule
+        ajouterImage(tuileImage.getImageAdress(), cellule);
+        cellule.setStyle("-fx-background-color: " + obtenirCouleurDeFond(tuileImage.getEquipe()) + ";");
+        cellule.setAlignment(Pos.CENTER);
+        return cellule;
+    }
+
+    public void ajouterImage(String cheminImage,StackPane cellule) {
+        Image image = new Image(getClass().getResourceAsStream(cheminImage));
+        ImageView imageView = new ImageView(image);
+
+        // Optionnel : ajuster les dimensions de l'image
+        imageView.setFitWidth(100);
+        imageView.setFitHeight(100);
+        imageView.setPreserveRatio(true);
+
+        // Ajouter l'ImageView au StackPane
+        cellule.getChildren().add(imageView);
     }
 
     private String obtenirCouleurDeFond(int valeur) {

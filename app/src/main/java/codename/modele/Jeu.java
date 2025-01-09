@@ -15,7 +15,7 @@ public class Jeu {
     private int statusPartie; // 0 pour partie en cours, 1 pour bleu win, 2 pour rouge win
     private int nombreTuileARretourner;
     private String indice;
-    private int taille;
+    private int type;
     private Equipe equipeRouge;
     private Equipe equipeBleue;
     private final int nombreAgentsParEquipe;
@@ -32,6 +32,7 @@ public class Jeu {
         this.equipeBleue = new Equipe();
         this.nombreAgentsParEquipe = nombreAgentsParEquipe;
         this.timer = timer;
+        this.type = type;
     }
 
     public Jeu() {
@@ -43,6 +44,7 @@ public class Jeu {
         this.equipeRouge = new Equipe();
         this.equipeBleue = new Equipe();
         this.nombreAgentsParEquipe = 1;
+        this.type = 0;
     }
 
     public void changerTour() {
@@ -154,6 +156,7 @@ public class Jeu {
     public int getTourRole(){
         return tourRole;
     }
+    public int getType(){return type;}
 
     public static void sauvegarder(Jeu jeu, String cheminFichier) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
@@ -164,11 +167,6 @@ public class Jeu {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(new File(cheminFichier), Jeu.class);
     }
-
-    public void setTaille(int taille) {
-        this.taille = taille;
-    }
-
 
     public void setEquipeRouge(Equipe equipeRouge) {
         this.equipeRouge = equipeRouge;

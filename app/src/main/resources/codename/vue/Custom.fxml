@@ -31,7 +31,6 @@
                 <SplitMenuButton fx:id="nombreJoueurs" text="Nombre de joueurs" mnemonicParsing="false"
                                  prefHeight="39.0" prefWidth="200.0" style="-fx-font-size: 16px;">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#handleNombreJoueurSelection" text="1" />
                         <MenuItem mnemonicParsing="false" onAction="#handleNombreJoueurSelection" text="2" />
                         <MenuItem mnemonicParsing="false" onAction="#handleNombreJoueurSelection" text="3" />
                         <MenuItem mnemonicParsing="false" onAction="#handleNombreJoueurSelection" text="4" />

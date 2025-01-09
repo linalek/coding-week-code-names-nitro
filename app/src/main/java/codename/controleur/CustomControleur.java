@@ -165,7 +165,7 @@ public class CustomControleur {
                 System.out.println("Mode mot");
             }
             if (globalControleur != null) {
-                globalControleur.lancerJeuCustom(Integer.parseInt(tGrille), type, Integer.parseInt(nbJoueurs), tempsChoisi, selectedThemes);
+                globalControleur.lancerJeuCustom(Integer.parseInt(tGrille), type, Integer.parseInt(nbJoueurs)-1, tempsChoisi, selectedThemes);
             }
         }
     }

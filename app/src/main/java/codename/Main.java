@@ -16,6 +16,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        try {
+            DictionnaireThemes.chargerDictionnaire("dictionnaire.json");
+            System.out.println("Dictionnaire charge");
+        } catch (IOException e) {
+            System.out.println("Impossible de charger le dictionnaire, fichier non trouve ou corrompu.");
+            e.printStackTrace();
+        }
         FXMLLoader loader = new FXMLLoader(
                 Objects.requireNonNull(getClass().getResource("/codename/vue/Global.fxml"))
         );

@@ -50,7 +50,16 @@
 - ajouter des commentaires permettant de comprendre ce que fais chaque classe/fonction
 - documenter l'installation et l'éxecution du jeu : Readme.md
 
-### JOUR 5
+### JOUR 5 : RELEASE FINALE
+- Ajouter les règles du mode blitz dans les règles du jeu
+- mode image
+- test unitaire
+- mode solo : indices préprogrammés : sinon faire une fenetre pop up : ce mode n'est pas dispo
+- afficher a qui est le tour
+- vérifier qu'il n'y a aucun élément de design dans le code
+- prendre en compte que l'équipe qui commence doit faire deviner un mot de plus ??
+- ajouter des commentaires permettant de comprendre ce que fais chaque classe/fonction ?? 
+- documenter l'installation et l'éxecution du jeu : Readme.md
 - vidéo démo du jeu : audio + screncast à publier (youtube ou dailymotion) avec le lien dans le readme.md
 
 ## RÉALISÉ
@@ -102,3 +111,13 @@
 - Ajout des changement de vue agent/espion dynamique 
 - premier jet pour la sauvegarde
 - fix de l'inversement des cartes et des couleurs
+- sauvegarde et restauration de la partie OK
+- Nom des joueurs visibles
+- Liaison avec des statistiques : affichage des statistiques
+- Personalisation de partie
+- Mode plusieurs joueurs
+- modification du dictionnaire
+- Jeu en mode blitz
+- Début jeu en mode image
+
+### Jour 5

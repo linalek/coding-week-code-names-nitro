@@ -123,9 +123,19 @@ public class AgentControleur {
         newPlayer.setStyle("-fx-text-fill: white; -fx-font-size: 16px;");
         redTeamBox.getChildren().add(newPlayer);
     }
+    public void addRedTurn() {
+        Label tour = new Label("A ton tour !");
+        tour.setStyle("-fx-text-fill: white; -fx-font-size: 16px;");
+        redTeamBox.getChildren().add(tour);
+    }
     public void addBluePlayer(String playerName) {
         Label newPlayer = new Label(playerName);
         newPlayer.setStyle("-fx-text-fill: white; -fx-font-size: 16px;");
         blueTeamBox.getChildren().add(newPlayer);
+    }
+    public void addBlueTurn() {
+        Label tour = new Label("A ton tour !");
+        tour.setStyle("-fx-text-fill: white; -fx-font-size: 16px;");
+        blueTeamBox.getChildren().add(tour);
     }
 }

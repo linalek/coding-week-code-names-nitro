@@ -30,7 +30,6 @@ public class EspionControleur {
     private Label labelTempsRestant;
 
     public void updateLabel(String text) {
-        System.out.println("Blitz3");
         if (labelTempsRestant == null) {
             System.out.println("labelTempsRestant est null dans EspionControleur !");
         } else {

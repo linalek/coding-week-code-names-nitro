@@ -23,7 +23,6 @@ public class AgentControleur {
     private Label labelTempsRestant;
 
     public void updateLabel(String text) {
-        System.out.println("Blitz4");
         if (labelTempsRestant == null) {
             System.out.println("labelTempsRestant est null dans AgentControleur !");
         } else {

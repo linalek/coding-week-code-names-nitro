@@ -38,8 +38,9 @@ public class GlobalControleur {
     private AgentControleur agentControleur;
 
     private int remainingTime = 30; // Temps initial
-    private int blitzSecondsRemaining;
+    private int blitzSecondsRemaining = 30;
     private Timeline blitzTimeline;
+    private int currentPhase = 0; // Initial phase
 
     @FXML
     private MenuControleur menuBarController;
@@ -160,46 +161,70 @@ public class GlobalControleur {
     
 
     public void partieBlitz() {
-    blitzSecondsRemaining = 30;
-
-    if (espionControleur != null) {
-        espionControleur.updateLabel("30s");
-    } 
-
-    if (agentControleur != null) {
-        agentControleur.updateLabel("30s");
+        // Stopper un éventuel timer en cours
+        if (blitzTimeline != null) {
+            blitzTimeline.stop();
+        }
+    
+        // (Re)initialiser le compteur à 30 s
+        blitzSecondsRemaining = 30;
+    
+        // Mettre immédiatement à jour le label si on est déjà sur Espion ou Agent
+        if (espionControleur != null) {
+            espionControleur.updateLabel("30s");
+        }
+        if (agentControleur != null) {
+            agentControleur.updateLabel("30s");
+        }
+        
+        // Créer un nouveau Timeline (une "tâche" qui s'exécute toutes les 1s)
+        blitzTimeline = new Timeline(
+            new KeyFrame(Duration.seconds(1), event -> {
+                blitzSecondsRemaining--;
+    
+                // Si le timer arrive à 0, on arrête tout et on passe à la vue suivante
+                if (blitzSecondsRemaining <= 0) {
+                    blitzTimeline.stop();    
+                    // On incrémente la phase (exemple : 0 => 1 => 2 => 3 => 0, etc.)
+                    currentPhase = (currentPhase + 1) % 4;
+    
+                    // Selon la phase, on appelle l'une des méthodes déjà existantes
+                    switch (currentPhase) {
+                        case 0:
+                            // Par exemple : on revient sur Espion (bleu ?)
+                            afficherEspion();
+                            break;
+                        case 1:
+                            // On passe sur Agent
+                            afficherAgent();
+                            break;
+                        case 2:
+                            // On affiche la page de chargement Espion (rouge ?)
+                            afficherChargementEspion();
+                            break;
+                        case 3:
+                            // On affiche la page de chargement Agent (rouge ?)
+                            afficherChargementAgent();
+                            break;
+                    }
+    
+                } else {
+                    // Sinon, on met juste à jour l'affichage du label
+                    if (espionControleur != null) {
+                        espionControleur.updateLabel(blitzSecondsRemaining + "s");
+                    }
+                    if (agentControleur != null) {
+                        agentControleur.updateLabel(blitzSecondsRemaining + "s");
+                    }
+                }
+            })
+        );
+    
+        // Répétitions infinies : le cycle s'arrêtera de lui-même quand blitzSecondsRemaining <= 0
+        blitzTimeline.setCycleCount(Animation.INDEFINITE);
+        blitzTimeline.play();
     }
-    if (blitzTimeline != null) {
-        blitzTimeline.stop();
-    }
-
-    blitzTimeline = new Timeline(
-        new KeyFrame(Duration.seconds(1), event -> {
-            blitzSecondsRemaining--;
-
-            if (blitzSecondsRemaining <= 0) {
-                blitzTimeline.stop();
-                if (espionControleur != null) {
-                    espionControleur.updateLabel("Temps écoulé !");
-                }
-                if (agentControleur != null) {
-                    agentControleur.updateLabel("Temps écoulé !");
-                }
-            } else {
-                if (espionControleur != null) {
-                    espionControleur.updateLabel(blitzSecondsRemaining + "s");
-                }
-                if (agentControleur != null) {
-                    agentControleur.updateLabel(blitzSecondsRemaining + "s");
-                }
-            }
-        })
-    );
-    blitzTimeline.setCycleCount(Animation.INDEFINITE);
-    blitzTimeline.play();   
-    }
-
-
+    
     /**
      * Méthode pour afficher la page de chargement pour l'espion
      */

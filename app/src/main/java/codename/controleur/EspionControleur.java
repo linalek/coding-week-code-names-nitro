@@ -40,10 +40,10 @@ public class EspionControleur {
     public void readyToContinue() {
         try {
             for (Joueur joueur : jeuEnCours.getEquipeRouge().getJoueurs()){
-                addRedPlayer(joueur.getNom());
+                addRedPlayer(joueur.getNom() + " : " + joueur.getRole());
             }
             for (Joueur joueur : jeuEnCours.getEquipeBleue().getJoueurs()){
-                addBluePlayer(joueur.getNom());
+                addBluePlayer(joueur.getNom() + " : " + joueur.getRole());
             }
             FXMLLoader plateauEspionLoader = new FXMLLoader(getClass().getResource("/codename/vue/PlateauEspion.fxml"));
             Node plateauEspionPane = plateauEspionLoader.load();

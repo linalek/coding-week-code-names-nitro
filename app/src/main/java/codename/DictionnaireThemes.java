@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -200,11 +201,17 @@ public class DictionnaireThemes {
 
     public static void chargerDictionnaire(String cheminFichier) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        Map<String, List<String>> loaded = mapper.readValue(
-                new File(cheminFichier),
-                new TypeReference<Map<String, List<String>>>() {}
-        );
-        themes = loaded;
-        System.out.println("Dictionnaire restaure");
+        try {
+            Map<String, List<String>> loaded = mapper.readValue(
+                    new File(cheminFichier),
+                    new TypeReference<Map<String, List<String>>>() {}
+            );
+            themes = loaded;
+            System.out.println("Dictionnaire chargé depuis " + cheminFichier);
+        } catch (FileNotFoundException e) {
+            System.out.println("Aucun dictionnaire sauvegarde trouve ("
+                    + cheminFichier + ") => on part d'un dico par defaut.");
+        }
     }
+
 }

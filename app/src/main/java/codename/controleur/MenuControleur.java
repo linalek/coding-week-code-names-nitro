@@ -1,6 +1,7 @@
 package codename.controleur;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import codename.DictionnaireThemes;
@@ -21,13 +22,13 @@ public class MenuControleur {
 
     @FXML
     public MenuItem bouttonRestaurer;
-    
+
     @FXML
     public MenuItem bouttonSauvegarder;
-    
+
     @FXML
     public MenuItem bouttonRetour;
-    
+
     @FXML
     public MenuItem bouttonQuitter;
 
@@ -62,7 +63,7 @@ public class MenuControleur {
     public void setGlobalControleur(GlobalControleur globalControleur) {
         this.globalControleur = globalControleur;
     }
-    
+
     @FXML
     public void partieBlitz() {
     }
@@ -151,11 +152,11 @@ public class MenuControleur {
         fenetreRegles.setScene(scene);
         fenetreRegles.show();
     }
-    
+
     @FXML
     public void partieImage() {
     }
-    
+
     @FXML
     public void quitterApplication() {
         try {
@@ -202,17 +203,19 @@ public class MenuControleur {
             System.out.println("Partie restauree");
             globalControleur.setJeuEnCours(partieChargee);
             jeuEnCours = globalControleur.getJeuEnCours();
-            if (jeuEnCours.getTourRole()==0) {
+            if (jeuEnCours.getTourRole() == 0) {
                 globalControleur.afficherChargementEspion();
-            }
-            else {
+            } else {
                 globalControleur.afficherChargementAgent();
             }
-
+        } catch (FileNotFoundException e) {
+            System.out.println("Aucune partie sauvegardee trouvee => on en cree une nouvelle.");
+            globalControleur.setJeuEnCours(new Jeu());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     /**
      * Méthode pour affihcer les statistiques du jeu
      * @throws IOException si le fichier FXML des statistiques n'est pas trouvé

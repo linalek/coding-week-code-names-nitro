@@ -93,6 +93,14 @@ public class Jeu {
         remainingTime = TEMPS_PAR_TOUR;
     }
 
+    public Timer getTimerBlitz() {
+        return timer;
+    }
+
+    public void setTimerBlitz(Timer timer) {
+        this.timer = timer;
+    }
+
     private void stopTimer() {
         if (timer != null) {
             timer.cancel();
@@ -203,9 +211,11 @@ public class Jeu {
     public int getNombreAgentsParEquipe() {
         return nombreAgentsParEquipe;
     }
+
     public int getTimer(){
         return timerSelected;
     }
+
     public void setTourRole(int tourRole) {
         this.tourRole = tourRole;
     }

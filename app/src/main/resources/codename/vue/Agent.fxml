@@ -90,7 +90,7 @@
         </TitledPane>
    </right>
    <top>
-      <Label fx:id="labelTempsRestant" alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="286.0" text="Temps restant : Infini" BorderPane.alignment="CENTER">
+      <Label fx:id="labelTempsRestant" alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="286.0" text="" BorderPane.alignment="CENTER">
          <font>
             <Font size="24.0" />
          </font></Label>

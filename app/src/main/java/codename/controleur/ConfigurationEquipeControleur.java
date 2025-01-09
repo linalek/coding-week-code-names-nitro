@@ -8,18 +8,21 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ConfigurationEquipeControleur {
 
-    @FXML
-    private TextField nomAgentRouge;
 
-    @FXML
+    private List<TextField> listeNomsAgentRouge;
+
+
     private TextField nomEspionRouge;
 
-    @FXML
-    private TextField nomAgentBleu;
 
-    @FXML
+    private List<TextField> listeNomAgentBleu;
+
+
     private TextField nomEspionBleu;
 
     @FXML
@@ -37,19 +40,20 @@ public class ConfigurationEquipeControleur {
 
     @FXML
     public void initialize() {
-
+        listeNomsAgentRouge = new ArrayList<>();
+        listeNomAgentBleu = new ArrayList<>();
     }
 
     public void readyToContinue(){
-        addEspionRow(listeJoueursRouge);
-        addEspionRow(listeJoueursBleu);
+        nomEspionRouge = addEspionRow(listeJoueursRouge);
+        nomEspionBleu = addEspionRow(listeJoueursBleu);
         for (int i = 0; i<jeuEnCours.getNombreAgentsParEquipe(); i++){
-            addAgentRow(listeJoueursRouge);
-            addEspionRow(listeJoueursBleu);
+            listeNomsAgentRouge.add(addAgentRow(listeJoueursRouge));
+            listeNomAgentBleu.add(addAgentRow(listeJoueursBleu));
         }
     }
 
-    private void addEspionRow(VBox container) {
+    private TextField addEspionRow(VBox container) {
         HBox row = new HBox(15);
         row.setStyle("-fx-alignment: CENTER;");
 
@@ -61,9 +65,10 @@ public class ConfigurationEquipeControleur {
 
         row.getChildren().addAll(label, textField);
         container.getChildren().add(row);
+        return textField;
     }
 
-    private void addAgentRow(VBox container) {
+    private TextField addAgentRow(VBox container) {
         HBox row = new HBox(15);
         row.setStyle("-fx-alignment: CENTER;");
 
@@ -75,24 +80,31 @@ public class ConfigurationEquipeControleur {
 
         row.getChildren().addAll(label, textField);
         container.getChildren().add(row);
+        return textField;
     }
 
     @FXML
     public void validerEquipes() {
-        String agentRouge = nomAgentRouge.getText().trim();
         String espionRouge = nomEspionRouge.getText().trim();
-        String agentBleu = nomAgentBleu.getText().trim();
-        String espionBleu = nomEspionBleu.getText().trim();
-
-        if (!agentRouge.isEmpty() && !espionRouge.isEmpty()) {
-            jeuEnCours.getEquipeRouge().addJoueur(new Joueur(agentRouge, "Agent", "Rouge"));
+        if (!espionRouge.isEmpty()) {
             jeuEnCours.getEquipeRouge().addJoueur(new Joueur(espionRouge, "Espion", "Rouge"));
         }
-
-        if (!agentBleu.isEmpty() && !espionBleu.isEmpty()) {
-            jeuEnCours.getEquipeBleue().addJoueur(new Joueur(agentBleu, "Agent", "Bleue"));
+        String espionBleu = nomEspionBleu.getText().trim();
+        if (!espionBleu.isEmpty()) {
             jeuEnCours.getEquipeBleue().addJoueur(new Joueur(espionBleu, "Espion", "Bleue"));
         }
+        for (TextField element : listeNomsAgentRouge){
+            String agentRouge = element.getText().trim();
+            if (!agentRouge.isEmpty()) {
+                jeuEnCours.getEquipeRouge().addJoueur(new Joueur(agentRouge, "Agent", "Rouge"));
+            }
+        }
+        for (TextField element : listeNomAgentBleu) {
+            String agentBleu = element.getText().trim();
+            if (!agentBleu.isEmpty()) {
+                jeuEnCours.getEquipeBleue().addJoueur(new Joueur(agentBleu, "Agent", "Bleue"));
+    }
+}
 
         if (globalControleur != null) {
             globalControleur.afficherEspion();

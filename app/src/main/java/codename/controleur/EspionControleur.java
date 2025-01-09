@@ -77,7 +77,7 @@ public class EspionControleur {
     @FXML
     private void handleValider(ActionEvent event) {
         jeuEnCours.setIndice(indiceTextField.getText());
-        System.out.println(jeuEnCours.getIndice());
+        jeuEnCours.setTourRole(1);
         if (globalControleur != null) {
             globalControleur.afficherChargementAgent();
         } else {

@@ -7,8 +7,8 @@ import java.util.Collections;
 public class Grille {
     private int nbRouge;
     private int nbBleue;
-    private final int taille; // la longueur et largeur de notre grille carrée.
-    private final int type; // type vaut 0 si on joue en mots, et il vaut 1 si on joue en image.
+    private int taille; // la longueur et largeur de notre grille carrée.
+    private int type; // type vaut 0 si on joue en mots, et il vaut 1 si on joue en image.
     private Tuile[][] tableauTuiles;
     List<Integer> repartitionTuiles;  //liste des affectations des tuiles
     private List<String> motUtilises; // liste de mot déjà utilisés dans la partie.
@@ -17,14 +17,14 @@ public class Grille {
     public Grille(int taille, int type, List<String> listOfThemes){
         this.taille = taille;
         this.type = type;
-        repartitionTuiles = createRepartitionTuiles();
         this.tableauTuiles = null;
         this.listOfThemes = listOfThemes;
         this.motUtilises = new ArrayList<>();
+        repartitionTuiles = createRepartitionTuiles();
         createTableauTuiles();
     }
 
-    public Grille(int taille, int type){
+    public Grille( int taille, int type){
         this.taille = taille;
         this.type = type;
         this.repartitionTuiles = createRepartitionTuiles();
@@ -32,16 +32,18 @@ public class Grille {
         this.tableauTuiles = null;
         this.listOfThemes = null;
         this.motUtilises = new ArrayList<>();
+        repartitionTuiles = createRepartitionTuiles();
         createTableauTuiles();
+
     }
 
-    public Grille(int type){
+    public Grille( int type){
         this.taille = 5;
         this.type = type;
-        repartitionTuiles = createRepartitionTuiles();
         this.tableauTuiles = null;
         this.listOfThemes = null;
         this.motUtilises = new ArrayList<>();
+        repartitionTuiles = createRepartitionTuiles();
         createTableauTuiles();
     }
 

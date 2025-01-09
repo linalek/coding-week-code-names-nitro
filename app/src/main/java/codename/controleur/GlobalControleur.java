@@ -28,7 +28,8 @@ public class GlobalControleur {
     private CustomControleur customControleur;
     private BleuGagneControleur bleuGagneControleur;
     private RougeGagneControleur rougeGagneControleur;
-
+    private String lastView = "accueil";
+    private String previousView = "accueil";
 
     /** Gestion des affichages indice et nombre de cartes*/
     private String indice;
@@ -81,6 +82,7 @@ public class GlobalControleur {
             accueilControleur = accueilLoader.getController();
             accueilControleur.setGlobalControleur(this);
             root.setCenter(accueilPane);
+            lastView = "accueil";
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -96,7 +98,9 @@ public class GlobalControleur {
             configurationEquipeControleur = configLoader.getController();
             configurationEquipeControleur.setGlobalControleur(this);
             configurationEquipeControleur.setJeuEnCours(jeuEnCours);
+            configurationEquipeControleur.readyToContinue();
             root.setCenter(configPane);
+            lastView = "configuration";
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -116,6 +120,7 @@ public class GlobalControleur {
             //espionControleur.setRoot(root);
             root.setCenter(espionPane);
             espionControleur.readyToContinue();
+            lastView = "espion";
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -166,6 +171,7 @@ public class GlobalControleur {
             agentControleur.setJeu(jeuEnCours);
             agentControleur.readyToContinue();
             root.setCenter(agentPane);
+            lastView = "agent";
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -175,10 +181,13 @@ public class GlobalControleur {
      */
     public void afficherStatistique() {
         try {
+            previousView = lastView;
             FXMLLoader statLoader = new FXMLLoader(getClass().getResource("/codename/vue/Statistiques.fxml"));
             Node statPane = statLoader.load();
             statistiquesControleur = statLoader.getController();
             statistiquesControleur.setGlobalControleur(this);
+            lastView = "statistiques";
+            statistiquesControleur.chargerStatistiques();
             root.setCenter(statPane);
         } catch (Exception e) {
             e.printStackTrace();
@@ -239,5 +248,48 @@ public class GlobalControleur {
 
     public void setJeuEnCours(Jeu jeuEnCours) {
         this.jeuEnCours = jeuEnCours;
+    }
+
+    public Equipe getEquipeRouge() {
+        return (jeuEnCours != null) ? jeuEnCours.getEquipeRouge() : null;
+    }
+
+    public Equipe getEquipeBleue() {
+        return (jeuEnCours != null) ? jeuEnCours.getEquipeBleue() : null;
+    }
+
+    public String getLastView() {
+        return lastView;
+    }
+
+    public void setLastView(String lastView) {
+        this.lastView = lastView;
+    }
+
+    public String getPreviousView() {
+        return previousView;
+    }
+
+    public void setPreviousView(String previousView) {
+        this.previousView = previousView;
+    }
+
+    public void retournerVuePrecedente() {
+        // Selon la valeur de previousView, on appelle la bonne méthode d’affichage
+        switch (previousView) {
+            case "espion":
+                afficherEspion();
+                break;
+            case "agent":
+                afficherAgent();
+                break;
+            case "configuration":
+                afficherConfigurationEquipe();
+                break;
+            case "accueil":
+            default:
+                afficherAccueil();
+                break;
+        }
     }
 }

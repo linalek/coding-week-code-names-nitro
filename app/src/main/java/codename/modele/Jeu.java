@@ -7,21 +7,22 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Jeu {
-    private final Grille grille;
+    private Grille grille;
     private int nbMotsBleu;
     private int nbMotsRouge;
     private int tour; // 0 pour l'équipe bleu, 1 pour l'équipe rouge
+    private int tourRole; //vaut 0 pour tour de l'Espion et 1 pour tour de l'Agent
     private int statusPartie; // 0 pour partie en cours, 1 pour bleu win, 2 pour rouge win
     private int nombreTuileARretourner;
     private String indice;
     private int taille;
     private Equipe equipeRouge;
     private Equipe equipeBleue;
-    private final int nombreJoueursParEquipe;
+    private final int nombreAgentsParEquipe;
     private int timer;
 
 
-    public Jeu(int taille, int type, int nombreJoueursParEquipe, int timer,List<String> listeDesThemes) {
+    public Jeu(int taille, int type, int nombreAgentsParEquipe, int timer, List<String> listeDesThemes) {
         this.grille = new Grille(taille, type, listeDesThemes);
         this.nbMotsBleu = grille.getNbBleue();
         this.nbMotsRouge = grille.getNbRouge();
@@ -29,7 +30,7 @@ public class Jeu {
         this.statusPartie = 0;
         this.equipeRouge = new Equipe();
         this.equipeBleue = new Equipe();
-        this.nombreJoueursParEquipe = nombreJoueursParEquipe;
+        this.nombreAgentsParEquipe = nombreAgentsParEquipe;
         this.timer = timer;
     }
 
@@ -41,7 +42,7 @@ public class Jeu {
         this.statusPartie = 0;
         this.equipeRouge = new Equipe();
         this.equipeBleue = new Equipe();
-        this.nombreJoueursParEquipe = 2;
+        this.nombreAgentsParEquipe = 1;
     }
 
     public void changerTour() {
@@ -141,11 +142,17 @@ public class Jeu {
     public Equipe getEquipeRouge() {
         return equipeRouge;
     }
-    public int getNombreJoueursParEquipe() {
-        return nombreJoueursParEquipe;
+    public int getNombreAgentsParEquipe() {
+        return nombreAgentsParEquipe;
     }
     public int getTimer(){
         return timer;
+    }
+    public void setTourRole(int tourRole) {
+        this.tourRole = tourRole;
+    }
+    public int getTourRole(){
+        return tourRole;
     }
 
     public static void sauvegarder(Jeu jeu, String cheminFichier) throws IOException {
@@ -175,4 +182,7 @@ public class Jeu {
         return nombreTuileARretourner;
     }
 
+    public Grille getGrille() {
+        return grille;
+    }
 }

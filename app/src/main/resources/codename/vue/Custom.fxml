@@ -27,7 +27,7 @@
             <!-- Elements pour customiser une partie -->
             <!-- Nombre de joueurs -->
             <HBox spacing="10" alignment="CENTER">
-                <Label text="Nombre de joueurs (1-8) :" style="-fx-font-size: 24px;" textFill="white"/>
+                <Label text="Nombre de joueurs par équipes (1-4) :" style="-fx-font-size: 24px;" textFill="white"/>
                 <SplitMenuButton fx:id="nombreJoueurs" text="Nombre de joueurs" mnemonicParsing="false"
                                  prefHeight="39.0" prefWidth="200.0" style="-fx-font-size: 16px;">
                     <items>
@@ -35,10 +35,6 @@
                         <MenuItem mnemonicParsing="false" onAction="#handleNombreJoueurSelection" text="2" />
                         <MenuItem mnemonicParsing="false" onAction="#handleNombreJoueurSelection" text="3" />
                         <MenuItem mnemonicParsing="false" onAction="#handleNombreJoueurSelection" text="4" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleNombreJoueurSelection" text="5" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleNombreJoueurSelection" text="6" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleNombreJoueurSelection" text="7" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleNombreJoueurSelection" text="8" />
                     </items>
                 </SplitMenuButton>
             </HBox>
@@ -57,16 +53,26 @@
                         </items>
                     </SplitMenuButton>
             </HBox>
+<!--            <HBox spacing="10" alignment="CENTER">-->
+<!--                <Label text="Thèmes :" style="-fx-font-size: 24px;" textFill="white"/>-->
+<!--                <ChoiceBox fx:id="choiceBoxThemes" style="-fx-pref-width: 150px;"/>-->
+<!--            </HBox>-->
             <HBox spacing="10" alignment="CENTER">
-                <Label text="Thèmes :" style="-fx-font-size: 24px;" textFill="white"/>
-                <ChoiceBox fx:id="choiceBoxThemes" style="-fx-pref-width: 150px;"/>
+                <Label text="Thèmes disponibles :" style="-fx-font-size: 24px;" textFill="white"/>
+                <ListView fx:id="listViewThemes" style="-fx-pref-width: 300px; -fx-pref-height: 150px;" />
             </HBox>
-            <VBox spacing="10" alignment="CENTER" >
-                <CheckBox fx:id="checkboxModeTempsLimite" text="Mode avec temps limité" onAction="#handleCheckboxAction" style="-fx-font-size: 24px;" textFill="white"/>
+<!--            <Button text="Valider les thèmes" onAction="#validateThemesSelection"-->
+<!--                    style="-fx-font-size: 18px; -fx-text-fill: white; -fx-background-color: #4caf50;" />-->
+
+
+            <HBox spacing="10" alignment="CENTER" >
+                <Label fx:id="tempsLimite" text ="Temps limité ? " style="-fx-font-size: 24px;" textFill="white"/>
+                <CheckBox fx:id="checkboxModeTempsLimite" text="Oui" onAction="#handleModeTempsLimite" style="-fx-font-size: 24px;" textFill="white"/>
+                <CheckBox fx:id="checkboxNotModeTempsLimite" text="Non" onAction="#handleModeTempsLimite" style="-fx-font-size: 24px;" textFill="white" />
+            </HBox>
                 <VBox alignment="CENTER" prefHeight="39.0" prefWidth="200.0" style="-fx-font-size: 16px;">
                 <TextField fx:id="inputTemps" promptText="Entrez le temps (en secondes)" visible="false" prefWidth="200"/>
                 </VBox>
-            </VBox>
             <VBox spacing="10" alignment="CENTER">
                 <!-- Mode de jeu : image ou mot -->
                 <HBox spacing="10" alignment="CENTER">

@@ -1,8 +1,14 @@
 package codename.controleur;
 
 import codename.DictionnaireThemes;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxListCell;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +22,19 @@ public class CustomControleur {
     public SplitMenuButton tailleGrille;
 
     @FXML
+    public Label tempsLimite;
+
+    @FXML
+    public ListView listViewThemes;
+
+    @FXML
     private ChoiceBox<String> choiceBoxThemes;
 
     @FXML
     private CheckBox checkboxModeTempsLimite;
+
+    @FXML
+    private CheckBox checkboxNotModeTempsLimite;
 
     @FXML
     private TextField inputTemps;
@@ -31,21 +46,37 @@ public class CustomControleur {
     private CheckBox checkboxModeMot;
 
     private GlobalControleur globalControleur;
+    private ObservableList<String> themes = FXCollections.observableArrayList();
+    private List<String> selectedThemes = new ArrayList<>();
     public void setGlobalControleur(GlobalControleur globalControleur) {
         this.globalControleur = globalControleur;
     }
 
     @FXML
     private void initialize() {
-        // Initialisation des thèmes dans le ChoiceBox
-        choiceBoxThemes.getItems().addAll(DictionnaireThemes.getThemes());
+        // Charger les thèmes depuis le dictionnaire
+        themes.setAll(DictionnaireThemes.getThemes());
+        listViewThemes.setItems(themes);
+
+        // Ajouter des cases à cocher pour chaque thème
+        listViewThemes.setCellFactory(CheckBoxListCell.forListView(theme -> {
+            BooleanProperty selected = new SimpleBooleanProperty(false);
+            selected.addListener((obs, wasSelected, isNowSelected) -> {
+                if (isNowSelected) {
+                    selectedThemes.add(theme.toString());
+                } else {
+                    selectedThemes.remove(theme);
+                }
+            });
+            return selected;
+        }));
     }
 
     /**
      * Gère l'événement de sélection d'un nombre de joueurs.
      */
     @FXML
-    private void handleNombreJoueurSelection(javafx.event.ActionEvent event) {
+    private void handleNombreJoueurSelection(ActionEvent event) {
         MenuItem menuItem = (MenuItem) event.getSource();
         String nbJoueurs = menuItem.getText();
         nombreJoueurs.setText(nbJoueurs);
@@ -59,23 +90,29 @@ public class CustomControleur {
      * Gère la sélection de la taille de la grille
      */
     @FXML
-    private void handleTailleGrilleSelection(javafx.event.ActionEvent event) {
+    private void handleTailleGrilleSelection(ActionEvent event) {
         MenuItem menuItem = (MenuItem) event.getSource();
         String tGrille = menuItem.getText();
         tailleGrille.setText(tGrille);
         try {
-            System.out.println("Taille de la grille : " + tailleGrille);
+            System.out.println("Taille de la grille : " + tGrille);
         } catch (NumberFormatException e) {
             System.out.println("La sélection n'est pas valide.");
         }
     }
+
     /**
      * Rendre visible le choix du temps
      */
     @FXML
-    private void handleCheckboxAction() {
-        // Affiche ou masque le TextField en fonction de l'état du CheckBox
-        inputTemps.setVisible(checkboxModeTempsLimite.isSelected());
+    private void handleModeTempsLimite() {
+        if (checkboxModeTempsLimite.isSelected()) {
+            checkboxNotModeTempsLimite.setSelected(false);
+            inputTemps.setVisible(true);
+        } else if (checkboxNotModeTempsLimite.isSelected()) {
+            checkboxModeTempsLimite.setSelected(false);
+            inputTemps.setVisible(false);
+        }
     }
     /**
      * gérer le check des modes images/mots
@@ -93,28 +130,43 @@ public class CustomControleur {
      */
     @FXML
     private void handleLancerPartie() {
-        String nbJoueurs = nombreJoueurs.getText();
-        String formatGrille = tailleGrille.getText();
-        String themeChoisi = choiceBoxThemes.getValue();
-        String tempsChoisi = inputTemps.getText();
-        List<String> themes = new ArrayList<>();
-        themes.add(themeChoisi);
-        int type = 0;
-        if (checkboxModeImage.isSelected()) {
-            type = 1;
-        }
-        // Lancer la partie avec les paramètres choisis
-        System.out.println("Nombre de joueurs : " + nbJoueurs);
-        System.out.println("Taille de la grille : " + formatGrille);
-        System.out.println("Thème choisi : " + themeChoisi);
-        System.out.println("Temps limité : " + tempsChoisi);
-        if (checkboxModeImage.isSelected()) {
-            System.out.println("Mode Image");
-        } else if (checkboxModeMot.isSelected()) {
-            System.out.println("Mode mot");
-        }
-        if (globalControleur != null) {
-            globalControleur.lancerJeuCustom( Integer.parseInt(formatGrille), type, Integer.parseInt(nbJoueurs), Integer.parseInt(tempsChoisi), themes);
+        if (selectedThemes.size() < 4) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Sélection insuffisante");
+            alert.setContentText("Vous devez sélectionner au moins 4 thèmes !");
+            alert.showAndWait();
+        } else {
+            String nbJoueurs = nombreJoueurs.getText();
+            String tGrille = tailleGrille.getText();
+
+            int tempsChoisi = 0;
+            if (checkboxModeTempsLimite.isSelected()) {
+                tempsChoisi = Integer.parseInt(inputTemps.getText());
+            }
+
+            int type = 0;
+            if (checkboxModeImage.isSelected()) {
+                type = 1;
+            }
+            // Lancer la partie avec les paramètres choisis
+            System.out.println("Nombre de joueurs : " + nbJoueurs);
+            System.out.println("Taille de la grille : " + tGrille);
+
+            System.out.println("Thèmes sélectionnés : " + selectedThemes);
+            if (checkboxModeTempsLimite.isSelected()) {
+                System.out.println("Temps limité : " + inputTemps.getText());
+            } else if (checkboxNotModeTempsLimite.isSelected()) {
+                System.out.println("Pas de temps limité");
+            }
+            if (checkboxModeImage.isSelected()) {
+                System.out.println("Mode Image");
+            } else if (checkboxModeMot.isSelected()) {
+                System.out.println("Mode mot");
+            }
+            if (globalControleur != null) {
+                globalControleur.lancerJeuCustom(Integer.parseInt(tGrille), type, Integer.parseInt(nbJoueurs), tempsChoisi, selectedThemes);
+            }
         }
     }
 }

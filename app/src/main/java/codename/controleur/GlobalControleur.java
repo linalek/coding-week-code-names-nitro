@@ -95,6 +95,7 @@ public class GlobalControleur {
             configurationEquipeControleur = configLoader.getController();
             configurationEquipeControleur.setGlobalControleur(this);
             configurationEquipeControleur.setJeuEnCours(jeuEnCours);
+            configurationEquipeControleur.readyToContinue();
             root.setCenter(configPane);
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,13 +1,12 @@
 package codename.controleur;
 
-import codename.modele.Equipe;
 import codename.modele.Jeu;
 import codename.modele.Joueur;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
-import java.util.ArrayList;
 
 public class ConfigurationEquipeControleur {
 
@@ -24,7 +23,10 @@ public class ConfigurationEquipeControleur {
     private TextField nomEspionBleu;
 
     @FXML
-    private VBox listeEquipeRouge;
+    private VBox listeJoueursRouge;
+
+    @FXML
+    private VBox listeJoueursBleu;
 
     private Jeu jeuEnCours;
     private GlobalControleur globalControleur;
@@ -39,7 +41,40 @@ public class ConfigurationEquipeControleur {
     }
 
     public void readyToContinue(){
-        for ( i=0, i<jeuEnCours.getNombreJoueursParEquipe(),i++)
+        addEspionRow(listeJoueursRouge);
+        addEspionRow(listeJoueursBleu);
+        for (int i = 0; i<jeuEnCours.getNombreAgentsParEquipe(); i++){
+            addAgentRow(listeJoueursRouge);
+            addEspionRow(listeJoueursBleu);
+        }
+    }
+
+    private void addEspionRow(VBox container) {
+        HBox row = new HBox(15);
+        row.setStyle("-fx-alignment: CENTER;");
+
+        Label label = new Label("Nom de l'Espion :");
+        label.setStyle("-fx-font-size: 14px;");
+
+        TextField textField = new TextField();
+        textField.setPrefWidth(200);
+
+        row.getChildren().addAll(label, textField);
+        container.getChildren().add(row);
+    }
+
+    private void addAgentRow(VBox container) {
+        HBox row = new HBox(15);
+        row.setStyle("-fx-alignment: CENTER;");
+
+        Label label = new Label("Nom de l'Agent :");
+        label.setStyle("-fx-font-size: 14px;");
+
+        TextField textField = new TextField();
+        textField.setPrefWidth(200);
+
+        row.getChildren().addAll(label, textField);
+        container.getChildren().add(row);
     }
 
     @FXML

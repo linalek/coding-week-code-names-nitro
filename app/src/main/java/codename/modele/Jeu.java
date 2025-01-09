@@ -18,36 +18,31 @@ public class Jeu {
     private int taille;
     private Equipe equipeRouge;
     private Equipe equipeBleue;
-    private int nombreJoueursParEquipe;
+    private final int nombreAgentsParEquipe;
     private int timer;
 
 
-    public Jeu(boolean createNow, int taille, int type, int nombreJoueursParEquipe, int timer,List<String> listeDesThemes) {
-        if (createNow) {
-            // On crée la grille
-            this.grille = new Grille(true,taille, type, listeDesThemes);
-            this.nbMotsBleu = grille.getNbBleue();
-            this.nbMotsRouge = grille.getNbRouge();
-        } else {
-            this.grille = new Grille(false, taille, type, listeDesThemes);
-        }
-        this.tour = 0;
-        this.statusPartie = 0;
-        this.equipeRouge = new Equipe();
-        this.equipeBleue = new Equipe();
-        this.nombreJoueursParEquipe = nombreJoueursParEquipe;
-        this.timer = timer;
-    }
-
-    public Jeu() {
-        this.grille = new Grille(true,5, 0,null);
+    public Jeu(int taille, int type, int nombreAgentsParEquipe, int timer, List<String> listeDesThemes) {
+        this.grille = new Grille(taille, type, listeDesThemes);
         this.nbMotsBleu = grille.getNbBleue();
         this.nbMotsRouge = grille.getNbRouge();
         this.tour = 0;
         this.statusPartie = 0;
         this.equipeRouge = new Equipe();
         this.equipeBleue = new Equipe();
-        this.nombreJoueursParEquipe = 2;
+        this.nombreAgentsParEquipe = nombreAgentsParEquipe;
+        this.timer = timer;
+    }
+
+    public Jeu() {
+        this.grille = new Grille(5, 0);
+        this.nbMotsBleu = grille.getNbBleue();
+        this.nbMotsRouge = grille.getNbRouge();
+        this.tour = 0;
+        this.statusPartie = 0;
+        this.equipeRouge = new Equipe();
+        this.equipeBleue = new Equipe();
+        this.nombreAgentsParEquipe = 1;
     }
 
     public void changerTour() {
@@ -147,8 +142,8 @@ public class Jeu {
     public Equipe getEquipeRouge() {
         return equipeRouge;
     }
-    public int getNombreJoueursParEquipe() {
-        return nombreJoueursParEquipe;
+    public int getNombreAgentsParEquipe() {
+        return nombreAgentsParEquipe;
     }
     public int getTimer(){
         return timer;

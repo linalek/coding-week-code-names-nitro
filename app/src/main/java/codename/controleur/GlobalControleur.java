@@ -127,26 +127,18 @@ public class GlobalControleur {
      */
     public void afficherEspion() {
         try {
-            if (espionRoot == null) {
-                // => C'est la première fois qu'on veut afficher Espion,
-                // on charge depuis le FXML
-                FXMLLoader espionLoader = new FXMLLoader(getClass().getResource("/codename/vue/Espion.fxml"));
-                Parent loadedPane = espionLoader.load();
-
-                this.espionControleur = espionLoader.getController();
-                this.espionControleur.setGlobalControleur(this);
-                this.espionControleur.setJeu(jeuEnCours);
-
-                // On stocke la racine chargée
-                this.espionRoot = loadedPane;
-
-                // Appel d'une méthode perso s'il y a (facultatif)
-                this.espionControleur.readyToContinue(); 
-            }
-
-            // Maintenant, on place la racine dans le center
-            root.setCenter(espionRoot);
-
+            FXMLLoader espionLoader = new FXMLLoader(getClass().getResource("/codename/vue/Espion.fxml"));
+            Parent espionPane = espionLoader.load();  
+            espionControleur = espionLoader.getController();
+            espionControleur.setGlobalControleur(this);
+            espionControleur.setJeu(jeuEnCours);
+    
+            espionRoot = espionPane;
+    
+            root.setCenter(espionPane);
+    
+            espionControleur.readyToContinue(); 
+    
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -154,61 +146,39 @@ public class GlobalControleur {
     
     public void afficherAgent() {
         try {
-            if (agentRoot == null) {
-                // => Première fois qu'on veut afficher Agent
-                FXMLLoader agentLoader = new FXMLLoader(getClass().getResource("/codename/vue/Agent.fxml"));
-                Parent loadedPane = agentLoader.load();
-
-                this.agentControleur = agentLoader.getController();
-                this.agentControleur.setGlobalControleur(this);
-                this.agentControleur.setJeu(jeuEnCours);
-
-                // On stocke la racine
-                this.agentRoot = loadedPane;
-            }
-
-            // Et on place agentRoot dans le center
-            root.setCenter(agentRoot);
-
-        } catch (IOException e) {
+            FXMLLoader agentLoader = new FXMLLoader(getClass().getResource("/codename/vue/Agent.fxml"));
+            Node agentPane = agentLoader.load();
+            agentControleur = agentLoader.getController();
+            agentControleur.setGlobalControleur(this);
+            agentControleur.setJeu(jeuEnCours);
+            agentControleur.readyToContinue();
+            root.setCenter(agentPane);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
 
     public void partieBlitz() {
-    // On (ré)initialise le compteur à 30
     blitzSecondsRemaining = 30;
 
-    // Si les contrôleurs existent déjà, on met immédiatement "30s"
     if (espionControleur != null) {
         espionControleur.updateLabel("30s");
-    } else {
-        System.out.println("[GlobalControleur] EspionControleur est null (non chargé)");
-    }
+    } 
 
     if (agentControleur != null) {
         agentControleur.updateLabel("30s");
-    } else {
-        System.out.println("[GlobalControleur] AgentControleur est null (non chargé)");
     }
-
-    System.out.println("Mode Blitz activé !");
-
-    // Si un Timeline existe déjà, on l'arrête pour en recréer un
     if (blitzTimeline != null) {
         blitzTimeline.stop();
     }
 
-    // Création du Timeline : décrémente blitzSecondsRemaining toutes les 1s
     blitzTimeline = new Timeline(
         new KeyFrame(Duration.seconds(1), event -> {
             blitzSecondsRemaining--;
 
-            // Quand on arrive à zéro, on arrête le timer
             if (blitzSecondsRemaining <= 0) {
                 blitzTimeline.stop();
-                // Optionnel : mettre quelque chose quand le temps est écoulé
                 if (espionControleur != null) {
                     espionControleur.updateLabel("Temps écoulé !");
                 }
@@ -216,7 +186,6 @@ public class GlobalControleur {
                     agentControleur.updateLabel("Temps écoulé !");
                 }
             } else {
-                // Sinon, on met à jour les labels
                 if (espionControleur != null) {
                     espionControleur.updateLabel(blitzSecondsRemaining + "s");
                 }
@@ -226,10 +195,9 @@ public class GlobalControleur {
             }
         })
     );
-    // Nombre de répétitions : indéfini (on s'arrêtera manuellement)
     blitzTimeline.setCycleCount(Animation.INDEFINITE);
-    blitzTimeline.play();
-}
+    blitzTimeline.play();   
+    }
 
 
     /**

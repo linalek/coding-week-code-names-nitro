@@ -58,6 +58,8 @@ public class MenuControleur {
 
     private GlobalControleur globalControleur;
 
+    private Jeu jeuEnCours;
+
     public void setGlobalControleur(GlobalControleur globalControleur) {
         this.globalControleur = globalControleur;
     }
@@ -195,7 +197,14 @@ public class MenuControleur {
             Jeu partieChargee = Jeu.charger("partie.json");
             System.out.println("Partie restauree");
             globalControleur.setJeuEnCours(partieChargee);
-            globalControleur.afficherEspion();
+            jeuEnCours = globalControleur.getJeuEnCours();
+            if (jeuEnCours.getTourRole()==0) {
+                globalControleur.afficherChargementEspion();
+            }
+            else {
+                globalControleur.afficherChargementAgent();
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -11,6 +11,7 @@ public class Jeu {
     private int nbMotsBleu;
     private int nbMotsRouge;
     private int tour; // 0 pour l'équipe bleu, 1 pour l'équipe rouge
+    private int tourRole; //vaut 0 pour tour de l'Espion et 1 pour tour de l'Agent
     private int statusPartie; // 0 pour partie en cours, 1 pour bleu win, 2 pour rouge win
     private int nombreTuileARretourner;
     private String indice;
@@ -151,6 +152,12 @@ public class Jeu {
     }
     public int getTimer(){
         return timer;
+    }
+    public void setTourRole(int tourRole) {
+        this.tourRole = tourRole;
+    }
+    public int getTourRole(){
+        return tourRole;
     }
 
     public static void sauvegarder(Jeu jeu, String cheminFichier) throws IOException {

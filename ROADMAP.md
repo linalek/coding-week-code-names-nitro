@@ -29,21 +29,29 @@
 - Sauvegarde/restauration de la partie
 - Mode Image ?
 
-### JOURS 4
+### JOUR 4
 
 - (Ajouter une musique et un bouton de volume)
 - Sauvegarde / restauration de la partie : Hugo
 - Equipes visibles : Julien
-- liaison avec les statistiques : gestion des statistiques 
-- jeu en blitz : Lucie
+- liaison avec les statistiques : gestion des statistiques : Lina
+- jeu en blitz = intégrer un sablier pour limiter le temps de réflexion de l'espion : Lucie
 - customisation de partie : Lina
 - mode image
 - test unitaire : Lucie
 - page de chargement en fonction des équipes : Lina
-- mode solo et plusieurs joueurs
+- mode solo : indices préprogrammés
+- mode plusieurs joueurs
+- afficher qui est l'agent et qui est l'espion sur la box 
+- Modification dans le dictionnaire fonctionne ?
 - utiliser le design pattern observer
 - vérifier qu'il n'y a aucun élément de design dans le code : Lina
+- prendre en compte que l'équipe qui commence doit faire deviner un mot de plus (9 et 8 mois)
+- ajouter des commentaires permettant de comprendre ce que fais chaque classe/fonction
+- documenter l'installation et l'éxecution du jeu : Readme.md
 
+### JOUR 5
+- vidéo démo du jeu : audio + screncast à publier (youtube ou dailymotion) avec le lien dans le readme.md
 
 ## RÉALISÉ
 
@@ -87,3 +95,10 @@
 - Correction de vue fxml
 - Ajout des pages victoire
 - Fonctionnalité d'ajout de mots et de thèmes 
+
+### Jour 4
+- Visibilité des équipes sur les pages de jeu
+- Ajout de l'indice avec le nombre de cartes dans le jeu
+- Ajout des changement de vue agent/espion dynamique 
+- premier jet pour la sauvegarde
+- fix de l'inversement des cartes et des couleurs

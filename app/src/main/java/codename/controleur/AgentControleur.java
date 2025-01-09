@@ -24,8 +24,13 @@ public class AgentControleur {
 
     public void updateLabel(String text) {
         System.out.println("Blitz4");
-        labelTempsRestant.setText(text);
+        if (labelTempsRestant == null) {
+            System.out.println("labelTempsRestant est null dans AgentControleur !");
+        } else {
+            labelTempsRestant.setText(text);
+        }
     }
+    
 
 
     @FXML

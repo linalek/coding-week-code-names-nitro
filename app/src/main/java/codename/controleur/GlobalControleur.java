@@ -1,25 +1,24 @@
 package codename.controleur;
 
 import codename.modele.Jeu;
-import codename.modele.Equipe;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.Node;
-
+import javafx.scene.layout.BorderPane;
+import javafx.scene.Parent;
 import java.io.IOException;
 
 /**
- * Contrôleur pour la vue principale de l'application : permet de switcher entre les differentes vues.
+ * Contrôleur principal gérant la vue Global.fxml (BorderPane),
+ * et qui affiche le Menu, l'Accueil, etc.
  */
 public class GlobalControleur {
 
     @FXML
     private BorderPane root;
+
     private AccueilControleur accueilControleur;
     private ConfigurationEquipeControleur configurationEquipeControleur;
-    private EspionControleur espionControleur;
-    private AgentControleur agentControleur;
     private Jeu jeuEnCours;
     private ChargementEspionControleur chargementEspionControleur;
     private ChargementAgentControleur chargementAgentControleur;
@@ -28,26 +27,37 @@ public class GlobalControleur {
     private BleuGagneControleur bleuGagneControleur;
     private RougeGagneControleur rougeGagneControleur;
 
+    private Parent espionRoot;
+    private EspionControleur espionControleur;
 
-    /** Gestion des affichages indice et nombre de cartes*/
+    private Parent agentRoot;
+    private AgentControleur agentControleur;
+
+    @FXML
+    private MenuControleur menuBarController;
+
+    /** Gestion des affichages indice et nombre de cartes */
     private String indice;
     private int nombresCartes;
 
-    public String getIndice(){
+    public String getIndice() {
         return this.indice;
     }
-    public void setIndice(String indice){
+
+    public void setIndice(String indice) {
         this.indice = indice;
     }
 
-    public int getNombresCartes(){
+    public int getNombresCartes() {
         return this.nombresCartes;
     }
-    public void setNombresCartes(int nombresCartes){
+
+    public void setNombresCartes(int nombresCartes) {
         this.nombresCartes = nombresCartes;
     }
+
     /**
-     * Methode d'initialisation appelee automatiquement après le chargement du fichier FXML.
+     * Méthode d'initialisation appelée automatiquement après le chargement du fichier FXML.
      */
     @FXML
     public void initialize() {
@@ -62,16 +72,16 @@ public class GlobalControleur {
             MenuControleur menuControleur = menuLoader.getController();
             menuControleur.setGlobalControleur(this);
 
-            root.setTop(menuPane);    // Menu placé en haut
-            root.setCenter(accueilPane); // Accueil au centre
+            root.setTop(menuPane);       
+            root.setCenter(accueilPane); 
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-
     /**
-     * Methode pour afficher la vue Accueil dans le BorderPane.
+     * Méthode pour afficher la vue Accueil dans le BorderPane.
      */
     public void afficherAccueil() {
         try {
@@ -79,6 +89,7 @@ public class GlobalControleur {
             Node accueilPane = accueilLoader.load();
             accueilControleur = accueilLoader.getController();
             accueilControleur.setGlobalControleur(this);
+
             root.setCenter(accueilPane);
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,7 +97,7 @@ public class GlobalControleur {
     }
 
     /**
-     * Methode pour afficher la vue ConfigurationEquipe dans le BorderPane.
+     * Méthode pour afficher la vue ConfigurationEquipe dans le BorderPane.
      */
     public void afficherConfigurationEquipe() {
         try {
@@ -95,6 +106,7 @@ public class GlobalControleur {
             configurationEquipeControleur = configLoader.getController();
             configurationEquipeControleur.setGlobalControleur(this);
             configurationEquipeControleur.setJeuEnCours(jeuEnCours);
+
             root.setCenter(configPane);
         } catch (Exception e) {
             e.printStackTrace();
@@ -102,23 +114,68 @@ public class GlobalControleur {
     }
 
     /**
-     * Methode pour afficher la vue Espion dans le BorderPane.
+     * Méthode pour afficher la vue Espion dans le BorderPane.
+     * À chaque fois, on (re)charge Espion.fxml.
      */
     public void afficherEspion() {
         try {
             FXMLLoader espionLoader = new FXMLLoader(getClass().getResource("/codename/vue/Espion.fxml"));
-            Node espionPane = espionLoader.load();
+            Parent espionPane = espionLoader.load();  // <-- Parent au lieu de Node
             espionControleur = espionLoader.getController();
             espionControleur.setGlobalControleur(this);
             espionControleur.setJeu(jeuEnCours);
-            espionControleur.setGlobalControleur(this);
-            //espionControleur.setRoot(root);
+    
+            // On stocke aussi la racine (si besoin)
+            espionRoot = espionPane;
+    
+            // On affiche l'espionPane dans le center du BorderPane
             root.setCenter(espionPane);
-            espionControleur.readyToContinue();
+    
+            espionControleur.readyToContinue(); // ta méthode perso si nécessaire
+    
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    
+    public void afficherAgent() {
+        try {
+            FXMLLoader agentLoader = new FXMLLoader(getClass().getResource("/codename/vue/Agent.fxml"));
+            Parent agentPane = agentLoader.load();   // <-- Parent au lieu de Node
+            agentControleur = agentLoader.getController();
+            agentControleur.setGlobalControleur(this);
+            agentControleur.setJeu(jeuEnCours);      // S’il existe bien "setJeu(...)" dans AgentControleur
+    
+            // On stocke aussi la racine (si besoin)
+            agentRoot = agentPane;
+    
+            // On affiche l'agentPane dans le center du BorderPane
+            root.setCenter(agentPane);
+    
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+
+    public void partieBlitz() {
+        // On met à jour le label dans Espion (si déjà chargé)
+        if (espionControleur != null) {
+            espionControleur.updateLabel("30s");
+        } else {
+            System.out.println("EspionControleur est null, vue Espion pas encore chargée !");
+        }
+
+        // On met à jour le label dans Agent (si déjà chargé)
+        if (agentControleur != null) {
+            agentControleur.updateLabel("30s");
+        } else {
+            System.out.println("AgentControleur est null, vue Agent pas encore chargée !");
+        }
+
+        System.out.println("Mode Blitz activé !");
+    }
+
     /**
      * Méthode pour afficher la page de chargement pour l'espion
      */
@@ -153,22 +210,6 @@ public class GlobalControleur {
         }
     }
 
-    /**
-     * Methode pour afficher la vue Agent dans le BorderPane.
-     */
-    public void afficherAgent() {
-        try {
-            FXMLLoader agentLoader = new FXMLLoader(getClass().getResource("/codename/vue/Agent.fxml"));
-            Node agentPane = agentLoader.load();
-            agentControleur = agentLoader.getController();
-            agentControleur.setGlobalControleur(this);
-            agentControleur.setJeu(jeuEnCours);
-            agentControleur.readyToContinue();
-            root.setCenter(agentPane);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
     /**
      * Methode pour afficher la vue Statistiques dans le BorderPane.
      */

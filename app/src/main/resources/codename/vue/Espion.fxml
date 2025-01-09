@@ -87,6 +87,5 @@
     </right>
    <top>
         <Label fx:id="labelTempsRestant" alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="173.0" text="Temps restant : " />
-
    </top>
 </BorderPane>

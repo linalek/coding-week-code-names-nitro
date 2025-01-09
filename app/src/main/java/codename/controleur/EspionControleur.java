@@ -31,8 +31,13 @@ public class EspionControleur {
 
     public void updateLabel(String text) {
         System.out.println("Blitz3");
-        labelTempsRestant.setText(text);
+        if (labelTempsRestant == null) {
+            System.out.println("labelTempsRestant est null dans EspionControleur !");
+        } else {
+            labelTempsRestant.setText(text);
+        }
     }
+    
 
     @FXML
     private BorderPane rootEspion;

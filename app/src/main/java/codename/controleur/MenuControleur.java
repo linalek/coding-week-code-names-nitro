@@ -23,58 +23,23 @@ import javafx.stage.Stage;
  */
 public class MenuControleur {
 
-    private EspionControleur espionControleur;
-    private AgentControleur agentControleur;
+    private GlobalControleur globalControleur;
 
-    public void setEspionControleur(EspionControleur controleur) {
-        this.espionControleur = controleur;
-        System.out.println("EspionControleur initialisé !");
-    }
-    
-    public void setAgentControleur(AgentControleur controleur) {
-        this.agentControleur = controleur;
-        System.out.println("AgentControleur initialisé !");
+    public void setGlobalControleur(GlobalControleur globalControleur) {
+        this.globalControleur = globalControleur;
     }
 
-    @FXML
-    private void initialize() {
-        try {
-            // Chargement de la vue Espion
-            FXMLLoader espionLoader = new FXMLLoader(getClass().getResource("/codename/vue/Espion.fxml"));
-            Parent espionRoot = espionLoader.load();
-            EspionControleur espionControleur = espionLoader.getController();
-            setEspionControleur(espionControleur); // Assignez le contrôleur Espion
-
-            // Chargement de la vue Agent
-            FXMLLoader agentLoader = new FXMLLoader(getClass().getResource("/codename/vue/Agent.fxml"));
-            Parent agentRoot = agentLoader.load();
-            AgentControleur agentControleur = agentLoader.getController();
-            setAgentControleur(agentControleur); // Assignez le contrôleur Agent
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * Méthode appelée lorsque l'utilisateur clique sur "Blitz" dans le menu.
+     */
     @FXML
     public void partieBlitz() {
-        if (espionControleur != null) {
-            espionControleur.updateLabel("Temps restant : 30s");
+        if (globalControleur != null) {
+            globalControleur.partieBlitz();
         } else {
-            System.out.println("EspionControleur non initialisé !");
+            System.out.println("[MenuControleur] GlobalControleur est null !");
         }
-
-        if (agentControleur != null) {
-            agentControleur.updateLabel("Temps restant : 30s");
-            System.out.println("Blitz1");
-        } else {
-            System.out.println("AgentControleur non initialisé !");
-        }
-
-        System.out.println("Mode Blitz activé !");
     }
-
-    
 
     @FXML
     public MenuItem bouttonRestaurer;
@@ -111,12 +76,6 @@ public class MenuControleur {
 
     @FXML
     public MenuItem bouttonCustom;
-
-    private GlobalControleur globalControleur;
-
-    public void setGlobalControleur(GlobalControleur globalControleur) {
-        this.globalControleur = globalControleur;
-    }
     
     @FXML
     public void partieSolo() {

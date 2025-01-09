@@ -17,6 +17,17 @@ public class AgentControleur {
     private Jeu jeuEnCours;
     private PlateauAgentControleur plateauAgentControleur;
     private BorderPane root;
+
+    /*Pour le mode Blitz*/
+    @FXML
+    private Label labelTempsRestant;
+
+    public void updateLabel(String text) {
+        System.out.println("Blitz4");
+        labelTempsRestant.setText(text);
+    }
+
+
     @FXML
     private Label indiceDisplayLabel;
     @FXML

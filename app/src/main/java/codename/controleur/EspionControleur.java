@@ -24,6 +24,16 @@ public class EspionControleur {
 
     private Jeu jeuEnCours;
     private PlateauEspionControleur plateauEspionControleur;
+    
+    /*POur le mode Blitz*/
+    @FXML
+    private Label labelTempsRestant;
+
+    public void updateLabel(String text) {
+        System.out.println("Blitz3");
+        labelTempsRestant.setText(text);
+    }
+
     @FXML
     private BorderPane rootEspion;
     @FXML

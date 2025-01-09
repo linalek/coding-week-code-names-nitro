@@ -1,8 +1,11 @@
 package codename.modele;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Jeu {
@@ -16,9 +19,16 @@ public class Jeu {
     private int taille;
     private Equipe equipeRouge;
     private Equipe equipeBleue;
+    private int nbCartes;
+    private boolean modeBlitz;
+    private Timer timer; // Timer pour le décompte
+    private long remainingTime; // Temps restant en millisecondes (30 secondes)
+    private Runnable onTimeOut; // Action à exécuter lorsque le temps est écoulé
+    private Runnable onTick; // Action à exécuter à chaque tick
 
+    private static final long TEMPS_PAR_TOUR = 30000; // 30 secondes
 
-    public Jeu(int taille, int type) {
+    public Jeu(int taille, int type, boolean modeBlitz) {
         this.grille = new Grille(taille, type);
         this.nbMotsBleu = grille.getNbBleue();
         this.nbMotsRouge = grille.getNbRouge();
@@ -26,25 +36,74 @@ public class Jeu {
         this.statusPartie = 0;
         this.equipeRouge = new Equipe();
         this.equipeBleue = new Equipe();
+        this.modeBlitz = modeBlitz;
+        this.timer = new Timer();
+        this.remainingTime = TEMPS_PAR_TOUR;
     }
 
     public Jeu() {
-        this.grille = new Grille(5, 0);
-        this.nbMotsBleu = grille.getNbBleue();
-        this.nbMotsRouge = grille.getNbRouge();
-        this.tour = 0;
-        this.statusPartie = 0;
-        this.equipeRouge = new Equipe();
-        this.equipeBleue = new Equipe();
+        this(5, 0, false); // Taille par défaut 5x5, type 0, mode Blitz désactivé
     }
 
     public void changerTour() {
         tour = (tour == 0) ? 1 : 0;
+        if (modeBlitz) {
+            resetTimer();
+        }
     }
 
-    /*
-    checkWinner check si l'une des deux équipes a retournée toutes ses cartes.
-     */
+    public void commencerTour(Runnable onTimeOut, Runnable onTick) {
+        this.onTimeOut = onTimeOut;
+        this.onTick = onTick;
+
+        if (modeBlitz) {
+            resetTimer();
+            timer.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    remainingTime -= 1000;
+                    if (remainingTime <= 0) {
+                        stopTimer();
+                        if (onTimeOut != null) {
+                            onTimeOut.run();
+                        }
+                    } else if (onTick != null) {
+                        onTick.run();
+                    }
+                }
+            }, 0, 1000); // Tick toutes les secondes
+        }
+    }
+
+    private void resetTimer() {
+        stopTimer();
+        remainingTime = TEMPS_PAR_TOUR;
+    }
+
+    private void stopTimer() {
+        if (timer != null) {
+            timer.cancel();
+            timer = new Timer();
+        }
+    }
+
+    public void finirTour() {
+        stopTimer();
+        changerTour();
+    }
+
+    public boolean isModeBlitz() {
+        return modeBlitz;
+    }
+
+    public void setModeBlitz(boolean modeBlitz) {
+        this.modeBlitz = modeBlitz;
+    }
+
+    public long getRemainingTime() {
+        return remainingTime;
+    }
+
     private void updateRegularWinner() {
         if (nbMotsBleu == 0) {
             statusPartie = 1;
@@ -54,18 +113,9 @@ public class Jeu {
     }
 
     public boolean isThereWinner() {
-        if (statusPartie == 1 || statusPartie == 2) {
-            return true;
-        } else {
-            return false;
-        }
+        return statusPartie == 1 || statusPartie == 2;
     }
 
-    /*
-    retournerTuile permet de mettre à jour la grille en retournant la carte en position [i][j] si elle ne l'est pas déja.
-    elle met ensuite à jour le tour si la carte retournée est celle de l'autre équipe.
-    elle met aussi à jour statusPartie en cas de victoire par l'une des 2 équipes, si une a retournée la carte noire ou si une a retournée toutes ses cartes.
-     */
     public int retournerTuile(int i, int j) {
         Tuile theTuile = grille.getTuile(i, j);
         if (!theTuile.isEstRetournee()) {
@@ -117,9 +167,6 @@ public class Jeu {
         return grille.getTaille();
     }
 
-    public void parle(String endroit) {
-    }
-
     public int getStatusPartie() {
         return statusPartie;
     }
@@ -150,7 +197,6 @@ public class Jeu {
         this.taille = taille;
     }
 
-
     public void setEquipeRouge(Equipe equipeRouge) {
         this.equipeRouge = equipeRouge;
     }
@@ -162,5 +208,4 @@ public class Jeu {
     public int getNombreTuileARretourner() {
         return nombreTuileARretourner;
     }
-
 }

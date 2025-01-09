@@ -5,12 +5,15 @@ import java.io.IOException;
 
 import codename.DictionnaireThemes;
 import codename.modele.Jeu;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -19,6 +22,59 @@ import javafx.stage.Stage;
  * Contrôleur pour le menu principal de l'application : permet de gérer les actions du menu.
  */
 public class MenuControleur {
+
+    private EspionControleur espionControleur;
+    private AgentControleur agentControleur;
+
+    public void setEspionControleur(EspionControleur controleur) {
+        this.espionControleur = controleur;
+        System.out.println("EspionControleur initialisé !");
+    }
+    
+    public void setAgentControleur(AgentControleur controleur) {
+        this.agentControleur = controleur;
+        System.out.println("AgentControleur initialisé !");
+    }
+
+    @FXML
+    private void initialize() {
+        try {
+            // Chargement de la vue Espion
+            FXMLLoader espionLoader = new FXMLLoader(getClass().getResource("/codename/vue/Espion.fxml"));
+            Parent espionRoot = espionLoader.load();
+            EspionControleur espionControleur = espionLoader.getController();
+            setEspionControleur(espionControleur); // Assignez le contrôleur Espion
+
+            // Chargement de la vue Agent
+            FXMLLoader agentLoader = new FXMLLoader(getClass().getResource("/codename/vue/Agent.fxml"));
+            Parent agentRoot = agentLoader.load();
+            AgentControleur agentControleur = agentLoader.getController();
+            setAgentControleur(agentControleur); // Assignez le contrôleur Agent
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void partieBlitz() {
+        if (espionControleur != null) {
+            espionControleur.updateLabel("Temps restant : 30s");
+        } else {
+            System.out.println("EspionControleur non initialisé !");
+        }
+
+        if (agentControleur != null) {
+            agentControleur.updateLabel("Temps restant : 30s");
+            System.out.println("Blitz1");
+        } else {
+            System.out.println("AgentControleur non initialisé !");
+        }
+
+        System.out.println("Mode Blitz activé !");
+    }
+
+    
 
     @FXML
     public MenuItem bouttonRestaurer;
@@ -62,10 +118,6 @@ public class MenuControleur {
         this.globalControleur = globalControleur;
     }
     
-    @FXML
-    public void partieBlitz() {
-    }
-
     @FXML
     public void partieSolo() {
     }

@@ -12,21 +12,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity"
-            maxWidth="-Infinity"
-            minHeight="-Infinity"
-            minWidth="-Infinity"
-            prefHeight="900.0"
-            prefWidth="1300.0"
-            xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="codename.controleur.EspionControleur"
-            fx:id="rootEspion">
+<BorderPane fx:id="rootEspion" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="930.0" prefWidth="1330.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="codename.controleur.EspionControleur">
     <center>
         <fx:include source="PlateauEspion.fxml" />
     </center>
     <bottom>
-        <HBox alignment="CENTER" prefHeight="59.0" prefWidth="1600.0" BorderPane.alignment="CENTER" style="-fx-background-color: rgba(255, 255, 255, 0.8);">
+        <HBox alignment="CENTER" prefHeight="51.0" prefWidth="1300.0" style="-fx-background-color: rgba(255, 255, 255, 0.8);" BorderPane.alignment="CENTER">
             <children>
             <Label text="Donnez un indice :" textFill="#320000">
                 <font>
@@ -94,4 +85,8 @@
             </font>
         </TitledPane>
     </right>
+   <top>
+        <Label fx:id="labelTempsRestant" alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="173.0" text="Temps restant : " />
+
+   </top>
 </BorderPane>

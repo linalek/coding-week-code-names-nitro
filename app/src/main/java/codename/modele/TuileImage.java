@@ -1,6 +1,10 @@
 package codename.modele;
 
+import codename.DictionnaireThemes;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class TuileImage extends Tuile {
     private String imageAdress;
@@ -20,6 +24,19 @@ public class TuileImage extends Tuile {
 
     public String getImageAdress() {
         return imageAdress;
+    }
+
+    public static String getRandomImageAdress(List<String> themes) {
+        List<String> imageAdresses = new ArrayList<>();
+        if (themes == null) {
+            imageAdresses = DictionnaireThemesImage.getAllAdresses();
+        } else {
+            for (String theme : themes) {
+                imageAdresses.addAll(DictionnaireThemesImage.getAdressesParTheme(theme));
+            }
+        }
+        Random random = new Random();
+        return imageAdresses.get(random.nextInt(imageAdresses.size()));
     }
 
     public void setImageAdress(String imageAdress) {

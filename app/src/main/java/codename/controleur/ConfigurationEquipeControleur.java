@@ -5,6 +5,8 @@ import codename.modele.Jeu;
 import codename.modele.Joueur;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+
 import java.util.ArrayList;
 
 public class ConfigurationEquipeControleur {
@@ -21,6 +23,9 @@ public class ConfigurationEquipeControleur {
     @FXML
     private TextField nomEspionBleu;
 
+    @FXML
+    private VBox listeEquipeRouge;
+
     private Jeu jeuEnCours;
     private GlobalControleur globalControleur;
 
@@ -31,6 +36,10 @@ public class ConfigurationEquipeControleur {
     @FXML
     public void initialize() {
 
+    }
+
+    public void readyToContinue(){
+        for ( i=0, i<jeuEnCours.getNombreJoueursParEquipe(),i++)
     }
 
     @FXML

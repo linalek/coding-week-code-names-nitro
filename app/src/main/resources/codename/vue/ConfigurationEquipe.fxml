@@ -24,7 +24,7 @@
         <HBox spacing="50" alignment="CENTER">
 
             <!-- Colonne Équipe Rouge -->
-            <VBox spacing="30" alignment="CENTER"
+            <VBox fx:id = "listeJoueursRouge" spacing="30" alignment="CENTER"
                   style="-fx-background-color: rgba(255, 221, 221, 0.8);
                      -fx-padding: 30;
                      -fx-border-radius: 10;
@@ -33,18 +33,6 @@
                        style="-fx-font-size: 24px;
                           -fx-font-weight: bold;
                           -fx-text-fill: red;"/>
-
-                <HBox spacing="15" alignment="CENTER">
-                    <Label text="Nom de l'Agent :"
-                           style="-fx-font-size: 20px;"/>
-                    <TextField fx:id="nomAgentRouge" prefWidth="200"/>
-                </HBox>
-
-                <HBox spacing="15" alignment="CENTER">
-                    <Label text="Nom de l'Espion :"
-                           style="-fx-font-size: 20px;"/>
-                    <TextField fx:id="nomEspionRouge" prefWidth="200"/>
-                </HBox>
             </VBox>
 
             <!-- Colonne Équipe Bleue -->

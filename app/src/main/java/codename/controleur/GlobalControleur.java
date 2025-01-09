@@ -1,16 +1,19 @@
 package codename.controleur;
 
 import codename.modele.Jeu;
+import codename.modele.Equipe;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.Parent;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Contrôleur principal gérant la vue Global.fxml (BorderPane),
@@ -23,6 +26,8 @@ public class GlobalControleur {
 
     private AccueilControleur accueilControleur;
     private ConfigurationEquipeControleur configurationEquipeControleur;
+    private EspionControleur espionControleur;
+    private AgentControleur agentControleur;
     private Jeu jeuEnCours;
     private ChargementEspionControleur chargementEspionControleur;
     private ChargementAgentControleur chargementAgentControleur;
@@ -44,27 +49,26 @@ public class GlobalControleur {
 
     @FXML
     private MenuControleur menuBarController;
+    private String lastView = "accueil";
+    private String previousView = "accueil";
 
     /** Gestion des affichages indice et nombre de cartes */
     private String indice;
     private int nombresCartes;
 
-    public String getIndice() {
+    public String getIndice(){
         return this.indice;
     }
-
-    public void setIndice(String indice) {
+    public void setIndice(String indice){
         this.indice = indice;
     }
 
-    public int getNombresCartes() {
+    public int getNombresCartes(){
         return this.nombresCartes;
     }
-
-    public void setNombresCartes(int nombresCartes) {
+    public void setNombresCartes(int nombresCartes){
         this.nombresCartes = nombresCartes;
     }
-
     /**
      * Méthode d'initialisation appelée automatiquement après le chargement du fichier FXML.
      */
@@ -81,13 +85,14 @@ public class GlobalControleur {
             MenuControleur menuControleur = menuLoader.getController();
             menuControleur.setGlobalControleur(this);
 
-            root.setTop(menuPane);       
-            root.setCenter(accueilPane); 
+            root.setTop(menuPane);
+            root.setCenter(accueilPane);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
     /**
      * Méthode pour afficher la vue Accueil dans le BorderPane.
@@ -98,8 +103,8 @@ public class GlobalControleur {
             Node accueilPane = accueilLoader.load();
             accueilControleur = accueilLoader.getController();
             accueilControleur.setGlobalControleur(this);
-
             root.setCenter(accueilPane);
+            lastView = "accueil";
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -115,8 +120,9 @@ public class GlobalControleur {
             configurationEquipeControleur = configLoader.getController();
             configurationEquipeControleur.setGlobalControleur(this);
             configurationEquipeControleur.setJeuEnCours(jeuEnCours);
-
+            configurationEquipeControleur.readyToContinue();
             root.setCenter(configPane);
+            lastView = "configuration";
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -138,7 +144,7 @@ public class GlobalControleur {
         root.setCenter(espionPane);
 
         espionControleur.readyToContinue();
-
+        lastView = "espion";
         if (jeuEnCours.isModeBlitz()) {
             partieBlitz();
         }
@@ -158,6 +164,7 @@ public class GlobalControleur {
         agentControleur.readyToContinue();
 
         root.setCenter(agentPane);
+        lastView = "agent";
         if (jeuEnCours.isModeBlitz()) {
             partieBlitz();
         }
@@ -166,29 +173,29 @@ public class GlobalControleur {
         e.printStackTrace();
         }
     }
-    
-    
+
+
     public void partieBlitz() {
         jeuEnCours.setModeBlitz(true); // CETTE LIGNE FAIT TOUT et EST SUPER IMPORTANTE
 
         if (blitzTimeline != null) {
             blitzTimeline.stop();
         }
-    
+
 
         blitzSecondsRemaining = 30;
-    
+
         if (espionControleur != null) {
             espionControleur.updateLabel("30s");
         }
         if (agentControleur != null) {
             agentControleur.updateLabel("30s");
         }
-        
+
         blitzTimeline = new Timeline(
             new KeyFrame(Duration.seconds(1), event -> {
                 blitzSecondsRemaining--;
-    
+
                 if (jeuEnCours.getTour() == 0 && blitzSecondsRemaining <=0 ) { // Si l'équipe en cours est Bleu
                     blitzSecondsRemaining = 30;
                     afficherRougeGagnant();
@@ -197,8 +204,8 @@ public class GlobalControleur {
             } else if (jeuEnCours.getTour() == 1 && blitzSecondsRemaining <=0) { // Si l'équipe en cours est Rouge
                     blitzSecondsRemaining = 30;
                     afficherBleuGagnant();
-            
-    
+
+
                 } else {
                     if (espionControleur != null) {
                         espionControleur.updateLabel(blitzSecondsRemaining + "s");
@@ -209,12 +216,12 @@ public class GlobalControleur {
                 }
             })
         );
-    
+
         blitzTimeline.setCycleCount(Animation.INDEFINITE);
         blitzTimeline.play();
     }
-    
-    
+
+
     /**
      * Méthode pour afficher la page de chargement pour l'espion
      */
@@ -254,10 +261,13 @@ public class GlobalControleur {
      */
     public void afficherStatistique() {
         try {
+            previousView = lastView;
             FXMLLoader statLoader = new FXMLLoader(getClass().getResource("/codename/vue/Statistiques.fxml"));
             Node statPane = statLoader.load();
             statistiquesControleur = statLoader.getController();
             statistiquesControleur.setGlobalControleur(this);
+            lastView = "statistiques";
+            statistiquesControleur.chargerStatistiques();
             root.setCenter(statPane);
         } catch (Exception e) {
             e.printStackTrace();
@@ -281,6 +291,10 @@ public class GlobalControleur {
     }
     public void lancerJeu() {
         jeuEnCours = new Jeu();
+        afficherConfigurationEquipe();
+    }
+    public void lancerJeuCustom(int taille, int type, int nombreJoueursParEquipe, int timer, List<String> listeDesThemes){
+        jeuEnCours = new Jeu(taille, type, nombreJoueursParEquipe, timer,listeDesThemes);
         afficherConfigurationEquipe();
     }
     public void afficherBleuGagnant(){
@@ -314,5 +328,48 @@ public class GlobalControleur {
 
     public void setJeuEnCours(Jeu jeuEnCours) {
         this.jeuEnCours = jeuEnCours;
+    }
+
+    public Equipe getEquipeRouge() {
+        return (jeuEnCours != null) ? jeuEnCours.getEquipeRouge() : null;
+    }
+
+    public Equipe getEquipeBleue() {
+        return (jeuEnCours != null) ? jeuEnCours.getEquipeBleue() : null;
+    }
+
+    public String getLastView() {
+        return lastView;
+    }
+
+    public void setLastView(String lastView) {
+        this.lastView = lastView;
+    }
+
+    public String getPreviousView() {
+        return previousView;
+    }
+
+    public void setPreviousView(String previousView) {
+        this.previousView = previousView;
+    }
+
+    public void retournerVuePrecedente() {
+        // Selon la valeur de previousView, on appelle la bonne méthode d’affichage
+        switch (previousView) {
+            case "espion":
+                afficherEspion();
+                break;
+            case "agent":
+                afficherAgent();
+                break;
+            case "configuration":
+                afficherConfigurationEquipe();
+                break;
+            case "accueil":
+            default:
+                afficherAccueil();
+                break;
+        }
     }
 }

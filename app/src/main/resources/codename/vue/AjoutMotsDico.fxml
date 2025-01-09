@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
@@ -32,11 +31,18 @@
     </center>
 
     <bottom>
-        <HBox spacing="10.0" alignment="CENTER_LEFT" BorderPane.alignment="CENTER">
-            <Label text="Ajouter un mot :" />
-            <TextField fx:id="addWordTextField" promptText="Saisir un nouveau mot" />
-            <Button fx:id="addWordButton" text="Ajouter" />
-        </HBox>
+        <VBox spacing="10.0" alignment="CENTER" BorderPane.alignment="CENTER">
+            <HBox spacing="10.0" alignment="CENTER_LEFT">
+                <Label text="Ajouter un mot :" />
+                <TextField fx:id="addWordTextField" promptText="Saisir un nouveau mot" />
+                <Button fx:id="addWordButton" text="Ajouter" />
+            </HBox>
+
+            <Button fx:id="resetDictButton"
+                    text="Réinitialiser le dictionnaire"
+                    style="-fx-font-weight: bold;"
+                    onAction="#handleReinitialiserDictionnaire" />
+        </VBox>
     </bottom>
 
 </BorderPane>

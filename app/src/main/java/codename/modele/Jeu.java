@@ -1,11 +1,11 @@
 package codename.modele;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.File;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Jeu {
@@ -13,6 +13,7 @@ public class Jeu {
     private int nbMotsBleu;
     private int nbMotsRouge;
     private int tour; // 0 pour l'équipe bleu, 1 pour l'équipe rouge
+    private int tourRole; //vaut 0 pour tour de l'Espion et 1 pour tour de l'Agent
     private int statusPartie; // 0 pour partie en cours, 1 pour bleu win, 2 pour rouge win
     private int nombreTuileARretourner;
     private String indice;
@@ -25,11 +26,13 @@ public class Jeu {
     private long remainingTime; // Temps restant en millisecondes (30 secondes)
     private Runnable onTimeOut; // Action à exécuter lorsque le temps est écoulé
     private Runnable onTick; // Action à exécuter à chaque tick
+    private final int nombreAgentsParEquipe;
+    private int timer;
 
     private static final long TEMPS_PAR_TOUR = 30000; // 30 secondes
 
-    public Jeu(int taille, int type, boolean modeBlitz) {
-        this.grille = new Grille(taille, type);
+    public Jeu(int taille, int type, boolean modeBlitz, int nombreAgentsParEquipe, int timer, List<String> listeDesThemes) {
+        this.grille = new Grille(taille, type, listeDesThemes);
         this.nbMotsBleu = grille.getNbBleue();
         this.nbMotsRouge = grille.getNbRouge();
         this.tour = 0;
@@ -39,11 +42,21 @@ public class Jeu {
         this.modeBlitz = modeBlitz;
         this.timer = new Timer();
         this.remainingTime = TEMPS_PAR_TOUR;
+        this.nombreAgentsParEquipe = nombreAgentsParEquipe;
+        this.timer = timer;
     }
 
     public Jeu() {
-        this(5, 0, false); // Taille par défaut 5x5, type 0, mode Blitz désactivé
-    }
+        this.grille = new Grille(5, 0);
+        this.nbMotsBleu = grille.getNbBleue();
+        this.nbMotsRouge = grille.getNbRouge();
+        this.tour = 0;
+        this.statusPartie = 0;
+        this.equipeRouge = new Equipe();
+        this.equipeBleue = new Equipe();
+        this.modeBlitz = false;
+        this.nombreAgentsParEquipe = 1;
+      }
 
     public void changerTour() {
         tour = (tour == 0) ? 1 : 0;
@@ -116,6 +129,11 @@ public class Jeu {
         return statusPartie == 1 || statusPartie == 2;
     }
 
+    /*
+    retournerTuile permet de mettre à jour la grille en retournant la carte en position [i][j] si elle ne l'est pas déja.
+    elle met ensuite à jour le tour si la carte retournée est celle de l'autre équipe.
+    elle met aussi à jour statusPartie en cas de victoire par l'une des 2 équipes, si une a retournée la carte noire ou si une a retournée toutes ses cartes.
+     */
     public int retournerTuile(int i, int j) {
         Tuile theTuile = grille.getTuile(i, j);
         if (!theTuile.isEstRetournee()) {
@@ -182,6 +200,18 @@ public class Jeu {
     public Equipe getEquipeRouge() {
         return equipeRouge;
     }
+    public int getNombreAgentsParEquipe() {
+        return nombreAgentsParEquipe;
+    }
+    public int getTimer(){
+        return timer;
+    }
+    public void setTourRole(int tourRole) {
+        this.tourRole = tourRole;
+    }
+    public int getTourRole(){
+        return tourRole;
+    }
 
     public static void sauvegarder(Jeu jeu, String cheminFichier) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
@@ -197,6 +227,7 @@ public class Jeu {
         this.taille = taille;
     }
 
+
     public void setEquipeRouge(Equipe equipeRouge) {
         this.equipeRouge = equipeRouge;
     }
@@ -207,5 +238,9 @@ public class Jeu {
 
     public int getNombreTuileARretourner() {
         return nombreTuileARretourner;
+    }
+
+    public Grille getGrille() {
+        return grille;
     }
 }

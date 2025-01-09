@@ -8,5 +8,6 @@ build
 .vscode
 bin
 
-#on ne partage pas notre partie sauvegardée
+#on ne partage pas notre partie sauvegardée et notre dictionnaire
 /app/partie.json
+/app/dictionnaire.json

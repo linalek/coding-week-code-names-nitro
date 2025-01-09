@@ -2,18 +2,95 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10" prefWidth="300" prefHeight="300"
-      fx:controller="codename.controleur.CustomControleur">
-    <Label text="Nombre de joueurs (1-10):" />
-    <Slider fx:id="sliderNbJoueurs" min="1" max="10" value="1"
-            majorTickUnit="1" snapToTicks="true" showTickMarks="true" showTickLabels="true" />
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            prefHeight="400.0" prefWidth="600.0"
+            styleClass="background"
+            stylesheets="@/public/styles.css"
+            fx:controller="codename.controleur.CustomControleur">
 
-    <Label text="Taille de la grille:" />
-    <TextField fx:id="textFieldTailleGrille" />
+    <!-- Titre en haut -->
+    <top>
+        <StackPane alignment="CENTER" style="-fx-background-color: #4a4a4a;">
+            <Label text="Personnaliser la partie"
+                   style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+        </StackPane>
+    </top>
 
-    <Label text="Thèmes:" />
-    <ChoiceBox fx:id="choiceBoxThemes" />
+    <!-- Contenu central -->
+    <center>
+        <VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: rgba(0, 0, 0, 0.5); -fx-padding: 20; -fx-border-color: white; -fx-border-width: 2;" prefWidth="400.0">
 
-    <Button text="Lancer la Partie" onAction="#handleLancerPartie" />
-</VBox>
+            <!-- Elements pour customiser une partie -->
+            <!-- Nombre de joueurs -->
+            <HBox spacing="10" alignment="CENTER">
+                <Label text="Nombre de joueurs par équipes (1-4) :" style="-fx-font-size: 24px;" textFill="white"/>
+                <SplitMenuButton fx:id="nombreJoueurs" text="Nombre de joueurs" mnemonicParsing="false"
+                                 prefHeight="39.0" prefWidth="200.0" style="-fx-font-size: 16px;">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleNombreJoueurSelection" text="2" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleNombreJoueurSelection" text="3" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleNombreJoueurSelection" text="4" />
+                    </items>
+                </SplitMenuButton>
+            </HBox>
+            <!-- Taille de la grille -->
+            <HBox spacing="10" alignment="CENTER">
+                <Label text="Taille de la grille :" style="-fx-font-size: 24px;" textFill="white"/>
+                    <SplitMenuButton fx:id="tailleGrille" text="Taille de la grille" mnemonicParsing="false"
+                                     prefHeight="39.0" prefWidth="200.0" style="-fx-font-size: 16px;">
+                        <items>
+                            <MenuItem mnemonicParsing="false" onAction="#handleTailleGrilleSelection" text="3" />
+                            <MenuItem mnemonicParsing="false" onAction="#handleTailleGrilleSelection" text="4" />
+                            <MenuItem mnemonicParsing="false" onAction="#handleTailleGrilleSelection" text="5" />
+                            <MenuItem mnemonicParsing="false" onAction="#handleTailleGrilleSelection" text="6" />
+                            <MenuItem mnemonicParsing="false" onAction="#handleTailleGrilleSelection" text="7" />
+                            <MenuItem mnemonicParsing="false" onAction="#handleTailleGrilleSelection" text="8" />
+                        </items>
+                    </SplitMenuButton>
+            </HBox>
+<!--            <HBox spacing="10" alignment="CENTER">-->
+<!--                <Label text="Thèmes :" style="-fx-font-size: 24px;" textFill="white"/>-->
+<!--                <ChoiceBox fx:id="choiceBoxThemes" style="-fx-pref-width: 150px;"/>-->
+<!--            </HBox>-->
+            <HBox spacing="10" alignment="CENTER">
+                <Label text="Thèmes disponibles :" style="-fx-font-size: 24px;" textFill="white"/>
+                <ListView fx:id="listViewThemes" style="-fx-pref-width: 300px; -fx-pref-height: 150px;" />
+            </HBox>
+<!--            <Button text="Valider les thèmes" onAction="#validateThemesSelection"-->
+<!--                    style="-fx-font-size: 18px; -fx-text-fill: white; -fx-background-color: #4caf50;" />-->
+
+
+            <HBox spacing="10" alignment="CENTER" >
+                <Label fx:id="tempsLimite" text ="Temps limité ? " style="-fx-font-size: 24px;" textFill="white"/>
+                <CheckBox fx:id="checkboxModeTempsLimite" text="Oui" onAction="#handleModeTempsLimite" style="-fx-font-size: 24px;" textFill="white"/>
+                <CheckBox fx:id="checkboxNotModeTempsLimite" text="Non" onAction="#handleModeTempsLimite" style="-fx-font-size: 24px;" textFill="white" />
+            </HBox>
+                <VBox alignment="CENTER" prefHeight="39.0" prefWidth="200.0" style="-fx-font-size: 16px;">
+                <TextField fx:id="inputTemps" promptText="Entrez le temps (en secondes)" visible="false" prefWidth="200"/>
+                </VBox>
+            <VBox spacing="10" alignment="CENTER">
+                <!-- Mode de jeu : image ou mot -->
+                <HBox spacing="10" alignment="CENTER">
+                    <Label text="Mode de jeu :" style="-fx-font-size: 24px;" textFill="white"/>
+                    <CheckBox fx:id="checkboxModeImage" text="Image" onAction="#handleModeSelection" style="-fx-font-size: 24px;" textFill="white"/>
+                    <CheckBox fx:id="checkboxModeMot" text="Mot" onAction="#handleModeSelection" style="-fx-font-size: 24px;" textFill="white" />
+                </HBox>
+            </VBox>
+
+        </VBox>
+    </center>
+
+    <!-- Boutons en bas -->
+    <bottom>
+        <HBox spacing="30" alignment="CENTER"
+              style="-fx-padding: 15; -fx-background-color: #4a4a4a;">
+            <Button text="Lancer la Partie"
+                    onAction="#handleLancerPartie"
+                    style="-fx-font-size: 18px; -fx-text-fill: white; -fx-background-color: #4caf50;"/>
+        </HBox>
+    </bottom>
+</BorderPane>

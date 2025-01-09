@@ -102,6 +102,7 @@ public class AgentControleur {
     }
 
     public void handleValider(ActionEvent event) {
+        jeuEnCours.setTourRole(0);
         if (globalControleur != null) {
             globalControleur.afficherChargementEspion();
         }

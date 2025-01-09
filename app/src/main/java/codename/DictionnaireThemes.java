@@ -1,5 +1,10 @@
 package codename;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -177,14 +182,29 @@ public class DictionnaireThemes {
             if (!mots.contains(mot)) {
                 mots.add(mot);
             } else {
-                System.out.println("Le mot existe déjà dans le thème : " + theme);
+                System.out.println("Le mot existe deja dans le theme : " + theme);
             }
         } else {
             List<String> nouveauxMots = new ArrayList<>();
             nouveauxMots.add(mot);
             themes.put(theme, nouveauxMots);
-            System.out.println("Nouveau thème créé : " + theme);
+            System.out.println("Nouveau theme cree : " + theme);
         }
     }
-    
+
+    public static void sauvegarderDictionnaire(String cheminFichier) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writerWithDefaultPrettyPrinter().writeValue(new File(cheminFichier), themes);
+        System.out.println("Dictionnaire sauvegarde");
+    }
+
+    public static void chargerDictionnaire(String cheminFichier) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, List<String>> loaded = mapper.readValue(
+                new File(cheminFichier),
+                new TypeReference<Map<String, List<String>>>() {}
+        );
+        themes = loaded;
+        System.out.println("Dictionnaire restaure");
+    }
 }

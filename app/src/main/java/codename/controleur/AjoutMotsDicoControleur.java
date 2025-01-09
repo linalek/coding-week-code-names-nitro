@@ -49,7 +49,7 @@ public class AjoutMotsDicoControleur implements Initializable {
                     addWordTextField.clear();
                 }
             } else {
-                System.out.println("Veuillez sélectionner un thème avant d'ajouter un mot.");
+                System.out.println("Veuillez selectionner un theme avant d'ajouter un mot.");
             }
         });
 
@@ -76,7 +76,7 @@ public class AjoutMotsDicoControleur implements Initializable {
                 newThemeTextField.clear();
                 newThemeWordTextField.clear();
             } else {
-                System.out.println("Veuillez saisir un nom de thème et un premier mot.");
+                System.out.println("Veuillez saisir un nom de theme et un premier mot.");
             }
         });
     }

@@ -23,15 +23,15 @@ public class Jeu {
     private int nbCartes;
     private boolean modeBlitz;
     private Timer timer; // Timer pour le décompte
+    private int timerSelected;
     private long remainingTime; // Temps restant en millisecondes (30 secondes)
     private Runnable onTimeOut; // Action à exécuter lorsque le temps est écoulé
     private Runnable onTick; // Action à exécuter à chaque tick
     private final int nombreAgentsParEquipe;
-    private int timer;
 
     private static final long TEMPS_PAR_TOUR = 30000; // 30 secondes
 
-    public Jeu(int taille, int type, boolean modeBlitz, int nombreAgentsParEquipe, int timer, List<String> listeDesThemes) {
+    public Jeu(int taille, int type, boolean modeBlitz, int nombreAgentsParEquipe, int timerSelected, List<String> listeDesThemes) {
         this.grille = new Grille(taille, type, listeDesThemes);
         this.nbMotsBleu = grille.getNbBleue();
         this.nbMotsRouge = grille.getNbRouge();
@@ -43,7 +43,7 @@ public class Jeu {
         this.timer = new Timer();
         this.remainingTime = TEMPS_PAR_TOUR;
         this.nombreAgentsParEquipe = nombreAgentsParEquipe;
-        this.timer = timer;
+        this.timerSelected = timerSelected;
     }
 
     public Jeu() {
@@ -204,7 +204,7 @@ public class Jeu {
         return nombreAgentsParEquipe;
     }
     public int getTimer(){
-        return timer;
+        return timerSelected;
     }
     public void setTourRole(int tourRole) {
         this.tourRole = tourRole;

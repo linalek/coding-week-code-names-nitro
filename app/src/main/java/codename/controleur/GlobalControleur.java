@@ -37,10 +37,8 @@ public class GlobalControleur {
     private RougeGagneControleur rougeGagneControleur;
 
     private Parent espionRoot;
-    private EspionControleur espionControleur;
 
     private Parent agentRoot;
-    private AgentControleur agentControleur;
 
     private int remainingTime = 30; // Temps initial
     private int blitzSecondsRemaining = 30;
@@ -294,7 +292,7 @@ public class GlobalControleur {
         afficherConfigurationEquipe();
     }
     public void lancerJeuCustom(int taille, int type, int nombreJoueursParEquipe, int timer, List<String> listeDesThemes){
-        jeuEnCours = new Jeu(taille, type, nombreJoueursParEquipe, timer,listeDesThemes);
+        jeuEnCours = new Jeu(taille, type,false, nombreJoueursParEquipe, timer,listeDesThemes);
         afficherConfigurationEquipe();
     }
     public void afficherBleuGagnant(){

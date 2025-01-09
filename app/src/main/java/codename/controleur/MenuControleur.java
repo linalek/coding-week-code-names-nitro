@@ -81,13 +81,9 @@ public class MenuControleur {
 
     private Jeu jeuEnCours;
 
-    public void setGlobalControleur(GlobalControleur globalControleur) {
-        this.globalControleur = globalControleur;
-    }
+
     
-    @FXML
-    public void partieBlitz() {
-    }
+
 
     @FXML
     public void partieSolo() {

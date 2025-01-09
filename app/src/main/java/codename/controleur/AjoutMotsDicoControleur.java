@@ -1,5 +1,6 @@
 package codename.controleur;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -8,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import codename.DictionnaireThemes;
+
+import static codename.DictionnaireThemes.sauvegarderDictionnaire;
 
 public class AjoutMotsDicoControleur implements Initializable {
 
@@ -88,5 +91,20 @@ public class AjoutMotsDicoControleur implements Initializable {
         wordsListView.setItems(
                 FXCollections.observableArrayList(DictionnaireThemes.getMotsParTheme(theme))
         );
+    }
+
+    @FXML
+    private void handleReinitialiserDictionnaire() {
+        DictionnaireThemes.reinitialiserDictionnaire();
+        try {
+            sauvegarderDictionnaire("dictionnaire.json");
+            System.out.println("Dictionnaire reinitialise et sauvegarde");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        themeComboBox.setItems(FXCollections.observableArrayList(DictionnaireThemes.getThemes()));
+        themeComboBox.setValue(null); // ou le premier thème si tu préfères
+        wordsListView.setItems(FXCollections.emptyObservableList());
+        System.out.println("Reinitialisation terminee");
     }
 }

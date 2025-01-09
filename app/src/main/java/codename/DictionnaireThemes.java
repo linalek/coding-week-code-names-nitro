@@ -16,18 +16,19 @@ import java.util.Map;
 import java.util.Set;
 
 public class DictionnaireThemes {
-    private static Map<String, List<String>> themes = new HashMap<>(); // Map<Theme, List<Mots>> est un dico pour 
+    private static Map<String, List<String>> themes = new HashMap<>(); // Map<Theme, List<Mots>> est un dico
+    private static final Map<String, List<String>> DEFAULT_THEMES = new HashMap<>();
 
     static {
-        themes.put("Géographie", Arrays.asList(
+        DEFAULT_THEMES.put("Géographie", Arrays.asList(
             "Afrique", "Allemagne", "Amérique", "Australie", "Angleterre",
             "Canada", "Chine", "Grèce", "Russie", "Espagne", "Europe",
             "Berlin", "Londres", "New-York", "Paris", "Rome", "Tokyo",
             "Himalaya", "Forêt", "Jungle", "Temple", "Atlantique", "Baie",
             "Montagne", "Rivière", "Lac", "Désert", "Volcan", "Océan"
         ));
-        
-        themes.put("Nature et Animaux", Arrays.asList(
+
+        DEFAULT_THEMES.put("Nature et Animaux", Arrays.asList(
             "Aiguille", "Aile", "Air", "Alien", "Alpes", "Araignée",
             "Baleine", "Chat", "Chien", "Cochon", "Canard", "Pingouin",
             "Serpent", "Lion", "Kangourou", "Licorne", "Oiseau", "Grenade",
@@ -35,15 +36,15 @@ public class DictionnaireThemes {
             "Neige", "Orage", "Vague", "Glace", "Vent", "Feu", "Terre", "Eau",
             "Loup", "Renard", "Hibou", "Écureuil", "Tigre", "Girafe"
         ));
-        
-        themes.put("Alimentation et Boissons", Arrays.asList(
+
+        DEFAULT_THEMES.put("Alimentation et Boissons", Arrays.asList(
             "Banane", "Poire", "Orange", "Kiwi", "Camembert", "Bière",
             "Vin", "Champagne", "Café", "Chocolat", "Miel", "Pain",
             "Poisson", "Pêche", "Fraise", "Chou",
             "Pizza", "Hamburger", "Spaghetti", "Sandwich", "Tarte", "Lait"
         ));
-        
-        themes.put("Objets et Outils", Arrays.asList(
+
+        DEFAULT_THEMES.put("Objets et Outils", Arrays.asList(
             "Appareil", "Avion", "Bouteille", "Boîte", "Bureau", "Machine", 
             "Microscope", "Portable", "Radio", "Couteau", "Brique", "Paille", 
             "Corde", "Marteau", "Clé", "Colle", "Fer", "Papier", "Table", 
@@ -51,72 +52,72 @@ public class DictionnaireThemes {
             "Bouchon", "Bouton", "Boule", "Bouteille",
             "Tournevis", "Lampe", "Ordinateur", "Écran", "Clavier", "Chaîne"
         ));
-        
-        themes.put("Transports", Arrays.asList(
+
+        DEFAULT_THEMES.put("Transports", Arrays.asList(
             "Avion", "Bateau", "Voiture", "Train", "Vaisseau", "Camion", 
             "Pilote", "Route", "Piste", "Pont", "Port", "Quai",
             "Vélo", "Tramway", "Métro", "Scooter", "Fusée", "Montgolfière"
         ));
-        
-        themes.put("Émotions et Concepts Abstraits", Arrays.asList(
+
+        DEFAULT_THEMES.put("Émotions et Concepts Abstraits", Arrays.asList(
             "Amour", "Peur", "Joie", "Tristesse", "Espoir", "Argent", "Chance", 
             "Égalité", "Liberté", "Justice", "Révolution", "Vie", "Maladie", 
             "Mort", "Pensée", "Cœur",
             "Courage", "Honte", "Bonheur", "Curiosité", "Inspiration"
         ));
-        
-        themes.put("Mythologie et Fiction", Arrays.asList(
+
+        DEFAULT_THEMES.put("Mythologie et Fiction", Arrays.asList(
             "Dragon", "Licorne", "Vampire", "Fantôme", "Sirène", "Astérix", 
             "Schtroumpf", "Ninja", "Héros", "Sorcière",
             "Phoenix", "Centaure", "Golem", "Zombie", "Elfe"
         ));
-        
-        themes.put("Professions et Rôles", Arrays.asList(
+
+        DEFAULT_THEMES.put("Professions et Rôles", Arrays.asList(
             "Docteur", "Marin", "Pilote", "Policier", "Pirate", "Avocat", 
             "Ingénieur", "Enseignant", "Roi", "Reine", "Princesse", "Soldat", 
             "Voleur",
             "Dentiste", "Architecte", "Plombier", "Cuisinier", "Jardinier"
         ));
-        
-        themes.put("Sciences et Éducation", Arrays.asList(
+
+        DEFAULT_THEMES.put("Sciences et Éducation", Arrays.asList(
             "Physique", "Chimie", "Biologie", "Astronomie", "École", "Classe", 
             "Étude", "Mémoire",
             "Mathématiques", "Histoire", "Géographie", "Informatique", "Programmation"
         ));
-        
-        themes.put("Arts et Divertissements", Arrays.asList(
+
+        DEFAULT_THEMES.put("Arts et Divertissements", Arrays.asList(
             "Peinture", "Sculpture", "Musique", "Danse", "Théâtre",
             "Cinéma", "Photographie", "Dessin", "Calligraphie", "Graffiti",
             "Architecture", "Fresque", "Opéra", "Mosaïque", "Illustration",
             "Céramique", "Tapisserie", "Gravure", "Vitrail", "Performance",
             "Pop Art", "Renaissance", "Cubisme"
         ));
-        
-        themes.put("Corps Humain", Arrays.asList(
+
+        DEFAULT_THEMES.put("Corps Humain", Arrays.asList(
             "Main", "Pied", "Tête", "Œil", "Langue", "Visage", "Nez", "Oreille", 
             "Bouche",
             "Épaule", "Genou", "Coude", "Ventre", "Cheveux"
         ));
-        
-        themes.put("Temps et Calendrier", Arrays.asList(
+
+        DEFAULT_THEMES.put("Temps et Calendrier", Arrays.asList(
             "Jour", "Nuit", "Mois", "Année", "Hiver", "Été", "Printemps", 
             "Automne", "Temps",
             "Minute", "Seconde", "Heure", "Décennie", "Jour férié"
         ));
-        
-        themes.put("Divers", Arrays.asList(
+
+        DEFAULT_THEMES.put("Divers", Arrays.asList(
             "Étoile", "Croix", "Cercle", "Triangle", "Zéro", "Sept", "Lettre", 
             "Numéro", "Magie", "Technologie", "Guerre", "Paix", "Vol", "Volume",
             "Robot", "Galaxie", "Univers", "Planète", "Satellite"
         ));
 
-        themes.put("Les Méchants dans les Films", Arrays.asList(
+        DEFAULT_THEMES.put("Les Méchants dans les Films", Arrays.asList(
             "Voldemort", "Vader", "Joker", "Thanos", "Lecter",
             "Palpatine","Jafar", "Hades", "Ursula",
             "Hans", "Lotso","Grinch","Maléfique", "Cruella"
         ));
 
-        themes.put("Technologie", Arrays.asList(
+        DEFAULT_THEMES.put("Technologie", Arrays.asList(
             "Python", "Java", "Rust", "Go", "Docker", 
             "Kubernetes", "Git", "Linux", "Bash", "Cloud",
             "CI/CD", "Ansible", "Terraform", "PostgreSQL", "MySQL",
@@ -124,21 +125,22 @@ public class DictionnaireThemes {
             "API", "Microservice", "Container", "Pipeline", "Nginx",
             "Apache", "Prometheus", "Grafana", "Jenkins", "Cassandra"
         ));
-        themes.put("Histoire", Arrays.asList(
+        DEFAULT_THEMES.put("Histoire", Arrays.asList(
             "Renaissance", "Vikings", "Empire", "Égypte", "Rome",
             "Moyen Âge", "Révolution", "Guillotine", "Pharaon", "Chevalier",
             "Incas", "Napoléon", "Châteaux", "Guerre", "Croisade",
             "Samouraï", "Colonisation", "Pré-histoire", "Gladiateur", "Pirate",
             "Troie", "Spartiate", "Dynastie", "Reine", "Roi"
         ));
-        themes.put("Personnes Célèbres", Arrays.asList(
+        DEFAULT_THEMES.put("Personnes Célèbres", Arrays.asList(
             "Napoléon", "Einstein", "Darwin", "Mozart", "Picasso",
             "Newton", "Tesla", "Platon", "Aragon", "Homère",
             "V. Hugo", "Curie", "S. Jobs", "Gandhi", "Luther",
             "Molière", "Freud", "Brahms", "Fermat", "Cézanne"
         ));
-}
 
+        reinitialiserDictionnaire();
+    }
 
     /*
      * Cette méthode permet de renvoyer tous les mots du dictionnaire,
@@ -211,6 +213,13 @@ public class DictionnaireThemes {
         } catch (FileNotFoundException e) {
             System.out.println("Aucun dictionnaire sauvegarde trouve ("
                     + cheminFichier + ") => on part d'un dico par defaut.");
+        }
+    }
+
+    public static void reinitialiserDictionnaire() {
+        themes.clear();
+        for (Map.Entry<String, List<String>> entry : DEFAULT_THEMES.entrySet()) {
+            themes.put(entry.getKey(), new ArrayList<>(entry.getValue()));
         }
     }
 

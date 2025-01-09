@@ -17,6 +17,21 @@ public class AgentControleur {
     private Jeu jeuEnCours;
     private PlateauAgentControleur plateauAgentControleur;
     private BorderPane root;
+
+    /*Pour le mode Blitz*/
+    @FXML
+    private Label labelTempsRestant;
+
+    public void updateLabel(String text) {
+        if (labelTempsRestant == null) {
+            System.out.println("labelTempsRestant est null dans AgentControleur !");
+        } else {
+            labelTempsRestant.setText(text);
+        }
+    }
+    
+
+
     @FXML
     private Label indiceDisplayLabel;
     @FXML

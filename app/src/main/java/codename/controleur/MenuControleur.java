@@ -6,11 +6,15 @@ import java.io.IOException;
 
 import codename.DictionnaireThemes;
 import codename.modele.Jeu;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -20,15 +24,33 @@ import javafx.stage.Stage;
  */
 public class MenuControleur {
 
+    private GlobalControleur globalControleur;
+
+    public void setGlobalControleur(GlobalControleur globalControleur) {
+        this.globalControleur = globalControleur;
+    }
+
+    /**
+     * Méthode appelée lorsque l'utilisateur clique sur "Blitz" dans le menu.
+     */
+    @FXML
+    public void partieBlitz() {
+        if (globalControleur != null) {
+            globalControleur.partieBlitz();
+        } else {
+            System.out.println("[MenuControleur] GlobalControleur est null !");
+        }
+    }
+
     @FXML
     public MenuItem bouttonRestaurer;
-
+    
     @FXML
     public MenuItem bouttonSauvegarder;
-
+    
     @FXML
     public MenuItem bouttonRetour;
-
+    
     @FXML
     public MenuItem bouttonQuitter;
 
@@ -56,17 +78,12 @@ public class MenuControleur {
     @FXML
     public MenuItem bouttonCustom;
 
-    private GlobalControleur globalControleur;
 
     private Jeu jeuEnCours;
 
-    public void setGlobalControleur(GlobalControleur globalControleur) {
-        this.globalControleur = globalControleur;
-    }
 
-    @FXML
-    public void partieBlitz() {
-    }
+    
+
 
     @FXML
     public void partieSolo() {
@@ -152,11 +169,11 @@ public class MenuControleur {
         fenetreRegles.setScene(scene);
         fenetreRegles.show();
     }
-
+    
     @FXML
     public void partieImage() {
     }
-
+    
     @FXML
     public void quitterApplication() {
         try {
@@ -215,7 +232,6 @@ public class MenuControleur {
             e.printStackTrace();
         }
     }
-
     /**
      * Méthode pour affihcer les statistiques du jeu
      * @throws IOException si le fichier FXML des statistiques n'est pas trouvé

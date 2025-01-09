@@ -207,7 +207,7 @@ public class DictionnaireThemes {
                     new TypeReference<Map<String, List<String>>>() {}
             );
             themes = loaded;
-            System.out.println("Dictionnaire chargé depuis " + cheminFichier);
+            System.out.println("Dictionnaire charge depuis " + cheminFichier);
         } catch (FileNotFoundException e) {
             System.out.println("Aucun dictionnaire sauvegarde trouve ("
                     + cheminFichier + ") => on part d'un dico par defaut.");

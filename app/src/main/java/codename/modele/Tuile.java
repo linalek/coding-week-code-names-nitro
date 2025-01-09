@@ -2,15 +2,12 @@ package codename.modele;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 
-@JsonTypeInfo(
-        use = JsonTypeInfo.Id.NAME,
-        include = JsonTypeInfo.As.PROPERTY,
-        property = "@type"
-)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property="@type")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = TuileMot.class, name = "Mot"),
-        @JsonSubTypes.Type(value = TuileImage.class, name = "Image")
+        @JsonSubTypes.Type(value = TuileMot.class, name="Mot"),
+        @JsonSubTypes.Type(value = TuileImage.class, name="Image")
 })
+
 /*
  * Tuiles est la classe des tuiles avec des mots
 */

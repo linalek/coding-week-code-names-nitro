@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -57,6 +56,8 @@ public class MenuControleur {
     public MenuItem bouttonCustom;
 
     private GlobalControleur globalControleur;
+
+    private Jeu jeuEnCours;
 
     public void setGlobalControleur(GlobalControleur globalControleur) {
         this.globalControleur = globalControleur;
@@ -140,7 +141,7 @@ public class MenuControleur {
         } catch (IOException e) {
             javafx.scene.control.Alert errorAlert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
             errorAlert.setTitle("Erreur");
-            errorAlert.setHeaderText("Impossible de charger les règles du jeu");
+            errorAlert.setHeaderText("Impossible de charger les regles du jeu");
             errorAlert.setContentText("Le fichier HTML des règles est introuvable.");
             errorAlert.showAndWait();
             return;
@@ -157,6 +158,11 @@ public class MenuControleur {
     
     @FXML
     public void quitterApplication() {
+        try {
+            DictionnaireThemes.sauvegarderDictionnaire("dictionnaire.json");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.exit(0);
     }
 
@@ -171,7 +177,7 @@ public class MenuControleur {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText("Retour au menu principal impossible");
-            alert.setContentText("GlobalControleur est null. Assurez-vous qu'il est correctement initialisé.");
+            alert.setContentText("GlobalControleur est null. Assurez-vous qu'il est correctement initialise.");
             alert.showAndWait();
             }
     }
@@ -195,7 +201,14 @@ public class MenuControleur {
             Jeu partieChargee = Jeu.charger("partie.json");
             System.out.println("Partie restauree");
             globalControleur.setJeuEnCours(partieChargee);
-            globalControleur.afficherEspion();
+            jeuEnCours = globalControleur.getJeuEnCours();
+            if (jeuEnCours.getTourRole()==0) {
+                globalControleur.afficherChargementEspion();
+            }
+            else {
+                globalControleur.afficherChargementAgent();
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -212,7 +225,7 @@ public class MenuControleur {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText("Affichage statistiques impossible");
-            alert.setContentText("GlobalControleur est null. Assurez-vous qu'il est correctement initialisé.");
+            alert.setContentText("GlobalControleur est null. Assurez-vous qu'il est correctement initialise.");
             alert.showAndWait();
         }
     }

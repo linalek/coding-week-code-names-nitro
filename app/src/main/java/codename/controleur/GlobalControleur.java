@@ -1,6 +1,10 @@
 package codename.controleur;
 
 import codename.modele.Jeu;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -32,6 +36,10 @@ public class GlobalControleur {
 
     private Parent agentRoot;
     private AgentControleur agentControleur;
+
+    private int remainingTime = 30; // Temps initial
+    private int blitzSecondsRemaining;
+    private Timeline blitzTimeline;
 
     @FXML
     private MenuControleur menuBarController;
@@ -119,20 +127,26 @@ public class GlobalControleur {
      */
     public void afficherEspion() {
         try {
-            FXMLLoader espionLoader = new FXMLLoader(getClass().getResource("/codename/vue/Espion.fxml"));
-            Parent espionPane = espionLoader.load();  // <-- Parent au lieu de Node
-            espionControleur = espionLoader.getController();
-            espionControleur.setGlobalControleur(this);
-            espionControleur.setJeu(jeuEnCours);
-    
-            // On stocke aussi la racine (si besoin)
-            espionRoot = espionPane;
-    
-            // On affiche l'espionPane dans le center du BorderPane
-            root.setCenter(espionPane);
-    
-            espionControleur.readyToContinue(); // ta méthode perso si nécessaire
-    
+            if (espionRoot == null) {
+                // => C'est la première fois qu'on veut afficher Espion,
+                // on charge depuis le FXML
+                FXMLLoader espionLoader = new FXMLLoader(getClass().getResource("/codename/vue/Espion.fxml"));
+                Parent loadedPane = espionLoader.load();
+
+                this.espionControleur = espionLoader.getController();
+                this.espionControleur.setGlobalControleur(this);
+                this.espionControleur.setJeu(jeuEnCours);
+
+                // On stocke la racine chargée
+                this.espionRoot = loadedPane;
+
+                // Appel d'une méthode perso s'il y a (facultatif)
+                this.espionControleur.readyToContinue(); 
+            }
+
+            // Maintenant, on place la racine dans le center
+            root.setCenter(espionRoot);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -140,18 +154,22 @@ public class GlobalControleur {
     
     public void afficherAgent() {
         try {
-            FXMLLoader agentLoader = new FXMLLoader(getClass().getResource("/codename/vue/Agent.fxml"));
-            Parent agentPane = agentLoader.load();   // <-- Parent au lieu de Node
-            agentControleur = agentLoader.getController();
-            agentControleur.setGlobalControleur(this);
-            agentControleur.setJeu(jeuEnCours);      // S’il existe bien "setJeu(...)" dans AgentControleur
-    
-            // On stocke aussi la racine (si besoin)
-            agentRoot = agentPane;
-    
-            // On affiche l'agentPane dans le center du BorderPane
-            root.setCenter(agentPane);
-    
+            if (agentRoot == null) {
+                // => Première fois qu'on veut afficher Agent
+                FXMLLoader agentLoader = new FXMLLoader(getClass().getResource("/codename/vue/Agent.fxml"));
+                Parent loadedPane = agentLoader.load();
+
+                this.agentControleur = agentLoader.getController();
+                this.agentControleur.setGlobalControleur(this);
+                this.agentControleur.setJeu(jeuEnCours);
+
+                // On stocke la racine
+                this.agentRoot = loadedPane;
+            }
+
+            // Et on place agentRoot dans le center
+            root.setCenter(agentRoot);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -159,22 +177,60 @@ public class GlobalControleur {
     
 
     public void partieBlitz() {
-        // On met à jour le label dans Espion (si déjà chargé)
-        if (espionControleur != null) {
-            espionControleur.updateLabel("30s");
-        } else {
-            System.out.println("EspionControleur est null, vue Espion pas encore chargée !");
-        }
+    // On (ré)initialise le compteur à 30
+    blitzSecondsRemaining = 30;
 
-        // On met à jour le label dans Agent (si déjà chargé)
-        if (agentControleur != null) {
-            agentControleur.updateLabel("30s");
-        } else {
-            System.out.println("AgentControleur est null, vue Agent pas encore chargée !");
-        }
-
-        System.out.println("Mode Blitz activé !");
+    // Si les contrôleurs existent déjà, on met immédiatement "30s"
+    if (espionControleur != null) {
+        espionControleur.updateLabel("30s");
+    } else {
+        System.out.println("[GlobalControleur] EspionControleur est null (non chargé)");
     }
+
+    if (agentControleur != null) {
+        agentControleur.updateLabel("30s");
+    } else {
+        System.out.println("[GlobalControleur] AgentControleur est null (non chargé)");
+    }
+
+    System.out.println("Mode Blitz activé !");
+
+    // Si un Timeline existe déjà, on l'arrête pour en recréer un
+    if (blitzTimeline != null) {
+        blitzTimeline.stop();
+    }
+
+    // Création du Timeline : décrémente blitzSecondsRemaining toutes les 1s
+    blitzTimeline = new Timeline(
+        new KeyFrame(Duration.seconds(1), event -> {
+            blitzSecondsRemaining--;
+
+            // Quand on arrive à zéro, on arrête le timer
+            if (blitzSecondsRemaining <= 0) {
+                blitzTimeline.stop();
+                // Optionnel : mettre quelque chose quand le temps est écoulé
+                if (espionControleur != null) {
+                    espionControleur.updateLabel("Temps écoulé !");
+                }
+                if (agentControleur != null) {
+                    agentControleur.updateLabel("Temps écoulé !");
+                }
+            } else {
+                // Sinon, on met à jour les labels
+                if (espionControleur != null) {
+                    espionControleur.updateLabel(blitzSecondsRemaining + "s");
+                }
+                if (agentControleur != null) {
+                    agentControleur.updateLabel(blitzSecondsRemaining + "s");
+                }
+            }
+        })
+    );
+    // Nombre de répétitions : indéfini (on s'arrêtera manuellement)
+    blitzTimeline.setCycleCount(Animation.INDEFINITE);
+    blitzTimeline.play();
+}
+
 
     /**
      * Méthode pour afficher la page de chargement pour l'espion

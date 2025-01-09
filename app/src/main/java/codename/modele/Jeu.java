@@ -7,7 +7,7 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Jeu {
-    private final Grille grille;
+    private Grille grille;
     private int nbMotsBleu;
     private int nbMotsRouge;
     private int tour; // 0 pour l'équipe bleu, 1 pour l'équipe rouge
@@ -17,14 +17,19 @@ public class Jeu {
     private int taille;
     private Equipe equipeRouge;
     private Equipe equipeBleue;
-    private final int nombreJoueursParEquipe;
+    private int nombreJoueursParEquipe;
     private int timer;
 
 
-    public Jeu(int taille, int type, int nombreJoueursParEquipe, int timer,List<String> listeDesThemes) {
-        this.grille = new Grille(taille, type, listeDesThemes);
-        this.nbMotsBleu = grille.getNbBleue();
-        this.nbMotsRouge = grille.getNbRouge();
+    public Jeu(boolean createNow, int taille, int type, int nombreJoueursParEquipe, int timer,List<String> listeDesThemes) {
+        if (createNow) {
+            // On crée la grille
+            this.grille = new Grille(true,taille, type, listeDesThemes);
+            this.nbMotsBleu = grille.getNbBleue();
+            this.nbMotsRouge = grille.getNbRouge();
+        } else {
+            this.grille = new Grille(false, taille, type, listeDesThemes);
+        }
         this.tour = 0;
         this.statusPartie = 0;
         this.equipeRouge = new Equipe();
@@ -34,7 +39,7 @@ public class Jeu {
     }
 
     public Jeu() {
-        this.grille = new Grille(5, 0);
+        this.grille = new Grille(true,5, 0,null);
         this.nbMotsBleu = grille.getNbBleue();
         this.nbMotsRouge = grille.getNbRouge();
         this.tour = 0;
@@ -175,4 +180,7 @@ public class Jeu {
         return nombreTuileARretourner;
     }
 
+    public Grille getGrille() {
+        return grille;
+    }
 }

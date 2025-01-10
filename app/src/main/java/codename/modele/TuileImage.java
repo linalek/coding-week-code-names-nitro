@@ -40,7 +40,7 @@ public class TuileImage extends Tuile {
     }
 
     public void setRandomImageAdress(List<String> themes) {
-
+        imageAdress = getRandomImageAdress();
     }
 
 

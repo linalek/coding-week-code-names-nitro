@@ -111,20 +111,17 @@ public class AgentControleur {
     public void aPerdu(){
         if (globalControleur != null) {
             globalControleur.afficherChargementEspion();
-            System.out.println("Passage a la vue  de chargement pour l'espion Espion.");
         }
     }
     public void aGagne(int equipe){
         if (equipe==1){
             if (globalControleur != null) {
                 globalControleur.afficherBleuGagnant();
-                System.out.println("Passage a la vue  de victoire pour l'équipe bleu.");
             }
         }
         else {
             if (globalControleur != null) {
                 globalControleur.afficherRougeGagnant();
-                System.out.println("Passage a la vue  de victoire pour l'équipe rouge.");
             }
         }
     }

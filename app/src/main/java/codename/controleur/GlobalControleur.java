@@ -302,7 +302,6 @@ public class GlobalControleur {
             bleuGagneControleur = gagnantLoader.getController();
             bleuGagneControleur.setGlobalControleur(this);
             root.setCenter(gagnantPane);
-            System.out.println("BleuGagnant.fxml charge et affiche dans le centre.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -314,7 +313,6 @@ public class GlobalControleur {
             rougeGagneControleur = gagnantLoader.getController();
             rougeGagneControleur.setGlobalControleur(this);
             root.setCenter(gagnantPane);
-            System.out.println("RougeGagnant.fxml charge et affiche dans le centre.");
         } catch (IOException e) {
             e.printStackTrace();
         }

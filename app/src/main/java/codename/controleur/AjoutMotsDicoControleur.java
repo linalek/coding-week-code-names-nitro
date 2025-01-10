@@ -98,13 +98,11 @@ public class AjoutMotsDicoControleur implements Initializable {
         DictionnaireThemes.reinitialiserDictionnaire();
         try {
             sauvegarderDictionnaire("dictionnaire.json");
-            System.out.println("Dictionnaire reinitialise et sauvegarde");
         } catch (IOException e) {
             e.printStackTrace();
         }
         themeComboBox.setItems(FXCollections.observableArrayList(DictionnaireThemes.getThemes()));
         themeComboBox.setValue(null); // ou le premier thème si tu préfères
         wordsListView.setItems(FXCollections.emptyObservableList());
-        System.out.println("Reinitialisation terminee");
     }
 }

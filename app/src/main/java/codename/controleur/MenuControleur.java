@@ -226,7 +226,6 @@ public class MenuControleur {
                 globalControleur.afficherChargementAgent();
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Aucune partie sauvegardee trouvee => on en cree une nouvelle.");
             globalControleur.setJeuEnCours(new Jeu());
         } catch (IOException e) {
             e.printStackTrace();

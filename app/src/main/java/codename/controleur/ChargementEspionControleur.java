@@ -39,9 +39,11 @@ public class ChargementEspionControleur {
      */
     public void setTour() {
         if (jeuEnCours.getTour()==0) {
+            tourLabel.setStyle("-fx-font-size: 30px;");
             tourLabel.setText("Au tour de l'espion Bleu !");
         }
         else {
+            tourLabel.setStyle("-fx-font-size: 30px;");
             tourLabel.setText("Au tour de l'espion Rouge !");
         }
     }

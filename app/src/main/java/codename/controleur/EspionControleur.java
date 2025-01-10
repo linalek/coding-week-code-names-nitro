@@ -104,12 +104,12 @@ public class EspionControleur {
 
     public void addRedPlayer(String playerName) {
         Label newPlayer = new Label(playerName);
-        newPlayer.setStyle("-fx-text-fill: white; -fx-font-size: 16px;");
+        newPlayer.setStyle("-fx-text-fill: white; -fx-font-size: 20px;");
         redTeamBox.getChildren().add(newPlayer);
     }
     public void addBluePlayer(String playerName) {
         Label newPlayer = new Label(playerName);
-        newPlayer.setStyle("-fx-text-fill: white; -fx-font-size: 16px;");
+        newPlayer.setStyle("-fx-text-fill: white; -fx-font-size: 20px;");
         blueTeamBox.getChildren().add(newPlayer);
     }
 }

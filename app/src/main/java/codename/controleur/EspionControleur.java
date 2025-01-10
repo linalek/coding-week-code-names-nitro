@@ -59,9 +59,11 @@ public class EspionControleur {
             for (Joueur joueur : jeuEnCours.getEquipeRouge().getJoueurs()){
                 addRedPlayer(joueur.getNom() + " : " + joueur.getRole());
             }
+            addRedPlayer(String.valueOf(jeuEnCours.getNbMotsRouge()) + " cartes restantes.");
             for (Joueur joueur : jeuEnCours.getEquipeBleue().getJoueurs()){
                 addBluePlayer(joueur.getNom() + " : " + joueur.getRole());
             }
+            addBluePlayer(String.valueOf(jeuEnCours.getNbMotsBleu()) + " cartes restantes.");
             FXMLLoader plateauEspionLoader = new FXMLLoader(getClass().getResource("/codename/vue/PlateauEspion.fxml"));
             Node plateauEspionPane = plateauEspionLoader.load();
             plateauEspionControleur = plateauEspionLoader.getController();

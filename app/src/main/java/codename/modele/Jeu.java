@@ -243,6 +243,14 @@ public class Jeu {
         return tourRole;
     }
     public int getType(){return type;}
+    public int getNbMotsBleu(){return nbMotsBleu;}
+    public int getNbMotsRouge(){return nbMotsRouge;}
+    public void setNbMotsBleu(int nbMotsBleu) {
+        this.nbMotsBleu = nbMotsBleu;
+    }
+    public void setNbMotsRouge(int nbMotsRouge) {
+        this.nbMotsRouge = nbMotsRouge;
+    }
 
     public static void sauvegarder(Jeu jeu, String cheminFichier) throws IOException {
         ObjectMapper mapper = new ObjectMapper();

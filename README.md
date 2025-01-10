@@ -46,7 +46,6 @@ Ce jeu d'association d'idées et de déduction propose des fonctionnalités inte
    Lancer l'application :
    ```bash
    java --module-path ${JAVAFX_HOME}/lib --add-modules javafx.base,javafx.controls,javafx.fxml,javafx.web -jar codename.jar
-   gradle run
    ```
 
 4. **Tests :**

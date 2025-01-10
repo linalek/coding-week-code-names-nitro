@@ -62,9 +62,11 @@ public class AgentControleur {
             for (Joueur joueur : jeuEnCours.getEquipeRouge().getJoueurs()){
                 addRedPlayer(joueur.getNom() + " : " + joueur.getRole());
             }
+            addRedPlayer(String.valueOf(jeuEnCours.getNbMotsRouge()) + " cartes restantes.");
             for (Joueur joueur : jeuEnCours.getEquipeBleue().getJoueurs()){
                 addBluePlayer(joueur.getNom() + " : " + joueur.getRole());
             }
+            addBluePlayer(String.valueOf(jeuEnCours.getNbMotsBleu()) + " cartes restantes.");
             FXMLLoader plateauAgentLoader = new FXMLLoader(getClass().getResource("/codename/vue/PlateauAgent.fxml"));
             Node plateauAgentPane = plateauAgentLoader.load();
             plateauAgentControleur = plateauAgentLoader.getController();

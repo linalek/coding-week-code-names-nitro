@@ -1,4 +1,5 @@
 package codename.modele;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.File;
@@ -25,6 +26,7 @@ public class Jeu {
     private Equipe equipeBleue;
     private int nbCartes;
     private boolean modeBlitz;
+    @JsonIgnore
     private Timer timer; // Timer pour le décompte
     private int timerSelected;
     private long remainingTime; // Temps restant en millisecondes (30 secondes)

@@ -1,0 +1,67 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #f0f0f0);
+    -fx-padding: 20;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+}
+
+HBox, VBox {
+    -fx-spacing: 10;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+.text-field, .combo-box-base {
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-border-color: #ccc;
+    -fx-padding: 6 10;
+    -fx-background-color: #ffffff;
+}
+
+.text-field:focused, .combo-box-base:focused {
+    -fx-border-color: #66aaff;
+}
+
+.list-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 4;
+}
+
+.button {
+    -fx-background-color: #039be5;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1 );
+}
+
+.button:hover {
+    -fx-background-color: #0288d1;
+}
+
+.button:pressed {
+    -fx-background-color: #0277bd;
+}
+
+#resetDictButton {
+    -fx-background-color: #e53935;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+#resetDictButton:hover {
+    -fx-background-color: #d32f2f;
+}
+
+#resetDictButton:pressed {
+    -fx-background-color: #c62828;
+}

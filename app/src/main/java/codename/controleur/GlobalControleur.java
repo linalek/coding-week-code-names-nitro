@@ -287,6 +287,7 @@ public class GlobalControleur {
             Node customPane = customLoader.load();
             CustomControleur customControleur = customLoader.getController();
             customControleur.setGlobalControleur(this);
+            root.getScene().getStylesheets().add(getClass().getResource("/public/modifDicoStyle.css").toExternalForm());
             root.setCenter(customPane);
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,7 +1,13 @@
 package codename.controleur;
 
+import java.io.File;
+
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 /**
  * Contrôleur pour la vue d'accueil, cela permet de gérer le passage à la vue du plateau de jeu avec l'appuie du bouton "jouer"
@@ -13,6 +19,41 @@ public class AccueilControleur {
 
     public void setGlobalControleur(GlobalControleur globalControleur) {
         this.globalControleur = globalControleur;
+    }
+
+    @FXML
+    private Button playPauseButton; // Bouton pour jouer/pause la musique
+
+    @FXML
+    private Slider volumeSlider; // Slider pour contrôler le volume
+
+    private MediaPlayer mediaPlayer;
+    private boolean isPlaying = false;
+
+    public void initialize() {
+        String musicPath = "src/main/resources/audio/music2.mp3"; 
+        Media media = new Media(new File(musicPath).toURI().toString());
+        mediaPlayer = new MediaPlayer(media);
+
+        volumeSlider.setValue(50); // Valeur initiale (50%)
+        mediaPlayer.setVolume(volumeSlider.getValue() / 100);
+
+        volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> 
+            mediaPlayer.setVolume(newValue.doubleValue() / 100)
+        );
+
+        playPauseButton.setOnAction(event -> togglePlayPause());
+    }
+
+    private void togglePlayPause() {
+        if (isPlaying) {
+            mediaPlayer.pause();
+            playPauseButton.setText("Play"); // Mettre à jour le texte du bouton
+        } else {
+            mediaPlayer.play();
+            playPauseButton.setText("Pause");
+        }
+        isPlaying = !isPlaying;
     }
 
     @FXML

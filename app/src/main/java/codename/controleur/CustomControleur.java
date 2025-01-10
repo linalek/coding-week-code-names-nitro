@@ -28,7 +28,7 @@ public class CustomControleur {
     public Label tempsLimite;
 
     @FXML
-    public ListView listViewThemes;
+    public ListView<String> listViewThemes;
 
     @FXML
     public Label temps;

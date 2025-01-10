@@ -223,6 +223,16 @@ public class GlobalControleur {
         blitzTimeline.play();
     }
 
+    /*Méthode pour stoper le mode Blitz quand */
+    public void stopperBlitzSiActive() {
+        if (jeuEnCours != null && jeuEnCours.isModeBlitz()) {
+            if (blitzTimeline != null) {
+                blitzTimeline.stop();
+                blitzTimeline = null;
+            }
+            jeuEnCours.setModeBlitz(false);
+        }
+    }
 
     /**
      * Méthode pour afficher la page de chargement pour l'espion

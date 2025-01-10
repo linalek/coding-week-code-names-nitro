@@ -196,12 +196,13 @@ public class MenuControleur {
         System.exit(0);
     }
 
-    /**
-     * Méthode pour retourner au menu principal
-     */
     @FXML
     public void retourMenu() {
         if (globalControleur != null) {
+            // Ajoute cette ligne pour stopper le blitz s’il est actif
+            globalControleur.stopperBlitzSiActive();
+
+            // Puis on revient à l’accueil
             globalControleur.afficherAccueil();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -209,8 +210,9 @@ public class MenuControleur {
             alert.setHeaderText("Retour au menu principal impossible");
             alert.setContentText("GlobalControleur est null. Assurez-vous qu'il est correctement initialise.");
             alert.showAndWait();
-            }
+        }
     }
+
 
     /**
      * Méthode pour sauvegarder une partie en cours

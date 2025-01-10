@@ -119,6 +119,12 @@ createTableauTuiles créé le tableau de tuiles en fonction de si on joue en mod
     public TuileImage configurerTuileImage(){
         int equipe = repartitionTuiles.removeFirst();
         TuileImage myTuile = new TuileImage(equipe);
+        String mot;
+        do {
+            myTuile.setRandomImageAdress(listOfThemes);
+            mot = myTuile.getImageAdress();
+        } while (motUtilises.contains(mot));
+        motUtilises.add(mot);
         myTuile.setRandomImageAdress();
         return myTuile;
     }

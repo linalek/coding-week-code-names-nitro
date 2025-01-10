@@ -2,6 +2,9 @@ package codename.modele;
 
 import java.util.ArrayList;
 
+/**
+ * Objet équipe
+ */
 public class Equipe {
     private ArrayList<Joueur> joueurs;
     private int nbJoueurs;

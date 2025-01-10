@@ -13,6 +13,9 @@ import javafx.scene.control.cell.CheckBoxListCell;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Page de personalisation de partie.
+ */
 public class CustomControleur {
 
     @FXML
@@ -112,14 +115,12 @@ public class CustomControleur {
     private void handleModeTempsLimite() {
         if (checkboxModeTempsLimite.isSelected()) {
             checkboxNotModeTempsLimite.setSelected(false);
-//            inputTemps.setVisible(true);
         } else if (checkboxNotModeTempsLimite.isSelected()) {
             checkboxModeTempsLimite.setSelected(false);
-            //inputTemps.setVisible(false);
         }
     }
     /**
-     * gérer le check des modes images/mots
+     * Gérer le check des modes images/mots
      */
     @FXML
     private void handleModeSelection() {
@@ -130,7 +131,7 @@ public class CustomControleur {
         }
     }
     /**
-     * lancer la partie
+     * Lancer la partie
      */
     @FXML
     private void handleLancerPartie() {
@@ -151,21 +152,9 @@ public class CustomControleur {
             if (checkboxModeTempsLimite.isSelected()) {
                 tempsLimite = true;
             }
-
             int type = 0;
             if (checkboxModeImage.isSelected()) {
                 type = 1;
-            }
-
-            if (checkboxModeTempsLimite.isSelected()) {
-                System.out.println("Temps limité : 30s !");
-            } else if (checkboxNotModeTempsLimite.isSelected()) {
-                System.out.println("Pas de temps limité");
-            }
-            if (checkboxModeImage.isSelected()) {
-                System.out.println("Mode Image");
-            } else if (checkboxModeMot.isSelected()) {
-                System.out.println("Mode mot");
             }
             if (globalControleur != null) {
                 globalControleur.lancerJeuCustom(Integer.parseInt(tGrille), type, tempsLimite, Integer.parseInt(nbJoueurs)-1, selectedThemes);

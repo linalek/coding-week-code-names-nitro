@@ -1,5 +1,8 @@
 package codename.modele;
 
+/**
+ * Objet joueur
+ */
 public class Joueur {
     private String nom;
     private String role; // Agent ou Espion

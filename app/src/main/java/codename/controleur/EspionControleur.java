@@ -51,6 +51,9 @@ public class EspionControleur {
 
     private GlobalControleur globalControleur;
 
+    /**
+     * Méthode appelée lors de l'initialisation de la fenêtre.
+     */
     public void readyToContinue() {
         try {
             for (Joueur joueur : jeuEnCours.getEquipeRouge().getJoueurs()){
@@ -75,6 +78,10 @@ public class EspionControleur {
         this.globalControleur = globalControleur;
     }
 
+    /**
+     * Méthode appelée lors de la sélection du nombre de cartes à retourner.
+     * @param event
+     */
     @FXML
     private void handleNombreCartesSelection(ActionEvent event) {
         MenuItem selectedItem = (MenuItem) event.getSource();
@@ -88,6 +95,10 @@ public class EspionControleur {
         }
     }
 
+    /**
+     * Méthode appelée lors de la validation de l'indice.
+     * @param event
+     */
     @FXML
     private void handleValider(ActionEvent event) {
         jeuEnCours.setIndice(indiceTextField.getText());
@@ -98,10 +109,19 @@ public class EspionControleur {
             System.err.println("GlobalControleur non initialise.");
         }
     }
+
+    /**
+     * Définir le jeu
+     * @param jeuEnCours
+     */
     public void setJeu(Jeu jeuEnCours){
         this.jeuEnCours= jeuEnCours;
     }
 
+    /**
+     * Méthodes pour afficher le nom des joueurs.
+     * @param playerName
+     */
     public void addRedPlayer(String playerName) {
         Label newPlayer = new Label(playerName);
         newPlayer.setStyle("-fx-text-fill: white; -fx-font-size: 20px;");

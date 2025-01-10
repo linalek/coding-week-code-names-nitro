@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Dictionnaire des thèmes
+ */
 public class DictionnaireThemes {
     private static Map<String, List<String>> themes = new HashMap<>(); // Map<Theme, List<Mots>> est un dico
     private static final Map<String, List<String>> DEFAULT_THEMES = new HashMap<>();

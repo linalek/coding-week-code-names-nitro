@@ -12,6 +12,9 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
+/**
+ * Contrôleur pour la vue Agent.
+ */
 public class AgentControleur {
 
     private Jeu jeuEnCours;
@@ -22,6 +25,10 @@ public class AgentControleur {
     @FXML
     private Label labelTempsRestant;
 
+    /**
+     * Met à jour le label du temps restant.
+     * @param text
+     */
     public void updateLabel(String text) {
         if (labelTempsRestant == null) {
             System.out.println("labelTempsRestant est null dans AgentControleur !");
@@ -45,6 +52,9 @@ public class AgentControleur {
     @FXML
     private BorderPane rootAgent;
 
+    /**
+     * Méthode pour initialiser le contrôleur.
+     */
     public void readyToContinue() {
         setIndice();
         setNombreCartes();
@@ -101,6 +111,10 @@ public class AgentControleur {
         nombreCartesDisplayLabel.setText(String.valueOf(jeuEnCours.getNombreTuileARretourner()));
     }
 
+    /**
+     * Méthode pour gérer le clic sur le bouton "Valider".
+     * @param event
+     */
     public void handleValider(ActionEvent event) {
         jeuEnCours.setTourRole(0);
         if (globalControleur != null) {
@@ -108,11 +122,19 @@ public class AgentControleur {
         }
     }
 
+    /**
+     * Méthode pour gérer le clic sur le bouton "Passer".
+     */
     public void aPerdu(){
         if (globalControleur != null) {
             globalControleur.afficherChargementEspion();
         }
     }
+
+    /**
+     * Méthode pour gérer le clic sur le bouton "Gagner".
+     * @param equipe
+     */
     public void aGagne(int equipe){
         if (equipe==1){
             if (globalControleur != null) {
@@ -126,20 +148,37 @@ public class AgentControleur {
         }
     }
 
+    /**
+     * Méthode pour gérer le clic sur le bouton "Recommencer"
+     * @param jeuEnCours
+     */
     public void setJeu(Jeu jeuEnCours){
         this.jeuEnCours= jeuEnCours;
     }
 
+    /**
+     * Méthodes pour ajouter un joueur à l'équipe rouge.
+     * @param playerName
+     */
     public void addRedPlayer(String playerName) {
         Label newPlayer = new Label(playerName);
         newPlayer.setStyle("-fx-text-fill: white; -fx-font-size: 20px;");
         redTeamBox.getChildren().add(newPlayer);
     }
+
+    /**
+     * Méthodes pour afficher à qui est le tour de jouer.
+     */
     public void addRedTurn() {
         Label tour = new Label("A ton tour !");
         tour.setStyle("-fx-text-fill: white; -fx-font-size: 16px;");
         redTeamBox.getChildren().add(tour);
     }
+
+    /**
+     * Méthodes pour ajouter un joueur à l'équipe bleue.
+     * @param playerName
+     */
     public void addBluePlayer(String playerName) {
         Label newPlayer = new Label(playerName);
         newPlayer.setStyle("-fx-text-fill: white; -fx-font-size: 20px;");

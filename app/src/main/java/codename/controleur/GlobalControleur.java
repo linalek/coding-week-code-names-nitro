@@ -151,7 +151,6 @@ public class GlobalControleur {
         e.printStackTrace();
     }
     }
-
     /**
      * Afficher la vue Agent dans le BorderPane
      */

@@ -45,6 +45,9 @@ public class AccueilControleur {
         playPauseButton.setOnAction(event -> togglePlayPause());
     }
 
+    /**
+     * Mise à jour du texte du bouton
+     */
     private void togglePlayPause() {
         if (isPlaying) {
             mediaPlayer.pause();
@@ -56,6 +59,9 @@ public class AccueilControleur {
         isPlaying = !isPlaying;
     }
 
+    /**
+     * Lancer la partie en mode basique (grille 5x5, 4 joueurs, 2 équipes, sans chronomètre, mode mot)
+     */
     @FXML
     public void handleJouer() {
         if (globalControleur != null) {

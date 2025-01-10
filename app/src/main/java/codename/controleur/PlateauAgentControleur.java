@@ -42,6 +42,9 @@ public class PlateauAgentControleur implements Initializable {
         mettreAJourGrille();
     }
 
+    /**
+     * Mise à jour de la grille.
+     */
     public void mettreAJourGrille() {
         grilleAffichage.getChildren().clear();
         if (jeuEnCours.getType()==0) {
@@ -66,6 +69,11 @@ public class PlateauAgentControleur implements Initializable {
         }
     }
 
+    /**
+     * Création de la cellule contenant le mot : tuile.
+     * @param tuileMot
+     * @return
+     */
     private StackPane creerCelluleMot(TuileMot tuileMot) {
         StackPane cellule = new StackPane();
         cellule.setPrefSize(150, 150); // Taille de chaque cellule
@@ -94,6 +102,11 @@ public class PlateauAgentControleur implements Initializable {
         return cellule;
     }
 
+    /**
+     * Création de la cellule contenant l'image : tuile
+     * @param tuileImage
+     * @return
+     */
     private StackPane creerCelluleImage(TuileImage tuileImage) {
         StackPane cellule = new StackPane();
         cellule.setPrefSize(150, 150); // Taille de chaque cellule
@@ -112,6 +125,11 @@ public class PlateauAgentControleur implements Initializable {
         return cellule;
     }
 
+    /**
+     * Ajouter des images
+     * @param cheminImage
+     * @param cellule
+     */
     public void ajouterImage(String cheminImage,StackPane cellule) {
         Image image = new Image(getClass().getResourceAsStream(cheminImage));
         ImageView imageView = new ImageView(image);
@@ -135,6 +153,10 @@ public class PlateauAgentControleur implements Initializable {
         };
     }
 
+    /**
+     * Gérer les clics.
+     * @param event
+     */
     private void handleCellClick(MouseEvent event) {
 
         // Récupérer la cellule cliquée
@@ -151,9 +173,15 @@ public class PlateauAgentControleur implements Initializable {
             agentControleur.aPerdu();
         }
     }
+
     public void setAgentControleur(AgentControleur agentControleur) {
         this.agentControleur = agentControleur;
     }
+
+    /**
+     * Définir le jeu.
+     * @param jeuEnCours
+     */
     public void setJeu(Jeu jeuEnCours) {
         this.jeuEnCours = jeuEnCours;
     }

@@ -56,6 +56,10 @@ public class ChargementEspionControleur {
         globalControleur.afficherEspion();
     }
 
+    /**
+     * Définit le jeu en cours.
+     * @param jeuEnCours
+     */
     public void setJeuEnCours(Jeu jeuEnCours) {
         this.jeuEnCours = jeuEnCours;
     }

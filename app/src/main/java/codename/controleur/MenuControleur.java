@@ -71,6 +71,11 @@ public class MenuControleur {
 
     @FXML
     public void partieSolo() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Non disponible");
+        alert.setContentText("Ce mode n'est pas disponible, veuillez passer à l'abonnement premium !");
+        alert.showAndWait();
     }
 
     /**
@@ -80,7 +85,6 @@ public class MenuControleur {
     public void partieCustom() {
         if (globalControleur != null) {
             globalControleur.afficherCustom();
-            System.out.println("custom");
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");

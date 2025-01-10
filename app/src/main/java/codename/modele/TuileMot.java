@@ -6,6 +6,9 @@ import java.util.Random;
 
 import codename.DictionnaireThemes;
 
+/**
+ * Objet tuile de mot
+ */
 public class TuileMot extends Tuile {
     private String mot;
 

@@ -11,17 +11,16 @@ import javafx.scene.layout.VBox;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Définir la configuration des équipes.
+ */
 public class ConfigurationEquipeControleur {
-
 
     private List<TextField> listeNomsAgentRouge;
 
-
     private TextField nomEspionRouge;
 
-
     private List<TextField> listeNomAgentBleu;
-
 
     private TextField nomEspionBleu;
 
@@ -32,6 +31,7 @@ public class ConfigurationEquipeControleur {
     private VBox listeJoueursBleu;
 
     private Jeu jeuEnCours;
+
     private GlobalControleur globalControleur;
 
     public void setGlobalControleur(GlobalControleur globalControleur) {
@@ -53,6 +53,11 @@ public class ConfigurationEquipeControleur {
         }
     }
 
+    /**
+     * Ajouter une ligne pour un espion
+     * @param container
+     * @return
+     */
     private TextField addEspionRow(VBox container) {
         HBox row = new HBox(15);
         row.setStyle("-fx-alignment: CENTER;");
@@ -68,6 +73,11 @@ public class ConfigurationEquipeControleur {
         return textField;
     }
 
+    /**
+     * Ajouter une ligne pour un agent
+     * @param container
+     * @return
+     */
     private TextField addAgentRow(VBox container) {
         HBox row = new HBox(15);
         row.setStyle("-fx-alignment: CENTER;");
@@ -83,6 +93,9 @@ public class ConfigurationEquipeControleur {
         return textField;
     }
 
+    /**
+     * Confirmer les équipes et commencer le jeu
+     */
     @FXML
     public void validerEquipes() {
         String espionRouge = nomEspionRouge.getText().trim();
@@ -113,6 +126,9 @@ public class ConfigurationEquipeControleur {
         }
     }
 
+    /**
+     * Revenir à l'écran d'accueil
+     */
     @FXML
     public void annuler() {
         if (globalControleur != null) {
@@ -122,6 +138,10 @@ public class ConfigurationEquipeControleur {
         }
     }
 
+    /**
+     * Définir le jeu en cours
+     * @param jeuEnCours
+     */
     public void setJeuEnCours(Jeu jeuEnCours) {
         this.jeuEnCours = jeuEnCours;
     }

@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
         @JsonSubTypes.Type(value = TuileImage.class, name="Image")
 })
 
-/*
+/**
  * Tuiles est la classe des tuiles avec des mots
 */
 public abstract class Tuile {

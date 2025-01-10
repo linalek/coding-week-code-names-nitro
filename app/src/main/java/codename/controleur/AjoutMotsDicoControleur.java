@@ -12,6 +12,9 @@ import codename.DictionnaireThemes;
 
 import static codename.DictionnaireThemes.sauvegarderDictionnaire;
 
+/**
+ * Contrôleur pour la vue ajouter des mots au dictionnaire.
+ */
 public class AjoutMotsDicoControleur implements Initializable {
 
     @FXML
@@ -93,6 +96,9 @@ public class AjoutMotsDicoControleur implements Initializable {
         );
     }
 
+    /**
+     * Réinitialise le dictionnaire de thèmes.
+     */
     @FXML
     private void handleReinitialiserDictionnaire() {
         DictionnaireThemes.reinitialiserDictionnaire();

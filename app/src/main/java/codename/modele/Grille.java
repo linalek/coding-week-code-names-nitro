@@ -3,7 +3,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
-
+/**
+ * Objet grille
+ */
 public class Grille {
     private int nbRouge;
     private int nbBleue;

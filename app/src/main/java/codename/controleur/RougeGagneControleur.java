@@ -34,12 +34,6 @@ public class RougeGagneControleur {
     }
 
     /**
-     * Définit le texte du tour actuel.
-     * @param prochainTour Le texte indiquant quel joueur est concerné.
-     */
-
-
-    /**
      * Gère l'événement lorsque le bouton "Go" est cliqué.
      */
     @FXML

@@ -57,6 +57,10 @@ public class ChargementAgentControleur {
 
     }
 
+    /**
+     * Définit le jeu en cours.
+     * @param jeuEnCours
+     */
     public void setJeuEnCours(Jeu jeuEnCours) {
         this.jeuEnCours = jeuEnCours;
     }

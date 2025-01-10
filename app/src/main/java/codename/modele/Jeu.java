@@ -7,6 +7,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.List;
 
+/**
+ * Objet Jeu
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Jeu {
     private Grille grille;

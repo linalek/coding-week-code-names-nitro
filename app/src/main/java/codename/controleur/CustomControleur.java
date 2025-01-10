@@ -28,6 +28,9 @@ public class CustomControleur {
     public ListView listViewThemes;
 
     @FXML
+    public Label temps;
+
+    @FXML
     private ChoiceBox<String> choiceBoxThemes;
 
     @FXML
@@ -54,6 +57,7 @@ public class CustomControleur {
 
     @FXML
     private void initialize() {
+        temps.visibleProperty().bind(checkboxModeTempsLimite.selectedProperty());
         // Charger les thèmes depuis le dictionnaire
         themes.setAll(DictionnaireThemes.getThemes());
         listViewThemes.setItems(themes);
@@ -108,10 +112,10 @@ public class CustomControleur {
     private void handleModeTempsLimite() {
         if (checkboxModeTempsLimite.isSelected()) {
             checkboxNotModeTempsLimite.setSelected(false);
-            inputTemps.setVisible(true);
+//            inputTemps.setVisible(true);
         } else if (checkboxNotModeTempsLimite.isSelected()) {
             checkboxModeTempsLimite.setSelected(false);
-            inputTemps.setVisible(false);
+            //inputTemps.setVisible(false);
         }
     }
     /**
@@ -143,10 +147,8 @@ public class CustomControleur {
             String nbJoueurs = nombreJoueurs.getText();
             String tGrille = tailleGrille.getText();
 
-            int tempsChoisi = 0;
             boolean tempsLimite = false;
             if (checkboxModeTempsLimite.isSelected()) {
-                tempsChoisi = Integer.parseInt(inputTemps.getText());
                 tempsLimite = true;
             }
 
@@ -156,7 +158,7 @@ public class CustomControleur {
             }
 
             if (checkboxModeTempsLimite.isSelected()) {
-                System.out.println("Temps limité : " + inputTemps.getText());
+                System.out.println("Temps limité : 30s !");
             } else if (checkboxNotModeTempsLimite.isSelected()) {
                 System.out.println("Pas de temps limité");
             }
@@ -166,7 +168,7 @@ public class CustomControleur {
                 System.out.println("Mode mot");
             }
             if (globalControleur != null) {
-                globalControleur.lancerJeuCustom(Integer.parseInt(tGrille), type, tempsLimite, Integer.parseInt(nbJoueurs)-1, tempsChoisi, selectedThemes);
+                globalControleur.lancerJeuCustom(Integer.parseInt(tGrille), type, tempsLimite, Integer.parseInt(nbJoueurs)-1, selectedThemes);
             }
         }
     }

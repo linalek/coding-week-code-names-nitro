@@ -52,29 +52,21 @@
                         </items>
                     </SplitMenuButton>
             </HBox>
-<!--            <HBox spacing="10" alignment="CENTER">-->
-<!--                <Label text="Thèmes :" style="-fx-font-size: 24px;" textFill="white"/>-->
-<!--                <ChoiceBox fx:id="choiceBoxThemes" style="-fx-pref-width: 150px;"/>-->
-<!--            </HBox>-->
             <HBox spacing="10" alignment="CENTER">
                 <Label text="Thèmes disponibles :" style="-fx-font-size: 24px;" textFill="white"/>
                 <ListView fx:id="listViewThemes" style="-fx-pref-width: 300px; -fx-pref-height: 150px;" />
             </HBox>
-<!--            <Button text="Valider les thèmes" onAction="#validateThemesSelection"-->
-<!--                    style="-fx-font-size: 18px; -fx-text-fill: white; -fx-background-color: #4caf50;" />-->
-
-
+            <!-- Mode de jeu : temps limité ou non -->
             <HBox spacing="10" alignment="CENTER" >
                 <Label fx:id="tempsLimite" text ="Temps limité ? " style="-fx-font-size: 24px;" textFill="white"/>
                 <CheckBox fx:id="checkboxModeTempsLimite" text="Oui" onAction="#handleModeTempsLimite" style="-fx-font-size: 24px;" textFill="white"/>
                 <CheckBox fx:id="checkboxNotModeTempsLimite" text="Non" onAction="#handleModeTempsLimite" style="-fx-font-size: 24px;" textFill="white" />
             </HBox>
                 <VBox alignment="CENTER" prefHeight="39.0" prefWidth="200.0" style="-fx-font-size: 16px;">
-<!--                    <Label fx:id="label" text="Je suis un label !" visible="${checkBox.selected}"}-->
-                <TextField fx:id="inputTemps" promptText="Entrez le temps (en secondes)" visible="false" prefWidth="200"/>
+                    <Label fx:id="temps" text="Le temps de réflexion est limité à 30 secondes !" style="-fx-font-size: 24px;" textFill="white" />
                 </VBox>
+            <!-- Mode de jeu : image ou mot -->
             <VBox spacing="10" alignment="CENTER">
-                <!-- Mode de jeu : image ou mot -->
                 <HBox spacing="10" alignment="CENTER">
                     <Label text="Mode de jeu :" style="-fx-font-size: 24px;" textFill="white"/>
                     <CheckBox fx:id="checkboxModeImage" text="Image" onAction="#handleModeSelection" style="-fx-font-size: 24px;" textFill="white"/>

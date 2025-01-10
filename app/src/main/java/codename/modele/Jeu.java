@@ -31,7 +31,7 @@ public class Jeu {
 
     private static final long TEMPS_PAR_TOUR = 30000; // 30 secondes
 
-    public Jeu(int taille, int type, boolean modeBlitz, int nombreAgentsParEquipe, int timerSelected, List<String> listeDesThemes) {
+    public Jeu(int taille, int type, boolean modeBlitz, int nombreAgentsParEquipe, List<String> listeDesThemes) {
         this.grille = new Grille(taille, type, listeDesThemes);
         this.nbMotsBleu = grille.getNbBleue();
         this.nbMotsRouge = grille.getNbRouge();
@@ -43,7 +43,7 @@ public class Jeu {
         this.timer = new Timer();
         this.remainingTime = TEMPS_PAR_TOUR;
         this.nombreAgentsParEquipe = nombreAgentsParEquipe;
-        this.timerSelected = timerSelected;
+        //this.timerSelected = timerSelected;
         this.type = type;
     }
 

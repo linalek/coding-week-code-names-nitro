@@ -141,6 +141,44 @@ public class CustomControleur {
             alert.setHeaderText("Sélection insuffisante");
             alert.setContentText("Vous devez sélectionner au moins 4 thèmes !");
             alert.showAndWait();
+            return; // Ajout d'un retour pour arrêter l'exécution si l'alerte est montrée
+        }
+
+        // Validation des champs avant de procéder
+        String nbJoueursText = nombreJoueurs.getText();
+        String tGrilleText = tailleGrille.getText();
+
+        if (nbJoueursText == null || nbJoueursText.isEmpty() ||
+                tGrilleText == null || tGrilleText.isEmpty() ||
+                nbJoueursText.equals("Nombre de joueurs") ||
+                tGrilleText.equals("Taille de la grille")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Entrées manquantes");
+            alert.setContentText("Veuillez sélectionner le nombre de joueurs et la taille de la grille.");
+            alert.showAndWait();
+            return;
+        }
+
+        int nbJoueurs;
+        int tGrille;
+        try {
+            nbJoueurs = Integer.parseInt(nbJoueursText);
+            tGrille = Integer.parseInt(tGrilleText);
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Format invalide");
+            alert.setContentText("Veuillez sélectionner des valeurs numériques valides pour le nombre de joueurs et la taille de la grille.");
+            alert.showAndWait();
+            return;
+        }
+
+        boolean tempsLimite = checkboxModeTempsLimite.isSelected();
+        int type = checkboxModeImage.isSelected() ? 1 : 0;
+
+        if (tempsLimite) {
+            System.out.println("Temps limité : 30s !");
         } else {
             if (selectedThemes.isEmpty()) {
                 selectedThemes=null;

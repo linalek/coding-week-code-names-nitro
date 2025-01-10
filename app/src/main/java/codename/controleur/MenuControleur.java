@@ -79,10 +79,7 @@ public class MenuControleur {
     public MenuItem bouttonCustom;
 
 
-    private Jeu jeuEnCours;
-
-
-    
+    private Jeu jeuEnCours;    
 
 
     @FXML

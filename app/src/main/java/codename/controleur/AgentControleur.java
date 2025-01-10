@@ -132,7 +132,7 @@ public class AgentControleur {
 
     public void addRedPlayer(String playerName) {
         Label newPlayer = new Label(playerName);
-        newPlayer.setStyle("-fx-text-fill: white; -fx-font-size: 16px;");
+        newPlayer.setStyle("-fx-text-fill: white; -fx-font-size: 30px;");
         redTeamBox.getChildren().add(newPlayer);
     }
     public void addRedTurn() {
@@ -142,7 +142,7 @@ public class AgentControleur {
     }
     public void addBluePlayer(String playerName) {
         Label newPlayer = new Label(playerName);
-        newPlayer.setStyle("-fx-text-fill: white; -fx-font-size: 16px;");
+        newPlayer.setStyle("-fx-text-fill: white; -fx-font-size: 30px;");
         blueTeamBox.getChildren().add(newPlayer);
     }
     public void addBlueTurn() {

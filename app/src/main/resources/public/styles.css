@@ -38,6 +38,68 @@
     -fx-translate-y: -200px; 
 }
 
+.buttonMusique {
+    -fx-background-color: linear-gradient(#6a11cb, #2575fc);
+    
+    /* Coins arrondis */
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    
+    /* Bordure */
+    -fx-border-color: transparent;
+    -fx-border-width: 0 0 2 0;
+    
+    /* Texte */
+    -fx-text-fill: white;
+    -fx-font-size: 24px; 
+    -fx-font-weight: bold;
+    
+    /* Ombre portée */
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.3), 5, 0.0, 0, 2);
+    
+    /* Padding et taille */
+    -fx-padding: 10 30 10 30; 
+    -fx-min-width: 100px; 
+    -fx-min-height: 40px; 
+    
+    /* Transition pour effet de survol */
+    -fx-cursor: hand;
+    -fx-transition: background-color 0.3s, -fx-background-color 0.3s;
+    
+    /* Déplacement vers le haut */
+    -fx-translate-y: -40px; 
+}
+
+
+/* Style pour le slider */
+.slider {
+    -fx-padding: 10px;
+}
+
+.slider .track {
+    -fx-background-color: #cccccc; /* Couleur de la piste */
+    -fx-background-radius: 5px;
+    -fx-padding: 0.25em;
+}
+
+.slider .thumb {
+    -fx-background-color: #ff7f50; /* Couleur du curseur */
+    -fx-background-radius: 10px;
+    -fx-pref-width: 15px; /* Taille du curseur */
+    -fx-pref-height: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 5, 0, 0, 1); /* Ombre pour le curseur */
+}
+
+.slider .tick-mark {
+    -fx-stroke: #666666; /* Couleur des graduations */
+}
+
+.slider .tick-label {
+    -fx-font-size: 10px; /* Taille des labels */
+    -fx-fill: #333333; /* Couleur du texte des labels */
+}
+
+
 .button:hover {
     /* Changement de dégradé au survol */
     -fx-background-color: linear-gradient(#2575fc, #6a11cb);

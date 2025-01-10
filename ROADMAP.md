@@ -24,7 +24,7 @@
 - Ajouter les statistiques
 - Ajouter les ecrans de chargement entre le mode agent et le mode espion
 - Implémenter le jeu en Blitz avec le sablier
-- Implémenter le lien entre le fenêtre custom et la customisation d'une partie
+- Implémenter le lien entre la fenêtre custom et la customisation d'une partie
 - Fonction d'ajout de ses propres mots : modifier le dictionnaire
 - Sauvegarde/restauration de la partie
 - Mode Image ?
@@ -51,14 +51,15 @@
 - documenter l'installation et l'éxecution du jeu : Readme.md
 
 ### JOUR 5 : RELEASE FINALE
+- Ajouter une musique
 - Ajouter les règles du mode blitz dans les règles du jeu
+- mode blitz finalisé
 - mode image
 - test unitaire
-- mode solo : indices préprogrammés : sinon faire une fenetre pop up : ce mode n'est pas dispo
-- afficher a qui est le tour
+- mode solo : indisponible
 - vérifier qu'il n'y a aucun élément de design dans le code
-- prendre en compte que l'équipe qui commence doit faire deviner un mot de plus ??
-- ajouter des commentaires permettant de comprendre ce que fais chaque classe/fonction ?? 
+- prendre en compte que l'équipe qui commence doit faire deviner un mot de plus ?? Non
+- ajouter des commentaires permettant de comprendre ce que fait chaque classe/fonction  
 - documenter l'installation et l'éxecution du jeu : Readme.md
 - vidéo démo du jeu : audio + screncast à publier (youtube ou dailymotion) avec le lien dans le readme.md
 - AJOUTER DU STYLE
@@ -110,7 +111,7 @@
 ### Jour 4
 - Visibilité des équipes sur les pages de jeu
 - Ajout de l'indice avec le nombre de cartes dans le jeu
-- Ajout des changement de vue agent/espion dynamique 
+- Ajout des changements de vue agent/espion dynamique 
 - premier jet pour la sauvegarde
 - fix de l'inversement des cartes et des couleurs
 - sauvegarde et restauration de la partie OK
@@ -123,5 +124,17 @@
 - Début jeu en mode image
 
 ### Jour 5
-- mode image
-- ajouter une musique 
+- Mode image
+- Ajouter une musique
+- Ajouter les règles du mode blitz dans les règles du jeu
+- Mode blitz finalisé
+- Test unitaire
+- Mode solo : indisponible
+- Vérifier qu'il n'y a aucun élément de design dans le code
+- Ajouter des commentaires permettant de comprendre ce que fait chaque classe/fonction
+- Documenter l'installation et l'éxecution du jeu : Readme.md
+- AJOUTER DU STYLE
+- Retirer les print de partout
+
+### A FAIRE QUAND C'EST FINI
+Vidéo démo du jeu : audio + screncast à publier (youtube ou dailymotion) avec le lien dans le readme.md

@@ -26,6 +26,7 @@ public class PlateauAgentControleur implements Initializable {
 
     private AgentControleur agentControleur;
     private Jeu jeuEnCours;
+    private boolean aJoue;
 
     @FXML
     private GridPane grilleAffichage;
@@ -36,6 +37,7 @@ public class PlateauAgentControleur implements Initializable {
         grilleAffichage.setAlignment(Pos.CENTER);
         grilleAffichage.setHgap(10);
         grilleAffichage.setVgap(10);
+        aJoue = false;
     }
 
     public void readyToContinue(){
@@ -158,7 +160,7 @@ public class PlateauAgentControleur implements Initializable {
      * @param event
      */
     private void handleCellClick(MouseEvent event) {
-
+        aJoue = true;
         // Récupérer la cellule cliquée
         int  tourEnCours = jeuEnCours.getTour();
         Pane clickedCell = (Pane) event.getSource();
@@ -176,6 +178,13 @@ public class PlateauAgentControleur implements Initializable {
 
     public void setAgentControleur(AgentControleur agentControleur) {
         this.agentControleur = agentControleur;
+    }
+    public boolean getAJoue(){
+        return aJoue;
+    }
+
+    public void setAJoue(boolean aJoue){
+        this.aJoue = aJoue;
     }
 
     /**

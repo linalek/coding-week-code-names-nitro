@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -20,7 +21,6 @@ public class AgentControleur {
     private Jeu jeuEnCours;
     private PlateauAgentControleur plateauAgentControleur;
     private BorderPane root;
-
     /*Pour le mode Blitz*/
     @FXML
     private Label labelTempsRestant;
@@ -116,9 +116,19 @@ public class AgentControleur {
      * @param event
      */
     public void handleValider(ActionEvent event) {
-        jeuEnCours.setTourRole(0);
-        if (globalControleur != null) {
-            globalControleur.afficherChargementEspion();
+        if (plateauAgentControleur.getAJoue()) {
+            jeuEnCours.setTourRole(0);
+            jeuEnCours.changerTour();
+            if (globalControleur != null) {
+                globalControleur.afficherChargementEspion();
+            }
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("sélectionnez au moins une carte");
+            alert.setContentText("Veuillez retourner au moins une carte avant de passer au tour suivant.");
+            alert.showAndWait();
         }
     }
 

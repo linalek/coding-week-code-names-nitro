@@ -47,6 +47,18 @@ public class Jeu {
         this.type = type;
     }
 
+    public Jeu(int type) {
+        this.grille = new Grille(5, type);
+        this.nbMotsBleu = grille.getNbBleue();
+        this.nbMotsRouge = grille.getNbRouge();
+        this.tour = 0;
+        this.statusPartie = 0;
+        this.equipeRouge = new Equipe();
+        this.equipeBleue = new Equipe();
+        this.modeBlitz = false;
+        this.nombreAgentsParEquipe = 1;
+        this.type = type;
+    }
     public Jeu() {
         this.grille = new Grille(5, 0);
         this.nbMotsBleu = grille.getNbBleue();

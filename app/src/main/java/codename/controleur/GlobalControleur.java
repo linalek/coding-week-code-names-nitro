@@ -152,6 +152,9 @@ public class GlobalControleur {
     }
     }
 
+    /**
+     * Afficher la vue Agent dans le BorderPane
+     */
     public void afficherAgent() {
     try {
         FXMLLoader agentLoader = new FXMLLoader(getClass().getResource("/codename/vue/Agent.fxml"));
@@ -172,7 +175,9 @@ public class GlobalControleur {
         }
     }
 
-
+    /**
+     * Lancer une partie en mode blitz
+     */
     public void partieBlitz() {
         jeuEnCours.setModeBlitz(true); // CETTE LIGNE FAIT TOUT et EST SUPER IMPORTANTE
 
@@ -184,7 +189,7 @@ public class GlobalControleur {
         blitzSecondsRemaining = 30;
 
         if (espionControleur != null) {
-            espionControleur.updateLabel("30s");
+            espionControleur.updateLabel(blitzSecondsRemaining+"s");
         }
         if (agentControleur != null) {
             agentControleur.updateLabel("30s");
@@ -287,14 +292,39 @@ public class GlobalControleur {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Méthode pour lancer une nouvelle partie
+     */
     public void lancerJeu() {
         jeuEnCours = new Jeu();
         afficherConfigurationEquipe();
     }
+
+    /**
+     * Méthode pour lancer une partie customisée
+     * @param taille
+     * @param type
+     * @param nombreJoueursParEquipe
+     * @param timer
+     * @param listeDesThemes
+     */
     public void lancerJeuCustom(int taille, int type, int nombreJoueursParEquipe, int timer, List<String> listeDesThemes){
-        jeuEnCours = new Jeu(taille, type,false, nombreJoueursParEquipe, timer,listeDesThemes);
+        jeuEnCours = new Jeu(taille, type,false, nombreJoueursParEquipe, timer, listeDesThemes);
         afficherConfigurationEquipe();
     }
+
+    /**
+     * Méthode pour lancer une partie en mode image
+     */
+    public void lancerJeuModeImage(){
+        jeuEnCours = new Jeu(1);
+        afficherConfigurationEquipe();
+    }
+
+    /**
+     * Méthode pour lancer une partie en mode mot
+     */
     public void afficherBleuGagnant(){
         try {
             FXMLLoader gagnantLoader = new FXMLLoader(getClass().getResource("/codename/vue/BleuGagne.fxml"));
@@ -306,6 +336,10 @@ public class GlobalControleur {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Méthode pour afficher l'écran de victoire de l'équipe rouge
+     */
     public void afficherRougeGagnant(){
         try {
             FXMLLoader gagnantLoader = new FXMLLoader(getClass().getResource("/codename/vue/RougeGagne.fxml"));
@@ -350,6 +384,9 @@ public class GlobalControleur {
         this.previousView = previousView;
     }
 
+    /**
+     * Méthode pour retourner à la vue précédente
+     */
     public void retournerVuePrecedente() {
         // Selon la valeur de previousView, on appelle la bonne méthode d’affichage
         switch (previousView) {

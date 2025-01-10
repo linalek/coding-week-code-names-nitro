@@ -30,18 +30,6 @@ public class MenuControleur {
         this.globalControleur = globalControleur;
     }
 
-    /**
-     * Méthode appelée lorsque l'utilisateur clique sur "Blitz" dans le menu.
-     */
-    @FXML
-    public void partieBlitz() {
-        if (globalControleur != null) {
-            globalControleur.partieBlitz();
-        } else {
-            System.out.println("[MenuControleur] GlobalControleur est null !");
-        }
-    }
-
     @FXML
     public MenuItem bouttonRestaurer;
     
@@ -81,14 +69,13 @@ public class MenuControleur {
 
     private Jeu jeuEnCours;
 
-
-    
-
-
     @FXML
     public void partieSolo() {
     }
 
+    /**
+     * Méthode pour aller sur la page de personalisation de partie
+     */
     @FXML
     public void partieCustom() {
         if (globalControleur != null) {
@@ -169,11 +156,32 @@ public class MenuControleur {
         fenetreRegles.setScene(scene);
         fenetreRegles.show();
     }
-    
+
+    /**
+     * Méthode pour lancer une partie en mode image
+     */
     @FXML
     public void partieImage() {
+        if (globalControleur != null) {
+            globalControleur.lancerJeuModeImage();
+        }
     }
-    
+
+    /**
+     * Méthode appelée lorsque l'utilisateur clique sur "Blitz" dans le menu.
+     */
+    @FXML
+    public void partieBlitz() {
+        if (globalControleur != null) {
+            globalControleur.partieBlitz();
+        } else {
+            System.out.println("[MenuControleur] GlobalControleur est null !");
+        }
+    }
+
+    /**
+     * Méthode pour quitter l'application
+     */
     @FXML
     public void quitterApplication() {
         try {
@@ -200,6 +208,9 @@ public class MenuControleur {
             }
     }
 
+    /**
+     * Méthode pour sauvegarder une partie en cours
+     */
     @FXML
     public void sauvegarderPartie() {
         Jeu jeu = globalControleur.getJeuEnCours();
@@ -213,6 +224,9 @@ public class MenuControleur {
         }
     }
 
+    /**
+     * Méthode pour restaurer une partie sauvegardée
+     */
     @FXML
     public void restaurerPartie() {
         try {
@@ -248,6 +262,10 @@ public class MenuControleur {
         }
     }
 
+    /**
+     *
+     * Méthode pour modifier les cartes du dictionnaire
+     */
     @FXML
     public void modifierCartes() {
         try {

@@ -112,10 +112,12 @@ public class Jeu {
         remainingTime = TEMPS_PAR_TOUR;
     }
 
+    @JsonIgnore
     public Timer getTimerBlitz() {
         return timer;
     }
 
+    @JsonIgnore
     public void setTimerBlitz(Timer timer) {
         this.timer = timer;
     }

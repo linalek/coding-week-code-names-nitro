@@ -1,13 +1,13 @@
 package codename.controleur;
 
-import java.io.File;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+
+import java.net.URL;
 
 /**
  * Contrôleur pour la vue d'accueil, cela permet de gérer le passage à la vue du plateau de jeu avec l'appuie du bouton "jouer"
@@ -31,18 +31,27 @@ public class AccueilControleur {
     private boolean isPlaying = false;
 
     public void initialize() {
-        String musicPath = "src/main/resources/audio/music2.mp3"; 
-        Media media = new Media(new File(musicPath).toURI().toString());
-        mediaPlayer = new MediaPlayer(media);
+        try {
+            // Charger la ressource depuis le classpath
+            URL mediaUrl = getClass().getResource("/audio/music2.mp3");
+            if (mediaUrl == null) {
+                throw new IllegalArgumentException("Fichier média introuvable!");
+            }
+            String mediaPath = mediaUrl.toExternalForm();
+            Media media = new Media(mediaPath);
+            mediaPlayer = new MediaPlayer(media);
 
-        volumeSlider.setValue(50); // Valeur initiale (50%)
-        mediaPlayer.setVolume(volumeSlider.getValue() / 100);
+            volumeSlider.setValue(50); // Valeur initiale (50%)
+            mediaPlayer.setVolume(volumeSlider.getValue() / 100);
 
-        volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> 
-            mediaPlayer.setVolume(newValue.doubleValue() / 100)
-        );
+            volumeSlider.valueProperty().addListener((observable, oldValue, newValue) ->
+                    mediaPlayer.setVolume(newValue.doubleValue() / 100)
+            );
 
-        playPauseButton.setOnAction(event -> togglePlayPause());
+            playPauseButton.setOnAction(event -> togglePlayPause());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -69,4 +78,3 @@ public class AccueilControleur {
         }
     }
 }
-

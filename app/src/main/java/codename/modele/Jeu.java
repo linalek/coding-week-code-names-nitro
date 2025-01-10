@@ -204,9 +204,6 @@ public class Jeu {
         return grille.getTuile(i, j);
     }
 
-    public void setTuile(int i, int j, Tuile theTuile) {
-        grille.setTuile(i, j, theTuile);
-    }
 
     public int getTaille() {
         return grille.getTaille();

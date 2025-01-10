@@ -1,0 +1,162 @@
+/* Root background for the BorderPane */
+.background {
+    /* Utilisation d'une couleur de fond violet solide */
+    -fx-background-color: linear-gradient(to bottom right, #6a0dad, #8e44ad);
+    /* Vous pouvez également utiliser une image de fond si vous le souhaitez :
+    -fx-background-image: url("background.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    */
+}
+
+/* Top StackPane styling */
+.background > .top > StackPane {
+    -fx-background-color: #5a0da0; /* Une teinte légèrement différente de violet pour le haut */
+}
+
+/* Title Label */
+.background .top Label {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-family: "Arial", sans-serif;
+}
+
+/* Center VBox styling */
+.background .center > VBox {
+    -fx-background-color: rgba(0, 0, 0, 0.6); /* Fond semi-transparent pour contraster avec le violet */
+    -fx-padding: 30px;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    /* Centrer les éléments verticalement et horizontalement */
+    -fx-alignment: center;
+}
+
+/* Labels within the center VBox */
+.background .center Label {
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+    -fx-font-family: "Arial", sans-serif;
+}
+
+/* HBoxes within the center VBox */
+.background .center HBox {
+    -fx-spacing: 15px;
+    -fx-alignment: center;
+}
+
+/* SplitMenuButtons styling */
+.background SplitMenuButton {
+    -fx-font-size: 16px;
+    -fx-background-color: #9b59b6; /* Violet plus clair pour les boutons */
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.background SplitMenuButton:hover {
+    -fx-background-color: #af7ac5; /* Teinte plus claire au survol */
+}
+
+/* MenuItems within SplitMenuButtons */
+.background SplitMenuButton .menu-item {
+    -fx-font-size: 16px;
+    -fx-text-fill: #ffffff; /* Texte blanc dans les éléments de menu */
+    -fx-background-color: #8e44ad; /* Fond violet pour les éléments de menu */
+}
+
+.background SplitMenuButton .menu-item:hover {
+    -fx-background-color: #a569bd; /* Teinte plus claire au survol des éléments de menu */
+}
+
+/* ListView styling */
+.background ListView {
+    -fx-pref-width: 300px;
+    -fx-pref-height: 150px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #bdc3c7;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+
+.background ListView .cell {
+    -fx-font-size: 16px;
+    -fx-text-fill: #2c3e50; /* Texte noir pour la lisibilité sur fond blanc */
+}
+
+/* CheckBoxes styling */
+.background CheckBox {
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+    -fx-font-family: "Arial", sans-serif;
+}
+
+.background CheckBox:selected {
+    -fx-mark-color: #2ecc71; /* Marque verte pour les cases cochées */
+}
+
+/* TextField styling */
+.background TextField {
+    -fx-pref-width: 200px;
+    -fx-font-size: 16px;
+    -fx-padding: 5px 10px;
+    -fx-border-color: #bdc3c7;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-text-fill: #2c3e50; /* Texte sombre pour la lisibilité */
+}
+
+.background TextField:focused {
+    -fx-border-color: #2ecc71;
+    -fx-background-color: white;
+}
+
+/* Bottom HBox styling */
+.background .bottom > HBox {
+    -fx-padding: 15px;
+    -fx-background-color: #5a0da0; /* Harmoniser avec le haut */
+    -fx-alignment: center;
+}
+
+/* Launch Button styling */
+.background Button {
+    -fx-font-size: 18px;
+    -fx-text-fill: white;
+    -fx-background-color: #27ae60;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-font-family: "Arial", sans-serif;
+    -fx-cursor: hand;
+}
+
+.background Button:hover {
+    -fx-background-color: #2ecc71;
+}
+
+.background Button:pressed {
+    -fx-background-color: #1e8449;
+}
+
+/* Optional: ScrollBar styling for ListView */
+.background ListView .scroll-bar:vertical .thumb {
+    -fx-background-color: #2ecc71;
+}
+
+.background ListView .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #27ae60;
+}
+
+/* Additional enhancements */
+.background .center .toggle-group {
+    /* Si vous utilisez des ToggleGroups pour les CheckBoxes, assurez-vous qu'un seul est sélectionné */
+}
+
+/* Centrer les éléments du VBox */
+.background .center > VBox {
+    -fx-alignment: center;
+}

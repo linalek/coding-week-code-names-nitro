@@ -250,13 +250,16 @@ public class MenuControleur {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/codename/vue/AjoutMotsDico.fxml"));
             Parent newRoot = loader.load();
+            Scene scene = new Scene(newRoot);
+            scene.getStylesheets().add(getClass().getResource("/public/modifDicoStyle.css").toExternalForm());
             Stage stage = new Stage();
             stage.setTitle("Modifier le dictionnaire");
-            stage.setScene(new Scene(newRoot));
+            stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }

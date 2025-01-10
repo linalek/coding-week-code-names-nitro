@@ -176,28 +176,10 @@ public class CustomControleur {
 
         boolean tempsLimite = checkboxModeTempsLimite.isSelected();
         int type = checkboxModeImage.isSelected() ? 1 : 0;
-
-        if (tempsLimite) {
-            System.out.println("Temps limité : 30s !");
-        } else {
-            if (selectedThemes.isEmpty()) {
-                selectedThemes=null;
-            }
-            String nbJoueurs = nombreJoueurs.getText();
-            String tGrille = tailleGrille.getText();
-
-            boolean tempsLimite = false;
-            if (checkboxModeTempsLimite.isSelected()) {
-                tempsLimite = true;
-            }
-            int type = 0;
-            if (checkboxModeImage.isSelected()) {
-                type = 1;
-            }
-            if (globalControleur != null) {
-                globalControleur.lancerJeuCustom(Integer.parseInt(tGrille), type, tempsLimite, Integer.parseInt(nbJoueurs)-1, selectedThemes);
-            }
+        if (globalControleur != null) {
+            globalControleur.lancerJeuCustom(tGrille, type, tempsLimite, nbJoueurs - 1, selectedThemes);
         }
     }
 }
+
 

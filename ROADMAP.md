@@ -61,6 +61,8 @@
 - ajouter des commentaires permettant de comprendre ce que fais chaque classe/fonction ?? 
 - documenter l'installation et l'éxecution du jeu : Readme.md
 - vidéo démo du jeu : audio + screncast à publier (youtube ou dailymotion) avec le lien dans le readme.md
+- AJOUTER DU STYLE
+- retirer les print de partout
 
 ## RÉALISÉ
 
@@ -121,3 +123,5 @@
 - Début jeu en mode image
 
 ### Jour 5
+- mode image
+- ajouter une musique 

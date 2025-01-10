@@ -191,14 +191,12 @@ public class DictionnaireThemes {
             List<String> nouveauxMots = new ArrayList<>();
             nouveauxMots.add(mot);
             themes.put(theme, nouveauxMots);
-            System.out.println("Nouveau theme cree : " + theme);
         }
     }
 
     public static void sauvegarderDictionnaire(String cheminFichier) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.writerWithDefaultPrettyPrinter().writeValue(new File(cheminFichier), themes);
-        System.out.println("Dictionnaire sauvegarde");
     }
 
     public static void chargerDictionnaire(String cheminFichier) throws IOException {
@@ -209,7 +207,6 @@ public class DictionnaireThemes {
                     new TypeReference<Map<String, List<String>>>() {}
             );
             themes = loaded;
-            System.out.println("Dictionnaire charge depuis " + cheminFichier);
         } catch (FileNotFoundException e) {
             System.out.println("Aucun dictionnaire sauvegarde trouve ("
                     + cheminFichier + ") => on part d'un dico par defaut.");

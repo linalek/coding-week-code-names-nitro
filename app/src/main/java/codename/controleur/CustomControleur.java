@@ -130,13 +130,16 @@ public class CustomControleur {
      */
     @FXML
     private void handleLancerPartie() {
-        if (selectedThemes.size() < 4) {
+        if (selectedThemes.size() < 4 && !selectedThemes.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText("Sélection insuffisante");
             alert.setContentText("Vous devez sélectionner au moins 4 thèmes !");
             alert.showAndWait();
         } else {
+            if (selectedThemes.isEmpty()) {
+                selectedThemes=null;
+            }
             String nbJoueurs = nombreJoueurs.getText();
             String tGrille = tailleGrille.getText();
 
@@ -149,11 +152,7 @@ public class CustomControleur {
             if (checkboxModeImage.isSelected()) {
                 type = 1;
             }
-            // Lancer la partie avec les paramètres choisis
-            System.out.println("Nombre de joueurs : " + nbJoueurs);
-            System.out.println("Taille de la grille : " + tGrille);
 
-            System.out.println("Thèmes sélectionnés : " + selectedThemes);
             if (checkboxModeTempsLimite.isSelected()) {
                 System.out.println("Temps limité : " + inputTemps.getText());
             } else if (checkboxNotModeTempsLimite.isSelected()) {

@@ -1,12 +1,11 @@
 package codename.controleur;
 
-import codename.modele.Grille;
-import codename.modele.Jeu;
-import codename.modele.Tuile;
-import codename.modele.TuileMot;
+import codename.modele.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -45,12 +44,24 @@ public class PlateauAgentControleur implements Initializable {
 
     public void mettreAJourGrille() {
         grilleAffichage.getChildren().clear();
-        for (int i = 0; i < jeuEnCours.getTaille(); i++) {
-            for (int j = 0; j < jeuEnCours.getTaille(); j++) {
-                TuileMot tuileMot = (TuileMot) jeuEnCours.getTuile(i,j);
-                StackPane cellule = creerCelluleMot(tuileMot);
-                cellule.setOnMouseClicked(event -> handleCellClick(event));
-                grilleAffichage.add(cellule, j, i);
+        if (jeuEnCours.getType()==0) {
+            for (int i = 0; i < jeuEnCours.getTaille(); i++) {
+                for (int j = 0; j < jeuEnCours.getTaille(); j++) {
+                    TuileMot tuileMot = (TuileMot) jeuEnCours.getTuile(i, j);
+                    StackPane cellule = creerCelluleMot(tuileMot);
+                    cellule.setOnMouseClicked(event -> handleCellClick(event));
+                    grilleAffichage.add(cellule, j, i);
+                }
+            }
+        }
+        else {
+            for (int i = 0; i < jeuEnCours.getTaille(); i++) {
+                for (int j = 0; j < jeuEnCours.getTaille(); j++) {
+                    TuileImage tuileImage = (TuileImage) jeuEnCours.getTuile(i, j);
+                    StackPane cellule = creerCelluleImage(tuileImage);
+                    cellule.setOnMouseClicked(event -> handleCellClick(event));
+                    grilleAffichage.add(cellule, j, i);
+                }
             }
         }
     }
@@ -81,6 +92,37 @@ public class PlateauAgentControleur implements Initializable {
             texte.setFill(Color.WHITE);
         }
         return cellule;
+    }
+
+    private StackPane creerCelluleImage(TuileImage tuileImage) {
+        StackPane cellule = new StackPane();
+        cellule.setPrefSize(150, 150); // Taille de chaque cellule
+        ajouterImage("/figures/banqueimage/"+tuileImage.getImageAdress(), cellule);
+
+
+        String tuilecolor;
+        if (tuileImage.isEstRetournee()){
+            tuilecolor = obtenirCouleurDeFond(tuileImage.getEquipe());
+        }
+        else {
+            tuilecolor = " #d7d7d7 "; // Beige
+        }
+        cellule.setStyle("-fx-background-color: " + tuilecolor + ";");
+        cellule.setAlignment(Pos.CENTER);
+        return cellule;
+    }
+
+    public void ajouterImage(String cheminImage,StackPane cellule) {
+        Image image = new Image(getClass().getResourceAsStream(cheminImage));
+        ImageView imageView = new ImageView(image);
+
+        // Optionnel : ajuster les dimensions de l'image
+        imageView.setFitWidth(100);
+        imageView.setFitHeight(100);
+        imageView.setPreserveRatio(true);
+
+        // Ajouter l'ImageView au StackPane
+        cellule.getChildren().add(imageView);
     }
 
     private String obtenirCouleurDeFond(int valeur) {

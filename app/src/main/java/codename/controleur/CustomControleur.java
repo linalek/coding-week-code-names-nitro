@@ -144,8 +144,10 @@ public class CustomControleur {
             String tGrille = tailleGrille.getText();
 
             int tempsChoisi = 0;
+            boolean tempsLimite = false;
             if (checkboxModeTempsLimite.isSelected()) {
                 tempsChoisi = Integer.parseInt(inputTemps.getText());
+                tempsLimite = true;
             }
 
             int type = 0;
@@ -164,7 +166,7 @@ public class CustomControleur {
                 System.out.println("Mode mot");
             }
             if (globalControleur != null) {
-                globalControleur.lancerJeuCustom(Integer.parseInt(tGrille), type, Integer.parseInt(nbJoueurs)-1, tempsChoisi, selectedThemes);
+                globalControleur.lancerJeuCustom(Integer.parseInt(tGrille), type, tempsLimite, Integer.parseInt(nbJoueurs)-1, tempsChoisi, selectedThemes);
             }
         }
     }

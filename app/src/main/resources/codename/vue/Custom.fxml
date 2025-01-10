@@ -70,6 +70,7 @@
                 <CheckBox fx:id="checkboxNotModeTempsLimite" text="Non" onAction="#handleModeTempsLimite" style="-fx-font-size: 24px;" textFill="white" />
             </HBox>
                 <VBox alignment="CENTER" prefHeight="39.0" prefWidth="200.0" style="-fx-font-size: 16px;">
+<!--                    <Label fx:id="label" text="Je suis un label !" visible="${checkBox.selected}"}-->
                 <TextField fx:id="inputTemps" promptText="Entrez le temps (en secondes)" visible="false" prefWidth="200"/>
                 </VBox>
             <VBox spacing="10" alignment="CENTER">

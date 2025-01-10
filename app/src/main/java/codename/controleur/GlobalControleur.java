@@ -309,8 +309,8 @@ public class GlobalControleur {
      * @param timer
      * @param listeDesThemes
      */
-    public void lancerJeuCustom(int taille, int type, int nombreJoueursParEquipe, int timer, List<String> listeDesThemes){
-        jeuEnCours = new Jeu(taille, type,false, nombreJoueursParEquipe, timer, listeDesThemes);
+    public void lancerJeuCustom(int taille, int type,boolean modeBlitz, int nombreJoueursParEquipe, int timer, List<String> listeDesThemes){
+        jeuEnCours = new Jeu(taille, type, modeBlitz, nombreJoueursParEquipe, timer, listeDesThemes);
         afficherConfigurationEquipe();
     }
 

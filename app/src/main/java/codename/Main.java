@@ -33,6 +33,7 @@ public class Main extends Application {
         primaryStage.setOnCloseRequest(event -> {
             try {
                 sauvegarderDictionnaire("dictionnaire.json");
+                System.exit(0);
             } catch (IOException e) {
                 e.printStackTrace();
             }

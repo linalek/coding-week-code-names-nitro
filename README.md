@@ -38,7 +38,7 @@ Ce jeu d'association d'idées et de déduction propose des fonctionnalités inte
 1. **Cloner le dépôt :**
    ```bash
    git clone <URL_DU_DÉPÔT>
-   cd grp20
+   cd coding-week-code-names-nitro
    ```
 
 2. **Exécution :**
